@@ -1,0 +1,16 @@
+// SectionContenu — textes libres du vitrine, identifiés par clé (brief §4.4).
+// Clés : hero, note_globale, prestations, tarifs, apropos, salon, salon_1…salon_4,
+// marques, cta_final, contact, footer.
+{
+  "name": "SectionContenu",
+  "type": "object",
+  "properties": {
+    "cle": { "type": "string", "description": "ex: hero, apropos, cta_final" },
+    "titre": { "type": "string" },
+    "sous_titre": { "type": "string" },
+    "texte": { "type": "string" },
+    "image_url": { "type": "string" },
+    "visible": { "type": "boolean", "default": true }
+  },
+  "required": ["cle"]
+}

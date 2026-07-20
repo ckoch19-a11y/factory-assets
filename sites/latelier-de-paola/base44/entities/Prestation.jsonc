@@ -1,0 +1,19 @@
+// Prestation — offres et tarifs (brief §4.2).
+// categorie = label du groupe tarifaire (tableau B) ou "carte-accueil" (les 5 cartes S3, ordre 1–5).
+// La section S4 groupe par categorie ; la S3 lit les cartes "carte-accueil".
+{
+  "name": "Prestation",
+  "type": "object",
+  "properties": {
+    "nom": { "type": "string" },
+    "description": { "type": "string" },
+    "prix": { "type": "string", "description": "Verbatim — fourchettes et « à partir de » existent" },
+    "duree": { "type": "string" },
+    "categorie": { "type": "string" },
+    "vedette": { "type": "boolean", "default": false },
+    "ordre": { "type": "number", "default": 0, "description": "Position dans le groupe" },
+    "visible": { "type": "boolean", "default": true },
+    "image_url": { "type": "string" }
+  },
+  "required": ["nom"]
+}

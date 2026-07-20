@@ -1,0 +1,14 @@
+// DemandeContact — le pont retour : le vitrine crée (formulaire S9), le back-office traite (brief §4.5).
+// Aucun enregistrement initial. Création anonyme/publique à activer sur cette entité (réglage Base44 côté compte).
+{
+  "name": "DemandeContact",
+  "type": "object",
+  "properties": {
+    "nom": { "type": "string" },
+    "email": { "type": "string" },
+    "telephone": { "type": "string" },
+    "message": { "type": "string" },
+    "statut": { "type": "string", "enum": ["nouvelle", "traitee"], "default": "nouvelle" }
+  },
+  "required": ["nom", "message"]
+}
