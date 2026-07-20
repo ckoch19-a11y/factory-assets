@@ -1,0 +1,14 @@
+// Temoignage — avis clients (brief §4.3). Seuls des avis au texte vérifié — ne jamais en inventer.
+{
+  "name": "Temoignage",
+  "type": "object",
+  "properties": {
+    "auteur": { "type": "string" },
+    "texte": { "type": "string" },
+    "note": { "type": "number", "default": 5 },
+    "source": { "type": "string" },
+    "date": { "type": "string", "format": "date" },
+    "visible": { "type": "boolean", "default": true }
+  },
+  "required": ["auteur", "texte"]
+}

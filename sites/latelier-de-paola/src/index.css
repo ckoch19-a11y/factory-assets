@@ -1,0 +1,75 @@
+/* Polices — fallbacks Google Fonts du DESIGN.md steep :
+   Signifier → Source Serif 4 · Söhne → Inter (demi-graisses via la fonte variable). */
+@import url("https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400&family=Inter:wght@400..600&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Tokens Steep — « Analytics serif sur papier chaud », mode clair.
+   Palette : Paper White #ffffff · Fog White #fafafb · Mist Gray #f2f2f3 ·
+   Ink Black #17191c · Slate Gray #777b86 · Ash Gray #979799 ·
+   Blush Peach #fbe1d1 · Sienna Brown #5d2a1a. */
+:root {
+  --background: 0 0% 100%; /* Paper White — canvas dominant */
+  --background-alt: 240 11% 98%; /* Fog White — bandes alternées */
+  --foreground: 216 10% 10%; /* Ink Black — texte principal */
+  --primary: 216 10% 10%; /* Ink Black — bouton rempli, seule surface sombre */
+  --primary-foreground: 0 0% 100%;
+  --accent: 23 84% 90%; /* Blush Peach — seule surface chromatique, 1×/page max */
+  --accent-foreground: 14 56% 23%; /* Sienna Brown — encre sur surfaces pêche uniquement */
+  --muted: 240 4% 95%; /* Mist Gray — surfaces de cartes, fonds d'inputs */
+  --muted-foreground: 224 6% 50%; /* Slate Gray — liens, texte d'aide, footer */
+  --subtle: 240 1% 60%; /* Ash Gray — labels tertiaires, tags */
+  --border: 240 4% 95%; /* Mist Gray */
+
+  --font-heading: "Source Serif 4", "Georgia", serif;
+  --font-body: "Inter", system-ui, sans-serif;
+
+  /* Rayons Steep : images 12 · inputs & petites cartes 16 · élevées 20 · cartes 24 · boutons 9999 */
+  --radius-image: 12px;
+  --radius-input: 16px;
+  --radius-elevated: 20px;
+  --radius-card: 24px;
+}
+
+/* CHOIX EXÉCUTANT : steep est un style « mode clair » — .dark reprend les mêmes
+   valeurs (pas de thème sombre distinct dans le DESIGN.md du brief). */
+.dark {
+  --background: 0 0% 100%;
+  --background-alt: 240 11% 98%;
+  --foreground: 216 10% 10%;
+  --primary: 216 10% 10%;
+  --primary-foreground: 0 0% 100%;
+  --accent: 23 84% 90%;
+  --accent-foreground: 14 56% 23%;
+  --muted: 240 4% 95%;
+  --muted-foreground: 224 6% 50%;
+  --subtle: 240 1% 60%;
+  --border: 240 4% 95%;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+  body {
+    @apply bg-background text-foreground font-body;
+    font-size: 15px; /* échelle tierce mineure (1.2) depuis 15px */
+    font-weight: 430;
+    line-height: 1.6;
+  }
+  h1,
+  h2,
+  h3 {
+    @apply font-heading font-normal; /* serif 400 pour tout display — jamais de bold serif */
+  }
+  a {
+    text-decoration: none; /* liens sans soulignement au repos — la flèche → porte l'affordance */
+  }
+}

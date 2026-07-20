@@ -1,0 +1,23 @@
+// SiteConfig — identité et coordonnées (1 seul enregistrement, brief §4.1).
+// Le vitrine lit, le back-office (/admin/parametres) écrit ; url_source et brief en lecture seule.
+{
+  "name": "SiteConfig",
+  "type": "object",
+  "properties": {
+    "nom": { "type": "string" },
+    "slogan": { "type": "string" },
+    "description": { "type": "string" },
+    "adresse": { "type": "string" },
+    "telephone": { "type": "string" },
+    "email": { "type": "string" },
+    "horaires": { "type": "string" },
+    "instagram": { "type": "string" },
+    "facebook": { "type": "string" },
+    "url_rdv": { "type": "string" },
+    "siret": { "type": "string" },
+    "tva": { "type": "string" },
+    "url_source": { "type": "string", "description": "URL d'origine du pipeline" },
+    "brief": { "type": "object", "description": "Brief extrait, rejouable", "additionalProperties": true }
+  },
+  "required": ["nom"]
+}
