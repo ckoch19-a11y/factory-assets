@@ -22,6 +22,10 @@ le back-office et le formulaire de contact nécessitent l'app Base44.
 
 ## Brancher l'app Base44
 
+App cible créée : **L'Atelier de Paola** — id `6a5e8734c85aad842f5d8520`
+(éditeur : https://app.base44.com/apps/6a5e8734c85aad842f5d8520/editor/preview).
+Le code de ce dossier y est poussé via la sandbox MCP ; ce dépôt reste la source de vérité versionnée.
+
 1. Créer/choisir l'app cible et déclarer les 5 entités de `base44/entities/*.jsonc`
    (SiteConfig, Prestation, Temoignage, SectionContenu, DemandeContact).
 2. Activer la création anonyme/publique sur `DemandeContact` (formulaire du vitrine) —
