@@ -15,8 +15,8 @@
 //
 // Reference mesuree hors TradingView, 10 actifs crypto 2017-2026, profil
 // impulsion, seuil 2 ATR, stop 1,5 ATR, suiveur 3 ATR :
-//   382 trades, 36,6 % de reussite, gain/perte 3,9, esperance +0,739 R,
-//   facteur de profit 2,28, t = 3,56, positif 8 annees sur 9.
+//   381 trades, 36,5 % de reussite, gain/perte 3,8, esperance +0,693 R,
+//   facteur de profit 2,20, t = 3,42, positif 8 annees sur 9.
 // ATTENTION : en dessous du journalier l'esperance mesuree est NEGATIVE.
 // =============================================================================
 

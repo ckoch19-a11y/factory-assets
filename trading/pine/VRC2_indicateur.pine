@@ -13,15 +13,15 @@
 //
 // REGLAGE CRYPTO RETENU (seuil 2 ATR, stop 1,5 ATR, suiveur 3 ATR)
 //   Echantillon groupe 10 actifs, 2017-2026, frais 40 bps aller-retour :
-//     382 trades, 36,6 % de reussite, gain/perte 3,9, esperance +0,739 R,
-//     facteur de profit 2,28, t = 3,56.
+//     381 trades, 36,5 % de reussite, gain/perte 3,8, esperance +0,693 R,
+//     facteur de profit 2,20, t = 3,42.
 //   Positif 8 annees sur 9. Pire annee -0,6 R. Trimestre median +2,8 R.
 //   Bat 40 tirages sur 40 d'entrees ALEATOIRES dans le meme regime avec la
 //   meme gestion : c'est ce controle, et non le rendement, qui prouve le signal.
 //
 // POURQUOI PAS DE TAKE PROFIT FIXE
-//   Mesure sur le meme echantillon : suiveur seul +0,739 R ; avec objectif 6R
-//   +0,447 R ; 4R +0,354 R ; 3R +0,297 R ; 2R +0,159 R. Couper les gagnants
+//   Mesure sur le meme echantillon : suiveur seul +0,693 R ; avec objectif 6R
+//   +0,447 R ; 4R +0,351 R ; 3R +0,297 R ; 2R +0,156 R. Couper les gagnants
 //   detruit l'edge, parce que l'edge vit precisement dans les rares tres gros
 //   gagnants. La sortie est donc un stop suiveur, affiche en continu. Les
 //   paliers 1R / 2R / 3R sont traces a titre de REPERE, pas d'ordre.
@@ -53,7 +53,7 @@ trendLen  = input.int(200, "Filtre de tendance (barres)", minval=50, maxval=400,
 extLen    = input.int(20, "Moyenne rapide (barres)", minval=5, maxval=60, group=gS)
 atrLen    = input.int(14, "ATR (barres)", minval=5, maxval=50, group=gS)
 impThresh = input.float(2.0, "Seuil crypto - impulsion (ATR)", minval=0.5, maxval=4.0, step=0.25, group=gS,
-     tooltip="Entrée quand (clôture - EMA rapide) / ATR dépasse ce seuil.\nHors échantillon 2023-2026 : +0,175 R à 1,0 ; +0,218 R à 1,5 ; +0,295 R à 2,0. Monotone.")
+     tooltip="Entrée quand (clôture - EMA rapide) / ATR dépasse ce seuil.\nHors échantillon 2023-2026, stop 1,5 et suiveur 3 : +0,422 R à 1,0 ; +0,565 R à 1,5 ; +0,656 R à 2,0. Monotone, donc pas un pic de sur-ajustement.")
 extThresh = input.float(-1.0, "Seuil actions - repli (ATR)", minval=-3.0, maxval=-0.25, step=0.25, group=gS,
      tooltip="Entrée quand l'écart passe SOUS ce seuil. Plateau de -0,5 à -2,0.")
 
@@ -61,7 +61,7 @@ gG = "3 - Gestion"
 stopMult  = input.float(1.5, "Stop initial (ATR)", minval=0.5, maxval=4.0, step=0.25, group=gG,
      tooltip="1,5 ATR est le meilleur compromis mesuré. Plus serré augmente l'espérance mais fait tomber le taux de réussite sous 25 %.")
 trailMult = input.float(3.0, "Stop suiveur (ATR)", minval=1.0, maxval=8.0, step=0.5, group=gG,
-     tooltip="C'est la sortie réelle du système. Mesuré : 2 ATR donne +0,18 R, 3 ATR +0,48 R, 5 ATR +1,56 R hors échantillon — mais au prix d'un taux de réussite qui s'effondre et d'un trimestre médian négatif. 3 ATR est retenu pour la régularité.")
+     tooltip="C'est la sortie réelle du système. Hors échantillon 2023-2026 : 2 ATR donne +0,339 R, 3 ATR +0,656 R, 5 ATR +1,494 R.\nÉlargir rapporte davantage mais fait tomber le taux de réussite sous 25 % et rend le trimestre médian négatif : 81 à 88 % de chances de subir plus de 15 pertes d'affilée. 3 ATR est retenu pour la régularité, pas pour le rendement.")
 maxBars   = input.int(40, "Duree maximale (barres)", minval=5, maxval=120, group=gG)
 
 gR = "4 - Risque et couts"

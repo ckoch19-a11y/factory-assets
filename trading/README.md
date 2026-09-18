@@ -63,7 +63,7 @@ meilleur t (2,35) et la meilleure p-value (0,0000) — et la meilleure liquidit�
 donc les frais réels les plus bas et les données d'order flow les plus fiables.
 
 **Réglage crypto retenu** : seuil 2 ATR, stop 1,5 ATR, suiveur 3 ATR.
-381 trades, 36,5 % de réussite, gain/perte 3,9, espérance **+0,693 R**,
+381 trades, 36,5 % de réussite, gain/perte 3,8, espérance **+0,693 R**,
 facteur de profit 2,20, **8 années positives sur 9**, pire année −0,6 R.
 
 Deux réglages rapportaient deux à trois fois plus. Ils sont écartés parce que
