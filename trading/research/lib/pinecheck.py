@@ -69,6 +69,36 @@ def _indent(raw: str) -> int:
     return len(raw) - len(raw.lstrip())
 
 
+def paste_safety(path: str) -> list[str]:
+    """Controles de robustesse au copier-coller, pas des erreurs Pine.
+
+    Un fichier destine a etre colle dans l'editeur TradingView ne doit
+    dependre ni de son indentation de continuation ni de son encodage :
+    une ligne de continuation doit etre indentee d'un nombre d'espaces qui
+    n'est PAS un multiple de quatre, et tout chemin de copie qui normalise
+    les espaces ou re-encode les accents casse le fichier. Une instruction
+    par ligne et de l'ASCII pur suppriment ces deux risques.
+    """
+    warns: list[str] = []
+    lines = open(path, encoding="utf-8").read().splitlines()
+    codes = [strip_code(l) for l in lines]
+    bal = 0
+    for i, c in enumerate(codes, 1):
+        if not c.strip():
+            continue
+        if bal > 0:
+            warns.append(f"L{i}: ligne de continuation (indentation critique au collage)")
+        bal += c.count("(") - c.count(")") + c.count("[") - c.count("]")
+        bal = max(bal, 0)
+    for i, l in enumerate(lines, 1):
+        for ch in l:
+            if ord(ch) > 127:
+                warns.append(f"L{i}: caractere non ASCII {ch!r} (legal en Pine, "
+                             f"mais fragile au copier-coller)")
+                break
+    return warns
+
+
 def check(path: str) -> list[str]:
     errs: list[str] = []
     text = open(path, encoding="utf-8").read()
@@ -248,8 +278,16 @@ def check(path: str) -> list[str]:
 
 
 if __name__ == "__main__":
+    args = [a for a in sys.argv[1:] if not a.startswith("--")]
+    paste = "--paste-safe" in sys.argv
     total = 0
-    for p in sys.argv[1:]:
+    for p in args:
+        if paste:
+            w = paste_safety(p)
+            print(f"=== {p} : robustesse au collage ===")
+            for x in w[:10]:
+                print("  AVERTISSEMENT :", x)
+            print(f"  {len(w)} point(s) de fragilite" if w else "  sur au collage")
         e = check(p)
         print(f"=== {p} ===")
         if e:
