@@ -61,9 +61,14 @@ for mode, kw in MODES.items():
         st = B.trade_stats(t)
         if not st.get("n_trades"):
             continue
+        # La courbe de capital sequentielle suppose des trades qui ne se
+        # chevauchent pas. C'est exact sur un instrument unique, faux sur 500
+        # actions ou des dizaines de positions coexistent : on ne publie donc
+        # pas de drawdown dans ce cas (09_final_longonly.py le calcule
+        # correctement, avec un vrai portefeuille a positions plafonnees).
+        mono = f["symbol"].nunique() == 1
         eq = B.equity_curve(t, risk_pct=1.0)
-        ret = eq.pct_change().dropna()
-        dd = float((eq / eq.cummax() - 1).min() * 100)
+        dd = float((eq / eq.cummax() - 1).min() * 100) if mono else float("nan")
         summary.append({
             "mode": mode, "univers": uni,
             "n_trades": st["n_trades"], "win_rate_pct": st["win_rate_pct"],
@@ -72,8 +77,8 @@ for mode, kw in MODES.items():
             "esperance_R": st["esperance_R"], "profit_factor": st["profit_factor"],
             "t_stat_R": st["t_stat_R"], "R_total": st["R_total"],
             "duree_moy_barres": st["duree_moy_barres"],
-            "capital_x_risque1pct": round(float(eq.iloc[-1] / 10000.0), 2),
-            "drawdown_max_pct_risque1pct": round(dd, 2),
+            "capital_x_risque1pct": round(float(eq.iloc[-1] / 10000.0), 2) if mono else None,
+            "drawdown_max_pct_risque1pct": round(dd, 2) if mono else None,
             "frais_bps_aller_retour": (fee + slip) * 2,
         })
 
@@ -120,7 +125,6 @@ print(sd.to_string(index=False))
 # ------------------------------------------------------------- Monte-Carlo + Sharpe deflate
 print("\n" + "=" * 130)
 print("### Robustesse statistique ###\n")
-N_TRIALS = 40  # taille de la grille ayant servi a la selection
 rob = []
 for (mode, uni), t in all_trades.items():
     if len(t) < 50:
@@ -133,9 +137,9 @@ for (mode, uni), t in all_trades.items():
     dd = (eq / np.maximum.accumulate(eq, axis=1) - 1).min(axis=1)
     final = eq[:, -1]
     per_trade_sharpe = R.mean() / R.std(ddof=1) if R.std(ddof=1) > 0 else np.nan
-    dsr = S.deflated_sharpe(per_trade_sharpe, len(R), N_TRIALS,
-                            skew=float(pd.Series(R).skew()),
-                            kurt=float(pd.Series(R).kurt() + 3))
+    # Le Sharpe deflate a besoin de la variance des Sharpe sur TOUTE la grille
+    # essayee. Elle est calculee dans 09_final_longonly.py, qui reparcourt la
+    # grille ; on ne la duplique pas ici.
     rob.append({
         "mode": mode, "univers": uni, "n_trades": len(R),
         "p_value_bootstrap": round(S.block_bootstrap_pvalue(pd.Series(R), 10, 4000), 4),
@@ -143,7 +147,6 @@ for (mode, uni), t in all_trades.items():
         "drawdown_median_MC_pct": round(float(np.median(dd) * 100), 2),
         "drawdown_p95_MC_pct": round(float(np.percentile(dd, 5) * 100), 2),
         "sharpe_par_trade": round(float(per_trade_sharpe), 4),
-        "prob_sharpe_reel_positif_deflate": round(dsr, 4),
     })
 rb = pd.DataFrame(rob)
 rb.to_csv(os.path.join(RESULTS, "09_robustesse.csv"), index=False)
@@ -187,7 +190,7 @@ for (mode, uni), t in all_trades.items():
         t.to_csv(os.path.join(RESULTS, f"trades_{mode}_{safe}.csv"), index=False)
 
 with open(os.path.join(RESULTS, "06_final_meta.json"), "w") as fh:
-    json.dump({"modes": MODES, "n_trials_selection": N_TRIALS,
+    json.dump({"modes": MODES,
                "frais_bps": {k: list(v) for k, v in FEES.items()},
                "frais_defaut_bps": [5.0, 5.0]}, fh, indent=2)
 print("\n-> results/06_final_summary.csv et fichiers associes")

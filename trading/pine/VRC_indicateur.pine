@@ -48,7 +48,7 @@
 // Methode complete, limites et mode d'emploi : trading/docs/
 // =============================================================================
 
-indicator("VRC - Retracement en Continuation", shorttitle="VRC", overlay=true,
+indicator("VRC - Regime, Volatilite, Continuation", shorttitle="VRC", overlay=true,
      max_labels_count=500, max_lines_count=500, max_boxes_count=100)
 
 // ---------------------------------------------------------------- Parametres
@@ -72,8 +72,10 @@ impThresh = input.float(1.5, "Seuil d'impulsion (en ATR)", minval=0.25, maxval=3
 allowShort = input.bool(false, "Autoriser les ventes a decouvert", group=grpS,
      tooltip="DÉSACTIVÉ PAR DÉFAUT SUR PREUVE. Aucune des 36 configurations short testées n'est rentable en actions. Positif uniquement sur BTC, sur 20 à 46 trades, sans validation hors échantillon. À n'activer qu'en crypto et en connaissance de cause.")
 
-grpR = "Risque"
+grpR = "Risque et couts"
 riskPct   = input.float(1.0, "Risque par trade (% du capital)", minval=0.1, maxval=5.0, step=0.1, group=grpR)
+coutBps   = input.float(20.0, "Cout aller-retour (points de base)", minval=0.0, maxval=100.0, step=5.0, group=grpR,
+     tooltip="Frais + slippage, aller-retour, tels qu'utilisés dans le backtest :\n20 bps sur actions et indices, 40 bps en crypto.\nCe coût est déduit des statistiques du tableau de bord. Sans lui, le tableau surestimerait l'espérance d'environ 0,05 R par trade.")
 capital   = input.float(10000, "Capital de reference", minval=100, group=grpR)
 
 grpV = "Affichage"
@@ -140,7 +142,7 @@ var int   nLoss    = 0
 var float sumR     = 0.0
 var float sumWinR  = 0.0
 var float sumLossR = 0.0
-var float worstR   = 0.0
+var float worstR   = na
 
 float exitedR     = 0.0
 bool  justExited  = false
@@ -177,7 +179,12 @@ if dir != 0
     else if barsIn >= maxBars
         exitPx := close
     if not na(exitPx) and riskPx > 0
-        exitedR  := dir * (exitPx - entryPx) / riskPx
+        // meme convention que le backtest : le cout est preleve a l'entree ET
+        // a la sortie, puis exprime en multiple du risque initial
+        float cUnit = coutBps / 20000.0
+        float fill0 = entryPx * (1.0 + dir * cUnit)
+        float fill1 = exitPx  * (1.0 - dir * cUnit)
+        exitedR  := dir * (fill1 - fill0) / riskPx
         sumR     += exitedR
         if exitedR > 0
             nWin    += 1
@@ -185,7 +192,7 @@ if dir != 0
         else
             nLoss    += 1
             sumLossR += exitedR
-        worstR     := math.min(worstR, exitedR)
+        worstR     := na(worstR) ? exitedR : math.min(worstR, exitedR)
         justExited := true
         dir        := 0
         entryPx    := na
@@ -256,7 +263,9 @@ var table dash = table.new(position.top_right, 2, 11,
 
 if showDash and barstate.islast
     int   nT   = nWin + nLoss
-    float wr   = nT > 0 ? nWin / nT * 100.0 : 0.0
+    // nWin et nT sont des int : en Pine, int / int est une division ENTIERE.
+    // Multiplier par 100.0 d'abord force le calcul en flottant.
+    float wr   = nT > 0 ? 100.0 * nWin / nT : 0.0
     float esp  = nT > 0 ? sumR / nT : 0.0
     float avgW = nWin  > 0 ? sumWinR / nWin : 0.0
     float avgL = nLoss > 0 ? sumLossR / nLoss : 0.0
@@ -308,7 +317,7 @@ if showDash and barstate.islast
          text_color=weak ? color.gray : pf > 1 ? color.teal : color.red, bgcolor=bg, text_size=size.small)
 
     table.cell(dash, 0, 10, weak ? "Echantillon" : "Pire trade", text_color=kc, bgcolor=bg, text_size=size.small, text_halign=text.align_left)
-    table.cell(dash, 1, 10, weak ? "trop faible" : str.tostring(worstR, "#.##") + " R",
+    table.cell(dash, 1, 10, weak or na(worstR) ? "trop faible" : str.tostring(worstR, "#.##") + " R",
          text_color=weak ? color.orange : color.new(color.white, 25), bgcolor=bg, text_size=size.small)
 
 if showTFWarn and tfTooShort and barstate.islast

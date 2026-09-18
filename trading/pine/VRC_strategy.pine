@@ -87,6 +87,11 @@ var float posStop  = na
 var float posTgt   = na
 var float posBest  = na
 
+// La taille est calculee sur la cloture de la barre de signal, seule valeur
+// connue au moment de passer l'ordre. Le remplissage a lieu a l'ouverture
+// suivante : la distance au stop reelle differe donc legerement de celle
+// utilisee ici. C'est exactement la situation d'un ordre passe en direct, et
+// l'ecart ne touche que la taille, jamais le resultat en R du trade.
 qtyFor(entryRef, stopRef) =>
     d = math.abs(entryRef - stopRef)
     d > 0 ? strategy.equity * riskPct / 100.0 / d : 0.0

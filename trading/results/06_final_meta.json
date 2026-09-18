@@ -17,7 +17,6 @@
       "max_bars": 20
     }
   },
-  "n_trials_selection": 40,
   "frais_bps": {
     "BTCUSD 2012-2026 (journalier)": [
       10.0,
