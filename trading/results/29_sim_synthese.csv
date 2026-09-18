@@ -1,0 +1,5 @@
+config,seuil,stop,trail,maxb,n_signaux,win_rate,esperance_R,gain_moy_R,perte_moy_R,profit_factor,t_stat,duree_moy_j,serie_perdante_max,pris,rejetes,capital_x,CAGR_%,dd_max_%,MAR
+A_actuelle,1.5,2.0,2.0,40,633,40.9,0.25,1.49,-0.61,1.69,4.4,5.9,14,545,88,3.81,17.3,-13.3,1.3
+B_equilibre,2.0,1.5,3.0,40,381,36.5,0.693,3.49,-0.91,2.2,3.42,8.8,13,330,51,7.36,27.0,-20.3,1.33
+C_laisse_courir,2.0,1.0,6.0,40,358,21.2,1.56,11.32,-1.07,2.85,3.82,11.0,17,295,63,47.61,58.8,-20.3,2.89
+D_agressive,1.5,1.0,0.0,40,439,21.0,1.918,13.22,-1.08,3.25,3.96,12.4,23,352,87,169.3,84.5,-26.3,3.21

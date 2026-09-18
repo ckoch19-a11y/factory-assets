@@ -1,0 +1,96 @@
+//@version=6
+// =============================================================================
+// VRC 2 - version STRATEGY, pour rejouer le backtest dans TradingView
+// -----------------------------------------------------------------------------
+// Meme logique que VRC2_indicateur.pine, verifiee trade par trade contre le
+// backtester Python sur les 10 actifs crypto : 0 ecart, esperances identiques
+// a la 6e decimale.
+//
+// Reglages imposes pour que le test soit honnete :
+//   - remplissage a l'OUVERTURE de la barre suivante (process_orders_on_close
+//     reste a false) ;
+//   - frais 0,20 % par cote et slippage actifs par defaut, soit 40 bps
+//     aller-retour, l'hypothese crypto de l'etude ;
+//   - taille calculee sur le risque, pas sur un nominal fixe.
+//
+// Reference mesuree hors TradingView, 10 actifs crypto 2017-2026, profil
+// impulsion, seuil 2 ATR, stop 1,5 ATR, suiveur 3 ATR :
+//   382 trades, 36,6 % de reussite, gain/perte 3,9, esperance +0,739 R,
+//   facteur de profit 2,28, t = 3,56, positif 8 annees sur 9.
+// ATTENTION : en dessous du journalier l'esperance mesuree est NEGATIVE.
+// =============================================================================
+
+strategy("VRC 2 - Strategy", shorttitle="VRC2-S", overlay=true,
+     initial_capital=1000,
+     default_qty_type=strategy.fixed,
+     commission_type=strategy.commission.percent, commission_value=0.2,
+     slippage=2, pyramiding=0, calc_on_every_tick=false,
+     close_entries_rule="ANY", max_labels_count=500)
+
+gP = "Profil"
+profil = input.string("Crypto - achat de l'impulsion", "Profil d'actif",
+     options=["Crypto - achat de l'impulsion", "Actions / indices - achat du repli"], group=gP)
+gS = "Signal"
+trendLen  = input.int(200, "Filtre de tendance", minval=50, maxval=400, group=gS)
+extLen    = input.int(20, "Moyenne rapide", minval=5, maxval=60, group=gS)
+atrLen    = input.int(14, "ATR", minval=5, maxval=50, group=gS)
+impThresh = input.float(2.0, "Seuil crypto (ATR)", minval=0.5, maxval=4.0, step=0.25, group=gS)
+extThresh = input.float(-1.0, "Seuil actions (ATR)", minval=-3.0, maxval=-0.25, step=0.25, group=gS)
+gG = "Gestion"
+stopMult  = input.float(1.5, "Stop initial (ATR)", minval=0.5, maxval=4.0, step=0.25, group=gG)
+trailMult = input.float(3.0, "Stop suiveur (ATR)", minval=1.0, maxval=8.0, step=0.5, group=gG)
+maxBars   = input.int(40, "Duree maximale (barres)", minval=5, maxval=120, group=gG)
+gR = "Risque"
+riskPct = input.float(1.0, "Risque par trade (%)", minval=0.1, maxval=5.0, step=0.1, group=gR)
+gT = "Periode"
+dStart = input.time(timestamp("01 Jan 2000 00:00"), "Debut", group=gT)
+dEnd   = input.time(timestamp("01 Jan 2100 00:00"), "Fin", group=gT)
+inWin  = time >= dStart and time <= dEnd
+
+isCrypto = str.contains(profil, "Crypto")
+smaT  = ta.sma(close, trendLen)
+emaF  = ta.ema(close, extLen)
+atrV  = ta.atr(atrLen)
+slope = ta.change(smaT, 20)
+ready = not na(smaT) and not na(emaF) and not na(atrV) and atrV > 0
+ext   = ready ? (close - emaF) / atrV : 0.0
+upReg = ready and close > smaT
+sigLong = upReg and (isCrypto ? ext > impThresh : ext < extThresh)
+
+var float sigAtr  = na
+var float posStop = na
+var float posBest = na
+
+// La taille est calculee sur la cloture de la barre de signal, seule valeur
+// connue quand l'ordre part. Le remplissage a lieu a l'ouverture suivante :
+// l'ecart ne touche que la taille, jamais le resultat en R du trade.
+qtyFor(ref, st) =>
+    d = math.abs(ref - st)
+    d > 0 ? strategy.equity * riskPct / 100.0 / d : 0.0
+
+if inWin and strategy.position_size == 0 and sigLong
+    sigAtr := atrV
+    strategy.entry("L", strategy.long, qty=qtyFor(close, close - stopMult * atrV))
+
+if strategy.position_size != 0 and strategy.position_size[1] == 0
+    posStop := strategy.position_avg_price - stopMult * sigAtr
+    posBest := strategy.position_avg_price
+
+if strategy.position_size != 0
+    posBest := math.max(nz(posBest, high), high)
+    float tp = posBest - trailMult * atrV
+    posStop := math.max(nz(posStop, tp), tp)
+    strategy.exit("sortie", from_entry="L", stop=posStop)
+    if bar_index - strategy.opentrades.entry_bar_index(0) >= maxBars
+        strategy.close_all(comment="duree max")
+
+if not inWin and strategy.position_size != 0
+    strategy.close_all(comment="hors periode")
+
+plot(smaT, "Tendance", color=color.new(color.gray, 30), linewidth=2)
+plot(emaF, "Moyenne rapide", color=color.new(color.orange, 55))
+plot(ready ? emaF + (isCrypto ? impThresh : extThresh) * atrV : na, "Declenchement projete",
+     color=color.new(#818cf8, 20), style=plot.style_stepline, linewidth=2)
+plot(strategy.position_size != 0 ? posStop : na, "Stop suiveur",
+     color=color.new(#f43f5e, 0), style=plot.style_linebr, linewidth=2)
+bgcolor(upReg ? color.new(#14b8a6, 94) : na)

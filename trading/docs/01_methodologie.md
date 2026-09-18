@@ -131,7 +131,7 @@ seulement le fait d'être acheteur dans une tendance haussière qui rapporte.
 | Univers | Règle | Aléatoire (médiane) | Écart | Tirages battus |
 |---|---:|---:|---:|---:|
 | S&P 500 1962-2018 | +0,331 R | +0,089 R | **+0,242 R** | 30/30 |
-| 500 actions 2013-2018 | +0,103 R | +0,022 R | **+0,081 R** | 30/30 |
+| 500 actions 2013-2018 | +0,095 R | +0,021 R | **+0,074 R** | 30/30 |
 | BTC 2012-2026 | +0,318 R | +0,346 R | **−0,028 R** | 9/30 |
 
 **Sur BTC, l'entrée sur repli n'apporte rien.** Ce résultat négatif a déclenché

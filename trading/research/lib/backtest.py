@@ -161,9 +161,20 @@ def run_symbol(f: pd.DataFrame, cfg: Config, presignal: bool = False) -> list[di
                 t = best - side * cfg.trail_atr * atr[k]
                 stop = max(stop, t) if side == 1 else min(stop, t)
 
+        termine = True
         if exit_i is None:
-            exit_i = min(j + cfg.max_bars, n - 1)
-            exit_px, reason = c[exit_i], "temps"
+            # Deux cas a ne surtout pas confondre :
+            #   - la duree maximale est atteinte : sortie legitime au temps ;
+            #   - les donnees s'arretent avant : la position est ENCORE OUVERTE.
+            # Compter une position ouverte comme un gain realise gonfle le
+            # resultat. On la marque, et elle est exclue par defaut.
+            if j + cfg.max_bars <= n - 1:
+                exit_i = j + cfg.max_bars
+                exit_px, reason = c[exit_i], "temps"
+            else:
+                exit_i = n - 1
+                exit_px, reason = c[exit_i], "non_termine"
+                termine = False
 
         exit_fill = exit_px * (1 - side * cost)
         gross_r = side * (exit_fill - entry) / risk
@@ -181,6 +192,7 @@ def run_symbol(f: pd.DataFrame, cfg: Config, presignal: bool = False) -> list[di
             "R": float(gross_r),
             "ret_pct": float(ret_pct),
             "motif": reason,
+            "termine": bool(termine),
             "atr_pct_entree": float(a / entry_raw),
         })
         i = exit_i + 1                  # pas de chevauchement sur un meme symbole
@@ -188,7 +200,15 @@ def run_symbol(f: pd.DataFrame, cfg: Config, presignal: bool = False) -> list[di
     return trades
 
 
-def run_panel(feat: pd.DataFrame, cfg: Config, presignal: bool = False) -> pd.DataFrame:
+def run_panel(feat: pd.DataFrame, cfg: Config, presignal: bool = False,
+              inclure_non_termines: bool = False) -> pd.DataFrame:
+    """inclure_non_termines : par defaut False.
+
+    Une position encore ouverte a la derniere barre n'est pas un trade. La
+    compter comme un gain realise flatte le resultat ; sur cet echantillon
+    un seul trade de ce type gonflait l'esperance groupee de 7 % et faisait
+    changer de signe celle d'un actif.
+    """
     out = []
     for _, g in feat.groupby("symbol", sort=False):
         if len(g) < cfg.trend_len + 60:
@@ -197,6 +217,8 @@ def run_panel(feat: pd.DataFrame, cfg: Config, presignal: bool = False) -> pd.Da
     if not out:
         return pd.DataFrame()
     t = pd.DataFrame(out).sort_values("date_entree").reset_index(drop=True)
+    if not inclure_non_termines and "termine" in t.columns:
+        t = t[t["termine"]].reset_index(drop=True)
     return t
 
 

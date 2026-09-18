@@ -1,0 +1,35 @@
+{
+  "x_par_an_365j": 37.78343433288728,
+  "x_par_an_252j": 12.274002099240244,
+  "x_5ans": 77002912.7505536,
+  "risque_requis": [
+    {
+      "config": "A_actuelle",
+      "esperance_R": 0.251,
+      "trades_par_an": 70.0,
+      "risque_requis_%": 21.3,
+      "dd_median_a_ce_risque_%": null
+    },
+    {
+      "config": "B_equilibre",
+      "esperance_R": 0.739,
+      "trades_par_an": 42.0,
+      "risque_requis_%": 12.2,
+      "dd_median_a_ce_risque_%": null
+    },
+    {
+      "config": "C_laisse_courir",
+      "esperance_R": 1.665,
+      "trades_par_an": 40.0,
+      "risque_requis_%": 5.7,
+      "dd_median_a_ce_risque_%": null
+    },
+    {
+      "config": "D_agressive",
+      "esperance_R": 2.0,
+      "trades_par_an": 49.0,
+      "risque_requis_%": 3.9,
+      "dd_median_a_ce_risque_%": null
+    }
+  ]
+}

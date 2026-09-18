@@ -1,0 +1,24 @@
+{
+  "groupe": {
+    "n_trades": 633,
+    "win_rate_pct": 40.92,
+    "gain_moyen_R": 1.495,
+    "perte_moyenne_R": -0.612,
+    "ratio_gain_perte": 2.44,
+    "esperance_R": 0.2499,
+    "profit_factor": 1.691,
+    "t_stat_R": 4.4,
+    "duree_moy_barres": 5.9,
+    "R_total": 158.2,
+    "pire_trade_R": -1.09
+  },
+  "motifs": {
+    "stop": 605,
+    "gap_stop": 28
+  },
+  "actifs_significatifs_holm": 1,
+  "actifs_positifs": 8,
+  "n_actifs": 10,
+  "p_binomial": 0.0546875,
+  "correlation_moyenne_mensuelle": 0.22545676210558946
+}

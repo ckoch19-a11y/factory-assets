@@ -17,7 +17,7 @@ Même gestion des deux côtés, frais inclus, entrée à l'ouverture suivante.
 |---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
 | S&P 500 1962-2018 | repli | 291 | 48,45 % | +1,363 R | −0,639 R | 2,13 | **+0,331 R** | 2,01 | 4,18 | <0,001 |
 | S&P 500 1962-2018 | impulsion | 341 | 39,59 % | +1,056 R | −0,629 R | 1,68 | +0,038 R | 1,10 | 0,66 | 0,224 |
-| 500 actions 2013-2018 | repli | 11 293 | 41,45 % | +1,150 R | −0,637 R | 1,80 | **+0,103 R** | 1,28 | 9,12 | <0,001 |
+| 500 actions 2013-2018 | repli | 11 124 | 40,66 % | +1,147 R | −0,626 R | 1,83 | **+0,095 R** | 1,25 | 8,27 | <0,001 |
 | 500 actions 2013-2018 | impulsion | 14 178 | 38,74 % | +1,008 R | −0,639 R | 1,58 | −0,001 R | 1,00 | −0,11 | 0,465 |
 | BTC 2012-2026 | repli | 87 | 44,83 % | +1,475 R | −0,659 R | 2,24 | +0,297 R | 1,82 | 1,85 | 0,019 |
 | BTC 2012-2026 | impulsion | 134 | 56,72 % | +1,753 R | −0,596 R | 2,94 | **+0,736 R** | 3,85 | 5,20 | <0,001 |
@@ -34,7 +34,7 @@ même gestion et le même nombre de trades.
 | Univers | Entrée validée | Aléatoire | Écart | Tirages battus |
 |---|---:|---:|---:|---:|
 | S&P 500 | +0,331 R | +0,089 R | +0,242 R | **30/30** |
-| 500 actions US | +0,103 R | +0,022 R | +0,081 R | **30/30** |
+| 500 actions US | +0,095 R | +0,021 R | +0,074 R | **30/30** |
 | BTC (impulsion) | +0,736 R | +0,334 R | +0,402 R | **30/30** |
 | BTC (repli) | +0,297 R | +0,322 R | −0,024 R | 10/30 |
 
@@ -202,7 +202,7 @@ gestion fait partie de l'edge, pas de l'habillage.
 5. **Le régime 1970 se reproduira.** Une stratégie qui achète les replis perd de
    l'argent dans un marché qui baisse lentement sans rebondir.
 6. **Les 500 actions ne couvrent que 2013-2018**, c'est-à-dire un marché haussier
-   ininterrompu. L'espérance de +0,103 R y est sans doute optimiste.
+   ininterrompu. L'espérance de +0,095 R y est sans doute optimiste.
 7. **Frais supposés : 20 bps aller-retour en actions, 40 bps en crypto.** Si votre
    courtier prend plus, retirez-le de l'espérance. En crypto, 40 bps
    représentent déjà environ 15 % de l'espérance par trade.
