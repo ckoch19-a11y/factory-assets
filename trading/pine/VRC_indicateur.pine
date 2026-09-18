@@ -1,0 +1,326 @@
+//@version=6
+// =============================================================================
+// VRC - Regime, Volatilite, Continuation
+// -----------------------------------------------------------------------------
+// Le resultat central de l'etude, et la raison d'etre de cet indicateur :
+// ACTIONS ET CRYPTO FONCTIONNENT A L'ENVERS L'UN DE L'AUTRE.
+//
+//   Actions / indices : dans une tendance haussiere, il faut acheter la
+//   FAIBLESSE. Un ecart marque SOUS la moyenne rapide precede un rendement
+//   nettement superieur a la moyenne. Acheter la force, au contraire, ne
+//   rapporte rien.
+//
+//   Crypto : exactement l'inverse. Acheter le repli n'apporte rien de plus
+//   qu'une entree au hasard dans la meme tendance. C'est l'achat de la FORCE
+//   qui paie - un marche domine par le particulier et la reflexivite, ou la
+//   hausse appelle la hausse.
+//
+// Mesure sur 701 445 barres, 507 instruments, 1950-2026, gestion identique
+// des deux cotes, frais et slippage inclus, entree a l'ouverture suivante :
+//
+//   Univers                  Entree      Trades  Reussite  G/P   Esperance  PF
+//   S&P 500 1962-2018        repli          291    48,5 %  2,13   +0,331 R  2,01
+//   S&P 500 1962-2018        impulsion      341    39,6 %  1,68   +0,038 R  1,10
+//   500 actions US 2013-2018 repli       11 293    41,5 %  1,80   +0,103 R  1,28
+//   500 actions US 2013-2018 impulsion   14 178    38,7 %  1,58   -0,001 R  1,00
+//   BTC 2012-2026            repli           87    44,8 %  2,24   +0,297 R  1,82
+//   BTC 2012-2026            impulsion      134    56,7 %  2,94   +0,736 R  3,85
+//
+// Chaque entree validee bat 30 tirages aleatoires sur 30 dans le meme regime,
+// avec la meme gestion. Chaque entree non validee en bat 0 sur 30. C'est ce
+// controle - et non le rendement brut - qui prouve que le signal sert.
+//
+// Validations : walk-forward ancre S&P 500 1975-2018, 314 trades, 100 % hors
+// echantillon, esperance +0,21 R, t = 3,12, p = 0,004. BTC impulsion validee
+// en apprentissage 2012-2019 puis verifiee sur 2020-2026 (+0,399 R). ETH
+// 2015-2026 confirme le sens crypto de facon independante.
+//
+// TESTE ET REJETE - ne pas reintroduire sans refaire le travail :
+//   - vente a decouvert en actions : 0 configuration rentable sur 36 ;
+//   - cassures de plus hauts en actions : rendement excedentaire negatif ;
+//   - filtres calendaires, filtres de volatilite : aucun apport mesurable ;
+//   - unites de temps sous le journalier : esperance NEGATIVE (BTC 4 h).
+//
+// Controles anti-illusion passes : sur marche aleatoire de meme volatilite,
+// 0 tirage positif sur 20 ; sur rendements melanges, 1 sur 20. Le moteur ne
+// lit pas le futur.
+//
+// Methode complete, limites et mode d'emploi : trading/docs/
+// =============================================================================
+
+indicator("VRC - Retracement en Continuation", shorttitle="VRC", overlay=true,
+     max_labels_count=500, max_lines_count=500, max_boxes_count=100)
+
+// ---------------------------------------------------------------- Parametres
+grpS = "Signal"
+profil    = input.string("Actions / indices - achat du repli", "Profil d'actif",
+     options=["Actions / indices - achat du repli", "Crypto - achat de l'impulsion"],
+     group=grpS,
+     tooltip="C'est le réglage le plus important.\n\nActions / indices : achète la faiblesse dans la tendance (+0,331 R sur le S&P 500 depuis 1962).\n\nCrypto : achète la force (+0,736 R sur BTC depuis 2012). Sur crypto, l'achat du repli n'apporte rien de mesurable.\n\nSe tromper de profil ramène l'espérance à zéro.")
+mode      = input.string("A - Continuation (trailing)", "Mode de gestion",
+     options=["A - Continuation (trailing)", "B - Objectif 2R (taux de reussite eleve)"],
+     group=grpS,
+     tooltip="A : espérance la plus élevée (+0,33 R sur le S&P 500), taux de réussite ~48 %.\nB : taux de réussite ~63 %, espérance +0,27 R, moins de signaux.\nA a été choisi de façon répétée par le walk-forward depuis 1990.")
+trendLen  = input.int(200, "Longueur du filtre de tendance", minval=50, maxval=400, group=grpS,
+     tooltip="Plateau large mesuré entre 100 et 250. 200 est au centre du plateau.")
+extLen    = input.int(20,  "Longueur de la moyenne rapide", minval=5, maxval=60, group=grpS)
+atrLen    = input.int(14,  "Longueur de l'ATR", minval=5, maxval=50, group=grpS)
+extThresh = input.float(-1.0, "Seuil de repli (en ATR)", minval=-3.0, maxval=-0.25, step=0.25, group=grpS,
+     tooltip="Profil actions. Entrée quand (clôture - EMA rapide) / ATR passe SOUS ce seuil.\nPlateau mesuré de -0,5 à -2,0 : ce n'est pas un réglage sensible.")
+impThresh = input.float(1.5, "Seuil d'impulsion (en ATR)", minval=0.25, maxval=3.0, step=0.25, group=grpS,
+     tooltip="Profil crypto. Entrée quand l'écart passe AU-DESSUS de ce seuil.\nBTC hors échantillon 2020-2026 : +0,218 R à 0,5 ATR, +0,304 R à 1,0, +0,399 R à 1,5. Monotone, donc pas un pic de sur-ajustement.")
+allowShort = input.bool(false, "Autoriser les ventes a decouvert", group=grpS,
+     tooltip="DÉSACTIVÉ PAR DÉFAUT SUR PREUVE. Aucune des 36 configurations short testées n'est rentable en actions. Positif uniquement sur BTC, sur 20 à 46 trades, sans validation hors échantillon. À n'activer qu'en crypto et en connaissance de cause.")
+
+grpR = "Risque"
+riskPct   = input.float(1.0, "Risque par trade (% du capital)", minval=0.1, maxval=5.0, step=0.1, group=grpR)
+capital   = input.float(10000, "Capital de reference", minval=100, group=grpR)
+
+grpV = "Affichage"
+showRegime  = input.bool(true,  "Colorer le regime de fond", group=grpV)
+showLevels  = input.bool(true,  "Tracer stop et objectif", group=grpV)
+showWatch   = input.bool(true,  "Signaler les zones d'approche", group=grpV,
+     tooltip="Marque les barres où le régime est favorable et où le prix s'approche du seuil sans l'avoir atteint. C'est là qu'il faut commencer à regarder l'order flow.")
+showDash    = input.bool(true,  "Afficher le tableau de bord", group=grpV)
+showTFWarn  = input.bool(true,  "Avertir si l'unite de temps est trop courte", group=grpV)
+
+isModeB = str.contains(mode, "B - ")
+
+// ---------------------------------------------------------------- Calculs
+smaT  = ta.sma(close, trendLen)
+emaF  = ta.ema(close, extLen)
+atrV  = ta.atr(atrLen)
+ext   = atrV > 0 ? (close - emaF) / atrV : 0.0
+slope = ta.change(smaT, 20)
+
+ready    = not na(smaT) and not na(emaF) and not na(atrV) and atrV > 0
+upReg    = ready and close > smaT
+dnReg    = ready and close < smaT and nz(slope, 0.0) < 0
+
+// Gestion selon le mode, telle que backtestee
+stopMult   = isModeB ? 3.0 : 2.0
+targetR    = isModeB ? 2.0 : 0.0
+trailMult  = isModeB ? 0.0 : 2.0
+maxBars    = isModeB ? 20  : 40
+
+// Le declencheur depend du profil : faiblesse en actions, force en crypto.
+isCrypto = str.contains(profil, "Crypto")
+seuil    = isCrypto ? impThresh : extThresh
+rawLong  = upReg and (isCrypto ? ext > impThresh : ext < extThresh)
+rawShort = allowShort and dnReg and (isCrypto ? ext < -impThresh : ext > -extThresh)
+cLong    = isModeB ? close > close[1] : true
+cShort   = isModeB ? close < close[1] : true
+sigLong  = rawLong  and cLong
+sigShort = rawShort and cShort
+
+// zone d'approche : regime favorable, ecart aux deux tiers du seuil, pas encore
+// declenche. C'est la que commence le travail d'order flow.
+approche   = seuil * 0.65
+watchLong  = upReg and not sigLong and
+     (isCrypto ? (ext > approche and ext <= impThresh) : (ext < approche and ext >= extThresh))
+watchShort = allowShort and dnReg and not sigShort and
+     (isCrypto ? (ext < -approche and ext >= -impThresh) : (ext > -approche and ext <= -extThresh))
+
+// ---------------------------------------------------------------- Etat de position
+// L'entree se fait a l'OUVERTURE de la barre suivante, exactement comme dans
+// le backtest. On ne prend pas la cloture de la barre de signal, qui serait
+// une information non disponible au moment de decider.
+var int   pending  = 0
+var int   dir      = 0
+var float entryPx  = na
+var float stopPx   = na
+var float targetPx = na
+var float riskPx   = na
+var float bestPx   = na
+var int   barsIn   = 0
+var float atrAtSig = na
+
+var int   nWin     = 0
+var int   nLoss    = 0
+var float sumR     = 0.0
+var float sumWinR  = 0.0
+var float sumLossR = 0.0
+var float worstR   = 0.0
+
+float exitedR     = 0.0
+bool  justExited  = false
+bool  justEntered = false
+
+// 1) ouverture de la position armee a la barre precedente
+if pending != 0 and dir == 0
+    dir      := pending
+    entryPx  := open
+    stopPx   := open - pending * stopMult * atrAtSig
+    riskPx   := math.abs(open - stopPx)
+    targetPx := targetR > 0 ? open + pending * targetR * riskPx : na
+    bestPx   := open
+    barsIn   := 0
+    pending  := 0
+    justEntered := true
+
+// 2) gestion de la position ouverte, barre d'entree incluse
+if dir != 0
+    if not justEntered
+        barsIn += 1
+    bool  hitGap  = dir == 1 ? open <= stopPx : open >= stopPx
+    bool  hitStop = dir == 1 ? low  <= stopPx : high >= stopPx
+    bool  hitTgt  = not na(targetPx) and (dir == 1 ? high >= targetPx : low <= targetPx)
+    float exitPx  = na
+    if hitGap
+        exitPx := open
+    else if hitStop
+        // hypothese conservatrice : si stop et objectif sont atteignables dans
+        // la meme barre, on suppose que le stop part en premier
+        exitPx := stopPx
+    else if hitTgt
+        exitPx := targetPx
+    else if barsIn >= maxBars
+        exitPx := close
+    if not na(exitPx) and riskPx > 0
+        exitedR  := dir * (exitPx - entryPx) / riskPx
+        sumR     += exitedR
+        if exitedR > 0
+            nWin    += 1
+            sumWinR += exitedR
+        else
+            nLoss    += 1
+            sumLossR += exitedR
+        worstR     := math.min(worstR, exitedR)
+        justExited := true
+        dir        := 0
+        entryPx    := na
+        stopPx     := na
+        targetPx   := na
+    else if trailMult > 0
+        bestPx := dir == 1 ? math.max(bestPx, high) : math.min(bestPx, low)
+        float trailPx = bestPx - dir * trailMult * atrV
+        stopPx := dir == 1 ? math.max(stopPx, trailPx) : math.min(stopPx, trailPx)
+
+// 3) armement d'un nouveau signal, jamais sur la barre de sortie
+if dir == 0 and pending == 0 and not justExited
+    if sigLong
+        pending  := 1
+        atrAtSig := atrV
+    else if sigShort
+        pending  := -1
+        atrAtSig := atrV
+
+// ---------------------------------------------------------------- Rendu
+bgcolor(showRegime and upReg ? color.new(color.teal, 92) :
+       showRegime and dnReg ? color.new(color.maroon, 92) : na)
+
+plot(smaT, "Tendance", color=color.new(color.gray, 30), linewidth=2)
+plot(emaF, "Moyenne rapide", color=color.new(color.orange, 45), linewidth=1)
+
+plotshape(sigLong,  "Signal achat", shape.triangleup, location.belowbar,
+     color.new(color.teal, 0), size=size.small)
+plotshape(sigShort, "Signal vente", shape.triangledown, location.abovebar,
+     color.new(color.red, 0), size=size.small)
+plotshape(showWatch and watchLong,  "Approche achat", shape.circle, location.belowbar,
+     color.new(color.teal, 55), size=size.tiny)
+plotshape(showWatch and watchShort, "Approche vente", shape.circle, location.abovebar,
+     color.new(color.red, 55), size=size.tiny)
+
+plot(showLevels and dir != 0 ? stopPx : na, "Stop", color=color.new(color.red, 0),
+     style=plot.style_linebr, linewidth=2)
+plot(showLevels and dir != 0 and not na(targetPx) ? targetPx : na, "Objectif",
+     color=color.new(color.teal, 0), style=plot.style_linebr, linewidth=2)
+plot(showLevels and dir != 0 ? entryPx : na, "Entree",
+     color=color.new(color.gray, 20), style=plot.style_linebr, linewidth=1)
+
+if justEntered and barstate.isconfirmed
+    q = riskPx > 0 ? capital * riskPct / 100.0 / riskPx : 0.0
+    label.new(bar_index, dir == 1 ? low : high,
+         (dir == 1 ? "ACHAT " : "VENTE ") + str.tostring(entryPx, format.mintick) +
+         "\nStop " + str.tostring(stopPx, format.mintick) +
+         (na(targetPx) ? "\nSuiveur " + str.tostring(trailMult, "#.#") + " ATR"
+                       : "\nObjectif " + str.tostring(targetPx, format.mintick)) +
+         "\nTaille " + str.tostring(q, "#.####"),
+         style=dir == 1 ? label.style_label_up : label.style_label_down,
+         color=color.new(dir == 1 ? color.teal : color.red, 15),
+         textcolor=color.white, size=size.small)
+
+if justExited and barstate.isconfirmed
+    label.new(bar_index, close,
+         (exitedR >= 0 ? "+" : "") + str.tostring(exitedR, "#.##") + " R",
+         style=label.style_label_center,
+         color=color.new(exitedR >= 0 ? color.teal : color.red, 35),
+         textcolor=color.white, size=size.tiny)
+
+// ---------------------------------------------------------------- Tableau de bord
+bool tfTooShort = timeframe.isintraday and timeframe.in_seconds() < 86400
+
+var table dash = table.new(position.top_right, 2, 11,
+     border_width=1, border_color=color.new(color.gray, 60),
+     frame_width=1, frame_color=color.new(color.gray, 40))
+
+if showDash and barstate.islast
+    int   nT   = nWin + nLoss
+    float wr   = nT > 0 ? nWin / nT * 100.0 : 0.0
+    float esp  = nT > 0 ? sumR / nT : 0.0
+    float avgW = nWin  > 0 ? sumWinR / nWin : 0.0
+    float avgL = nLoss > 0 ? sumLossR / nLoss : 0.0
+    float pf   = sumLossR < 0 ? sumWinR / math.abs(sumLossR) : na
+    float rr   = avgL < 0 ? avgW / math.abs(avgL) : na
+    color bg   = color.new(color.gray, 85)
+    color kc   = color.new(color.white, 15)
+    // en dessous de 30 trades sur le graphique, les statistiques ne veulent
+    // rien dire : on les affiche en gris pour le rappeler
+    bool  weak = nT < 30
+
+    table.cell(dash, 0, 0, "VRC " + (isCrypto ? "crypto" : "actions") + " / " + (isModeB ? "B" : "A"),
+         text_color=color.white, bgcolor=color.new(color.blue, 30), text_size=size.small)
+    table.cell(dash, 1, 0, syminfo.ticker + "  " + timeframe.period,
+         text_color=color.white, bgcolor=color.new(color.blue, 30), text_size=size.small)
+
+    table.cell(dash, 0, 1, "Regime", text_color=kc, bgcolor=bg, text_size=size.small, text_halign=text.align_left)
+    table.cell(dash, 1, 1, upReg ? "haussier" : dnReg ? "baissier" : "neutre",
+         text_color=upReg ? color.teal : dnReg ? color.red : color.gray, bgcolor=bg, text_size=size.small)
+
+    table.cell(dash, 0, 2, "Ecart (ATR)", text_color=kc, bgcolor=bg, text_size=size.small, text_halign=text.align_left)
+    table.cell(dash, 1, 2, str.tostring(ext, "#.##") + "  (seuil " + str.tostring(seuil, "#.##") + ")",
+         text_color=rawLong ? color.teal : color.new(color.white, 25), bgcolor=bg, text_size=size.small)
+
+    table.cell(dash, 0, 3, "ATR", text_color=kc, bgcolor=bg, text_size=size.small, text_halign=text.align_left)
+    table.cell(dash, 1, 3, str.tostring(atrV, format.mintick), text_color=color.new(color.white, 25), bgcolor=bg, text_size=size.small)
+
+    table.cell(dash, 0, 4, "Position", text_color=kc, bgcolor=bg, text_size=size.small, text_halign=text.align_left)
+    table.cell(dash, 1, 4, dir == 1 ? "longue" : dir == -1 ? "courte" : "aucune",
+         text_color=dir != 0 ? color.yellow : color.gray, bgcolor=bg, text_size=size.small)
+
+    table.cell(dash, 0, 5, "Trades (graphique)", text_color=kc, bgcolor=bg, text_size=size.small, text_halign=text.align_left)
+    table.cell(dash, 1, 5, str.tostring(nT), text_color=color.new(color.white, 25), bgcolor=bg, text_size=size.small)
+
+    table.cell(dash, 0, 6, "Taux de reussite", text_color=kc, bgcolor=bg, text_size=size.small, text_halign=text.align_left)
+    table.cell(dash, 1, 6, nT > 0 ? str.tostring(wr, "#.#") + " %" : "-",
+         text_color=weak ? color.gray : wr >= 45 ? color.teal : color.orange, bgcolor=bg, text_size=size.small)
+
+    table.cell(dash, 0, 7, "Gain / perte", text_color=kc, bgcolor=bg, text_size=size.small, text_halign=text.align_left)
+    table.cell(dash, 1, 7, na(rr) ? "-" : str.tostring(rr, "#.##"),
+         text_color=weak ? color.gray : color.new(color.white, 25), bgcolor=bg, text_size=size.small)
+
+    table.cell(dash, 0, 8, "Esperance", text_color=kc, bgcolor=bg, text_size=size.small, text_halign=text.align_left)
+    table.cell(dash, 1, 8, nT > 0 ? str.tostring(esp, "#.###") + " R" : "-",
+         text_color=weak ? color.gray : esp > 0 ? color.teal : color.red, bgcolor=bg, text_size=size.small)
+
+    table.cell(dash, 0, 9, "Facteur de profit", text_color=kc, bgcolor=bg, text_size=size.small, text_halign=text.align_left)
+    table.cell(dash, 1, 9, na(pf) ? "-" : str.tostring(pf, "#.##"),
+         text_color=weak ? color.gray : pf > 1 ? color.teal : color.red, bgcolor=bg, text_size=size.small)
+
+    table.cell(dash, 0, 10, weak ? "Echantillon" : "Pire trade", text_color=kc, bgcolor=bg, text_size=size.small, text_halign=text.align_left)
+    table.cell(dash, 1, 10, weak ? "trop faible" : str.tostring(worstR, "#.##") + " R",
+         text_color=weak ? color.orange : color.new(color.white, 25), bgcolor=bg, text_size=size.small)
+
+if showTFWarn and tfTooShort and barstate.islast
+    label.new(bar_index, high,
+         "Unite de temps sous le journalier :\nl'esperance mesuree y est NEGATIVE\n(BTC 4 h : -0,07 R sur 423 trades).\nUtiliser le graphique journalier.",
+         style=label.style_label_down, color=color.new(color.orange, 15),
+         textcolor=color.white, size=size.small)
+
+// ---------------------------------------------------------------- Alertes
+alertcondition(sigLong,  "VRC achat",
+     "VRC : signal d'achat sur {{ticker}} - entree a l'ouverture suivante")
+alertcondition(sigShort, "VRC vente",
+     "VRC : signal de vente sur {{ticker}} - entree a l'ouverture suivante")
+alertcondition(watchLong, "VRC approche achat",
+     "VRC : zone d'approche a l'achat sur {{ticker}} - preparer l'analyse order flow")

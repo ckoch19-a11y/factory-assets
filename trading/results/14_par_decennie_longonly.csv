@@ -1,0 +1,13 @@
+mode,decennie,n,win_rate,esperance_R,R_total
+A_continuation,1960s,20,45.0,0.369,7.4
+A_continuation,1970s,25,24.0,-0.185,-4.6
+A_continuation,1980s,61,59.0,0.669,40.8
+A_continuation,1990s,69,53.6,0.381,26.3
+A_continuation,2000s,46,47.8,0.042,1.9
+A_continuation,2010s,70,44.3,0.35,24.5
+B_objectif2R,1960s,8,62.5,0.106,0.8
+B_objectif2R,1970s,12,50.0,-0.067,-0.8
+B_objectif2R,1980s,24,70.8,0.463,11.1
+B_objectif2R,1990s,31,67.7,0.262,8.1
+B_objectif2R,2000s,18,55.6,0.03,0.5
+B_objectif2R,2010s,26,61.5,0.465,12.1

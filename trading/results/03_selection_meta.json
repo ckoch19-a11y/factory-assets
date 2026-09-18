@@ -1,0 +1,32 @@
+{
+  "n_configs_testees": 40,
+  "n_configs_valides": 29,
+  "protocole": "selection sur SPX_IS + US500_IS uniquement",
+  "splits": {
+    "SPX_IS": [
+      "SPX",
+      "1962-01-01",
+      "1999-12-31"
+    ],
+    "SPX_OOS": [
+      "SPX",
+      "2000-01-01",
+      "2018-12-31"
+    ],
+    "US500_IS": [
+      "US500",
+      "2013-02-08",
+      "2015-12-31"
+    ],
+    "US500_OOS": [
+      "US500",
+      "2016-01-01",
+      "2018-02-07"
+    ],
+    "BTC_ALL": [
+      "BTC",
+      "2012-01-01",
+      "2026-12-31"
+    ]
+  }
+}

@@ -1,0 +1,9 @@
+test,n_trades,win_rate_pct,esperance_R,profit_factor
+S&P 500 reel,291.0,48.45,0.3309,2.005
+marche aleatoire (mediane de 20),,,-0.1502,
+rendements melanges (mediane de 20),,,-0.1727,
+signal retarde de 0 barre(s),291.0,48.45,0.3309,2.005
+signal retarde de 1 barre(s),291.0,48.45,0.3309,2.005
+signal retarde de 2 barre(s),291.0,48.45,0.3309,2.005
+signal retarde de 5 barre(s),291.0,48.45,0.3309,2.005
+signal inverse (extension haute),761.0,44.68,0.1386,1.391

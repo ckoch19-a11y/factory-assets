@@ -1,0 +1,17 @@
+mode,univers,sens,n,win_rate,esperance_R
+A_continuation,SPX 1962-2018 (indice),long,291,48.5,0.331
+A_continuation,SPX 1962-2018 (indice),short,113,28.3,-0.048
+A_continuation,US500 2013-2018 (500 actions),long,10270,40.4,0.077
+A_continuation,US500 2013-2018 (500 actions),short,4577,31.8,-0.116
+A_continuation,BTCUSD 2012-2026 (journalier),long,87,44.8,0.297
+A_continuation,BTCUSD 2012-2026 (journalier),short,46,39.1,0.079
+A_continuation,BTCUSD 2012-2026 (4 heures),long,423,35.5,-0.072
+A_continuation,BTCUSD 2012-2026 (4 heures),short,293,34.8,-0.037
+B_objectif2R,SPX 1962-2018 (indice),long,119,63.0,0.268
+B_objectif2R,SPX 1962-2018 (indice),short,51,35.3,-0.083
+B_objectif2R,US500 2013-2018 (500 actions),long,3840,53.5,0.124
+B_objectif2R,US500 2013-2018 (500 actions),short,1809,41.3,-0.11
+B_objectif2R,BTCUSD 2012-2026 (journalier),long,31,54.8,0.058
+B_objectif2R,BTCUSD 2012-2026 (journalier),short,20,60.0,0.092
+B_objectif2R,BTCUSD 2012-2026 (4 heures),long,166,46.4,-0.073
+B_objectif2R,BTCUSD 2012-2026 (4 heures),short,139,48.9,-0.025
