@@ -1,0 +1,8 @@
+gestion,n,win_rate,esperance_R,profit_factor,R_par_an,annees_pos,motifs
+suiveur seul (retenu),381,36.5,0.693,2.2,29.0,8/9,"{'stop': np.int64(368), 'temps': np.int64(7), 'gap_stop': np.int64(6)}"
+suiveur + objectif 2R,586,38.7,0.156,1.26,10.1,8/9,"{'stop': np.int64(359), 'target': np.int64(226), 'gap_stop': np.int64(1)}"
+suiveur + objectif 3R,511,36.2,0.297,1.51,16.7,8/9,"{'stop': np.int64(359), 'target': np.int64(150), 'gap_stop': np.int64(2)}"
+suiveur + objectif 4R,471,34.8,0.351,1.59,18.2,8/9,"{'stop': np.int64(362), 'target': np.int64(104), 'gap_stop': np.int64(3), 'temps': np.int64(2)}"
+suiveur + objectif 6R,427,35.8,0.447,1.76,21.0,8/9,"{'stop': np.int64(367), 'target': np.int64(55), 'gap_stop': np.int64(3), 'temps': np.int64(2)}"
+objectif 2R seul,578,41.0,0.171,1.28,10.9,8/9,"{'stop': np.int64(339), 'target': np.int64(234), 'temps': np.int64(4), 'gap_stop': np.int64(1)}"
+objectif 3R seul,497,34.4,0.307,1.45,16.7,8/9,"{'stop': np.int64(319), 'target': np.int64(165), 'temps': np.int64(13)}"

@@ -1,0 +1,55 @@
+{
+  "cout_par_tf": [
+    {
+      "unite": "1 minute",
+      "barres": 7738656,
+      "ATR_median_pct": 0.0736,
+      "risque_pct_du_prix": 0.11,
+      "cout_en_R": 3.623
+    },
+    {
+      "unite": "5 minutes",
+      "barres": 1547732,
+      "ATR_median_pct": 0.2037,
+      "risque_pct_du_prix": 0.305,
+      "cout_en_R": 1.309
+    },
+    {
+      "unite": "15 minutes",
+      "barres": 515911,
+      "ATR_median_pct": 0.374,
+      "risque_pct_du_prix": 0.561,
+      "cout_en_R": 0.713
+    },
+    {
+      "unite": "1 heure",
+      "barres": 128978,
+      "ATR_median_pct": 0.7871,
+      "risque_pct_du_prix": 1.181,
+      "cout_en_R": 0.339
+    },
+    {
+      "unite": "4 heures",
+      "barres": 32245,
+      "ATR_median_pct": 1.658,
+      "risque_pct_du_prix": 2.487,
+      "cout_en_R": 0.161
+    },
+    {
+      "unite": "1 jour",
+      "barres": 5375,
+      "ATR_median_pct": 4.5068,
+      "risque_pct_du_prix": 6.76,
+      "cout_en_R": 0.059
+    },
+    {
+      "unite": "1 semaine",
+      "barres": 769,
+      "ATR_median_pct": 12.2058,
+      "risque_pct_du_prix": 18.309,
+      "cout_en_R": 0.022
+    }
+  ],
+  "pire_p90_journalier": 0.139,
+  "seuil_retenu": 0.15
+}

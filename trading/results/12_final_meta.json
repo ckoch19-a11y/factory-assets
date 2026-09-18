@@ -1,0 +1,24 @@
+{
+  "modes": {
+    "A_continuation": {
+      "stop_atr": 2.0,
+      "confirm": false,
+      "exit_on_mean": false,
+      "target_r": 0.0,
+      "trail_atr": 2.0,
+      "max_bars": 40,
+      "allow_short": false
+    },
+    "B_objectif2R": {
+      "stop_atr": 3.0,
+      "confirm": true,
+      "exit_on_mean": false,
+      "target_r": 2.0,
+      "trail_atr": 0.0,
+      "max_bars": 20,
+      "allow_short": false
+    }
+  },
+  "variance_sharpe_grille": 0.005346142926162804,
+  "n_configs_grille": 40
+}

@@ -1,0 +1,110 @@
+//@version=6
+// -------------------------------------------------------------------------
+// AVANT DE COLLER : l'editeur Pine doit etre VIDE.
+// Ctrl+A puis Ctrl+V (le Ctrl+A remplace tout ce qui restait du modele).
+// Un script = UNE declaration. Erreur CE10243 = il reste du texte au-dessus,
+// ou tu as colle l'indicateur et la strategy dans le meme onglet.
+// Explications, chiffres et garde-fous : tout en bas du fichier.
+// -------------------------------------------------------------------------
+
+strategy("VRC 2 - Strategy", shorttitle="VRC2-S", overlay=true, initial_capital=1000, default_qty_type=strategy.fixed, commission_type=strategy.commission.percent, commission_value=0.2, slippage=2, pyramiding=0, calc_on_every_tick=false, close_entries_rule="ANY", max_labels_count=500)
+
+gP = "Profil"
+gS = "Signal"
+gG = "Gestion"
+gR = "Risque"
+gT = "Periode"
+
+profil    = input.string("Crypto - achat de l'impulsion", "Profil d'actif", options=["Crypto - achat de l'impulsion", "Actions / indices - achat du repli"], group=gP)
+trendLen  = input.int(200, "Filtre de tendance", minval=50, maxval=400, group=gS)
+extLen    = input.int(20, "Moyenne rapide", minval=5, maxval=60, group=gS)
+atrLen    = input.int(14, "ATR", minval=5, maxval=50, group=gS)
+impThresh = input.float(2.0, "Seuil crypto (ATR)", minval=0.5, maxval=4.0, step=0.25, group=gS)
+extThresh = input.float(-1.0, "Seuil actions (ATR)", minval=-3.0, maxval=-0.25, step=0.25, group=gS)
+stopMult  = input.float(1.5, "Stop initial (ATR)", minval=0.5, maxval=4.0, step=0.25, group=gG)
+trailMult = input.float(3.0, "Stop suiveur (ATR)", minval=1.0, maxval=8.0, step=0.5, group=gG)
+maxBars   = input.int(40, "Duree maximale (barres)", minval=5, maxval=120, group=gG)
+riskPct   = input.float(1.0, "Risque par trade (%)", minval=0.1, maxval=5.0, step=0.1, group=gR)
+bloqueTF  = input.bool(true, "Bloquer les signaux sous le journalier", group=gR)
+seuilCout = input.float(0.15, "Cout maximal tolere (en R)", minval=0.0, maxval=2.0, step=0.05, group=gR)
+coutBps   = input.float(40.0, "Cout aller-retour (points de base)", minval=0.0, maxval=200.0, step=5.0, group=gR)
+dStart    = input.time(timestamp("01 Jan 2000 00:00"), "Debut", group=gT)
+dEnd      = input.time(timestamp("01 Jan 2100 00:00"), "Fin", group=gT)
+
+inWin = time >= dStart and time <= dEnd
+
+isCrypto = str.contains(profil, "Crypto")
+smaT  = ta.sma(close, trendLen)
+emaF  = ta.ema(close, extLen)
+atrV  = ta.atr(atrLen)
+slope = ta.change(smaT, 20)
+ready = not na(smaT) and not na(emaF) and not na(atrV) and atrV > 0
+ext   = ready ? (close - emaF) / atrV : 0.0
+upReg = ready and close > smaT
+// Garde-fous : la strategie n'est validee qu'en journalier, et un stop trop
+// serre par rapport aux frais rend toute esperance impossible. Mesure sur BTC
+// 2012-2026, cout aller-retour de 40 bps exprime en fraction du risque :
+// 0,059 R en journalier, 0,161 R en 4 h, 0,339 R en 1 h, 3,62 R en 1 minute.
+tfOk = not bloqueTF or timeframe.in_seconds() >= 86400
+risqueUnit = ready ? stopMult * atrV : na
+coutR = ready and risqueUnit > 0 ? coutBps / 10000.0 * close / risqueUnit : na
+coutOk = na(coutR) or coutR <= seuilCout
+sigLong = upReg and (isCrypto ? ext > impThresh : ext < extThresh) and tfOk and coutOk
+
+var float sigAtr  = na
+var float posStop = na
+var float posBest = na
+
+// La taille est calculee sur la cloture de la barre de signal, seule valeur
+// connue quand l'ordre part. Le remplissage a lieu a l'ouverture suivante :
+// l'ecart ne touche que la taille, jamais le resultat en R du trade.
+if inWin and strategy.position_size == 0 and sigLong
+    sigAtr := atrV
+    float stopRef = close - stopMult * atrV
+    float dist = math.abs(close - stopRef)
+    float qte = dist > 0 ? strategy.equity * riskPct / 100.0 / dist : 0.0
+    strategy.entry("L", strategy.long, qty=qte)
+
+if strategy.position_size != 0 and strategy.position_size[1] == 0
+    posStop := strategy.position_avg_price - stopMult * sigAtr
+    posBest := strategy.position_avg_price
+
+if strategy.position_size != 0
+    posBest := math.max(nz(posBest, high), high)
+    float tp = posBest - trailMult * atrV
+    posStop := math.max(nz(posStop, tp), tp)
+    strategy.exit("sortie", from_entry="L", stop=posStop)
+    if bar_index - strategy.opentrades.entry_bar_index(0) >= maxBars
+        strategy.close_all(comment="duree max")
+
+if not inWin and strategy.position_size != 0
+    strategy.close_all(comment="hors periode")
+
+projLevel = ready ? emaF + (isCrypto ? impThresh : extThresh) * atrV : na
+plot(smaT, "Tendance", color=color.new(color.gray, 30), linewidth=2)
+plot(emaF, "Moyenne rapide", color=color.new(color.orange, 55))
+plot(projLevel, "Declenchement projete", color=color.new(#818cf8, 20), style=plot.style_stepline, linewidth=2)
+plot(strategy.position_size != 0 ? posStop : na, "Stop suiveur", color=color.new(#f43f5e, 0), style=plot.style_linebr, linewidth=2)
+bgcolor(upReg ? color.new(#14b8a6, 94) : na)
+
+
+
+// =============================================================================
+// VRC 2 - version STRATEGY, pour rejouer le backtest dans TradingView
+// -----------------------------------------------------------------------------
+// Ecrit pour resister au copier-coller : une instruction par ligne, aucun
+// caractere accentue, aucune ligne de continuation.
+//
+// A COLLER DANS UN SCRIPT SEPARE de l'indicateur. Pine n'accepte qu'une seule
+// declaration indicator()/strategy() par script (erreur CE10243 sinon).
+//
+// Reglages imposes pour que le test soit honnete : remplissage a l'OUVERTURE de
+// la barre suivante, frais 0,2 % par cote et slippage actifs, taille calculee
+// sur le risque et non sur un nominal fixe.
+//
+// Reference mesuree hors TradingView, 10 actifs crypto 2017-2026, profil
+// impulsion, seuil 2 ATR, stop 1,5 ATR, suiveur 3 ATR : 381 trades, 36,5 % de
+// reussite, gain/perte 3,8, esperance +0,693 R, facteur de profit 2,20,
+// t = 3,42, positif 8 annees sur 9.
+// ATTENTION : en dessous du journalier l'esperance mesuree est NEGATIVE.
+// =============================================================================

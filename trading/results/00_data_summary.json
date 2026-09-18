@@ -1,0 +1,25 @@
+{
+  "total_bars": 701445,
+  "daily_bars": 669200,
+  "intraday_4h_bars": 32245,
+  "symbols": 507,
+  "date_min": "1950-01-03",
+  "date_max": "2026-09-18",
+  "by_asset_class": {
+    "commodity_close_only": 1,
+    "crypto": 2,
+    "crypto_close_only": 2,
+    "equity_index": 1,
+    "equity_single": 500,
+    "volatility": 1
+  },
+  "bars_by_asset_class": {
+    "commodity_close_only": 9087,
+    "crypto": 37620,
+    "crypto_close_only": 9731,
+    "equity_index": 17356,
+    "equity_single": 618377,
+    "volatility": 9274
+  },
+  "sources_failed": []
+}

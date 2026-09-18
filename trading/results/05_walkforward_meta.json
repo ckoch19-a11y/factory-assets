@@ -1,0 +1,35 @@
+{
+  "stats_walkforward": {
+    "n_trades": 314,
+    "win_rate_pct": 45.22,
+    "gain_moyen_R": 1.215,
+    "perte_moyenne_R": -0.616,
+    "ratio_gain_perte": 1.97,
+    "esperance_R": 0.2118,
+    "profit_factor": 1.628,
+    "t_stat_R": 3.12,
+    "duree_moy_barres": 11.0,
+    "R_total": 66.5,
+    "pire_trade_R": -1.38
+  },
+  "motifs": {
+    "stop": 247,
+    "temps": 55,
+    "target": 8,
+    "gap_stop": 4
+  },
+  "p_value_bootstrap": 0.0042,
+  "n_configs_grille": 40,
+  "frontieres": [
+    "1975-01-01",
+    "1980-01-01",
+    "1985-01-01",
+    "1990-01-01",
+    "1995-01-01",
+    "2000-01-01",
+    "2005-01-01",
+    "2010-01-01",
+    "2015-01-01",
+    "2019-01-01"
+  ]
+}

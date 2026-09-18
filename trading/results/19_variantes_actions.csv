@@ -1,0 +1,11 @@
+variante,univers,n,win_rate,espR,pf
+repli (VRC),SPX,291,48.45,0.3309,2.005
+repli (VRC),US500,11293,41.45,0.1034,1.277
+extension +0.5 ATR,SPX,576,42.71,0.068,1.19
+extension +0.5 ATR,US500,23689,38.06,0.0069,1.018
+extension +1.0 ATR,SPX,463,42.33,0.0658,1.19
+extension +1.0 ATR,US500,18954,38.29,0.0094,1.024
+extension +1.5 ATR,SPX,341,39.59,0.0383,1.101
+extension +1.5 ATR,US500,14178,38.74,-0.001,0.997
+plus haut 50 barres,SPX,186,40.32,0.0507,1.131
+plus haut 50 barres,US500,4635,36.5,-0.0511,0.876

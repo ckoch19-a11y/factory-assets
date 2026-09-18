@@ -1,0 +1,141 @@
+//@version=6
+// =============================================================================
+// VRC - version STRATEGY, pour rejouer le backtest dans TradingView
+// -----------------------------------------------------------------------------
+// Meme logique que VRC_indicateur.pine. Cette version existe pour que tu
+// puisses verifier toi-meme les chiffres annonces, sur tes instruments, au
+// lieu de me croire sur parole.
+//
+// Reglages imposes pour que le backtest TradingView soit honnete :
+//   - les ordres se remplissent a l'OUVERTURE de la barre suivante
+//     (process_orders_on_close reste a false) ;
+//   - frais et slippage actifs par defaut ;
+//   - taille de position calculee sur le risque, pas sur un nominal fixe.
+//
+// Rappel des resultats mesures hors de TradingView (voir trading/docs) :
+//   S&P 500 journalier 1962-2018, profil actions (repli), mode A, long seul :
+//     291 trades, 48,5 % de reussite, gain/perte 2,13, esperance +0,33 R,
+//     facteur de profit 2,01, t = 4,18.
+//   BTC journalier 2012-2026, profil crypto (impulsion), mode A, long seul :
+//     134 trades, 56,7 % de reussite, gain/perte 2,94, esperance +0,74 R,
+//     facteur de profit 3,85, t = 5,20.
+//   ATTENTION : en dessous du journalier l'esperance mesuree est NEGATIVE.
+//   ATTENTION : le profil doit correspondre a la classe d'actifs. Un profil
+//   actions applique a une crypto ramene l'esperance a zero, et inversement.
+// =============================================================================
+
+strategy("VRC - Strategy", shorttitle="VRC-S", overlay=true,
+     initial_capital=10000,
+     default_qty_type=strategy.fixed,
+     commission_type=strategy.commission.percent, commission_value=0.05,
+     slippage=2,
+     pyramiding=0,
+     calc_on_every_tick=false,
+     close_entries_rule="ANY",
+     max_labels_count=500)
+
+grpS = "Signal"
+profil    = input.string("Actions / indices - achat du repli", "Profil d'actif",
+     options=["Actions / indices - achat du repli", "Crypto - achat de l'impulsion"], group=grpS)
+mode      = input.string("A - Continuation (trailing)", "Mode de gestion",
+     options=["A - Continuation (trailing)", "B - Objectif 2R (taux de reussite eleve)"], group=grpS)
+trendLen  = input.int(200, "Longueur du filtre de tendance", minval=50, maxval=400, group=grpS)
+extLen    = input.int(20,  "Longueur de la moyenne rapide", minval=5, maxval=60, group=grpS)
+atrLen    = input.int(14,  "Longueur de l'ATR", minval=5, maxval=50, group=grpS)
+extThresh = input.float(-1.0, "Seuil de repli (en ATR)", minval=-3.0, maxval=-0.25, step=0.25, group=grpS)
+impThresh = input.float(1.5, "Seuil d'impulsion (en ATR)", minval=0.25, maxval=3.0, step=0.25, group=grpS)
+allowShort = input.bool(false, "Autoriser les ventes a decouvert", group=grpS,
+     tooltip="Desactive sur preuve : 0 configuration short rentable sur 36 testees en actions.")
+
+grpR = "Risque"
+riskPct = input.float(1.0, "Risque par trade (% du capital)", minval=0.1, maxval=5.0, step=0.1, group=grpR)
+
+grpP = "Periode testee"
+dStart = input.time(timestamp("01 Jan 1900 00:00"), "Debut", group=grpP)
+dEnd   = input.time(timestamp("01 Jan 2100 00:00"), "Fin", group=grpP)
+inWindow = time >= dStart and time <= dEnd
+
+isModeB = str.contains(mode, "B - ")
+
+// ---------------------------------------------------------------- Calculs
+smaT  = ta.sma(close, trendLen)
+emaF  = ta.ema(close, extLen)
+atrV  = ta.atr(atrLen)
+ext   = atrV > 0 ? (close - emaF) / atrV : 0.0
+slope = ta.change(smaT, 20)
+
+ready = not na(smaT) and not na(emaF) and not na(atrV) and atrV > 0
+upReg = ready and close > smaT
+dnReg = ready and close < smaT and nz(slope, 0.0) < 0
+
+stopMult  = isModeB ? 3.0 : 2.0
+targetR   = isModeB ? 2.0 : 0.0
+trailMult = isModeB ? 0.0 : 2.0
+maxBars   = isModeB ? 20  : 40
+
+isCrypto = str.contains(profil, "Crypto")
+cLong  = isModeB ? close > close[1] : true
+cShort = isModeB ? close < close[1] : true
+sigLong  = upReg and (isCrypto ? ext > impThresh : ext < extThresh) and cLong
+sigShort = allowShort and dnReg and (isCrypto ? ext < -impThresh : ext > -extThresh) and cShort
+
+// ---------------------------------------------------------------- Execution
+// L'ATR de la barre de SIGNAL fixe le risque : c'est la seule valeur
+// disponible au moment ou la decision est prise.
+var float sigAtr   = na
+var float posStop  = na
+var float posTgt   = na
+var float posBest  = na
+
+// La taille est calculee sur la cloture de la barre de signal, seule valeur
+// connue au moment de passer l'ordre. Le remplissage a lieu a l'ouverture
+// suivante : la distance au stop reelle differe donc legerement de celle
+// utilisee ici. C'est exactement la situation d'un ordre passe en direct, et
+// l'ecart ne touche que la taille, jamais le resultat en R du trade.
+qtyFor(entryRef, stopRef) =>
+    d = math.abs(entryRef - stopRef)
+    d > 0 ? strategy.equity * riskPct / 100.0 / d : 0.0
+
+if inWindow and strategy.position_size == 0
+    if sigLong
+        sigAtr := atrV
+        st = close - stopMult * atrV
+        strategy.entry("L", strategy.long, qty=qtyFor(close, st))
+    else if sigShort
+        sigAtr := atrV
+        st = close + stopMult * atrV
+        strategy.entry("S", strategy.short, qty=qtyFor(close, st))
+
+// A la premiere barre de la position, on ancre stop et objectif sur le prix
+// d'entree reellement obtenu.
+if strategy.position_size != 0 and strategy.position_size[1] == 0
+    e   = strategy.position_avg_price
+    dir = strategy.position_size > 0 ? 1 : -1
+    posStop := e - dir * stopMult * sigAtr
+    posTgt  := targetR > 0 ? e + dir * targetR * math.abs(e - posStop) : na
+    posBest := e
+
+if strategy.position_size != 0
+    dir = strategy.position_size > 0 ? 1 : -1
+    if trailMult > 0
+        posBest := dir == 1 ? math.max(nz(posBest, high), high) : math.min(nz(posBest, low), low)
+        tp = posBest - dir * trailMult * atrV
+        posStop := dir == 1 ? math.max(nz(posStop, tp), tp) : math.min(nz(posStop, tp), tp)
+    if dir == 1
+        strategy.exit("sortie L", from_entry="L", stop=posStop, limit=na(posTgt) ? na : posTgt)
+    else
+        strategy.exit("sortie S", from_entry="S", stop=posStop, limit=na(posTgt) ? na : posTgt)
+    if bar_index - strategy.opentrades.entry_bar_index(0) >= maxBars
+        strategy.close_all(comment="temps")
+
+if not inWindow and strategy.position_size != 0
+    strategy.close_all(comment="hors periode")
+
+// ---------------------------------------------------------------- Rendu
+plot(smaT, "Tendance", color=color.new(color.gray, 30), linewidth=2)
+plot(emaF, "Moyenne rapide", color=color.new(color.orange, 45))
+plot(strategy.position_size != 0 ? posStop : na, "Stop",
+     color=color.new(color.red, 0), style=plot.style_linebr, linewidth=2)
+plot(strategy.position_size != 0 and not na(posTgt) ? posTgt : na, "Objectif",
+     color=color.new(color.teal, 0), style=plot.style_linebr, linewidth=2)
+bgcolor(upReg ? color.new(color.teal, 93) : dnReg ? color.new(color.maroon, 93) : na)

@@ -1,0 +1,10 @@
+segment,config_choisie,n_trades_apprentissage,n_trades_test,esperance_R_test,win_rate_test
+1975-1979,temps_10_barres|stop3.0|conf0,44,19,-0.3157,31.58
+1980-1984,objectif_2R|stop3.0|conf0,54,24,0.3096,62.5
+1985-1989,objectif_2R|stop3.0|conf0,78,33,0.3956,54.55
+1990-1994,trailing_2ATR|stop2.0|conf0,166,41,0.072,48.78
+1995-1999,trailing_2ATR|stop2.0|conf0,207,37,0.5988,51.35
+2000-2004,trailing_2ATR|stop2.0|conf0,244,40,0.095,42.5
+2005-2009,trailing_2ATR|stop2.0|conf0,284,41,0.1033,39.02
+2010-2014,trailing_2ATR|stop2.0|conf0,325,46,0.2942,36.96
+2015-2018,trailing_2ATR|stop2.0|conf0,371,33,0.1621,42.42
