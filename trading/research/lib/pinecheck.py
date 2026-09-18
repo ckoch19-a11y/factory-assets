@@ -78,8 +78,16 @@ def check(path: str) -> list[str]:
     # -- directive et type de script --------------------------------------
     if not re.search(r"^//@version=6\s*$", text, re.M):
         errs.append("directive //@version=6 absente ou mal ecrite")
-    if not any(re.match(r"^(indicator|strategy|library)\s*\(", c) for c in codes):
+    decl = [i for i, c in enumerate(codes, 1)
+            if re.match(r"^(indicator|strategy|library)\s*\(", c.strip())]
+    if not decl:
         errs.append("aucun appel indicator() / strategy() / library() au niveau global")
+    elif len(decl) > 1:
+        # Faute la plus frequente quand on colle du code dans l'editeur : le
+        # modele pre-rempli de TradingView n'a pas ete efface, ou deux scripts
+        # ont ete colles l'un a la suite de l'autre. Message CE10243.
+        errs.append(f"{len(decl)} declarations trouvees (lignes {', '.join(map(str, decl))}) : "
+                    f"Pine n'en accepte qu'une seule par script (erreur CE10243)")
 
     # -- tabulations : Pine les refuse dans l'indentation ------------------
     for i, l in enumerate(lines, 1):
