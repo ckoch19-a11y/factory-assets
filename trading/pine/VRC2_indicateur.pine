@@ -1,42 +1,11 @@
 //@version=6
-// =============================================================================
-// VRC 2 - Regime, Volatilite, Continuation
-// -----------------------------------------------------------------------------
-// Fichier ecrit pour resister au copier-coller : une instruction par ligne,
-// aucun caractere accentue, aucune ligne de continuation.
-// -----------------------------------------------------------------------------
-// TROIS GARDE-FOUS. Un indicateur doit refuser de donner des signaux la ou il a
-// ete mesure PERDANT.
-//
-//   1. Unite de temps. Strategie validee sur le JOURNALIER. En dessous,
-//      l'esperance mesuree est negative. Signaux bloques par defaut.
-//
-//   2. Cout en R. Le stop vaut 1,5 ATR, mais les frais sont proportionnels au
-//      PRIX. En descendant en unite de temps l'ATR s'effondre et les frais
-//      restent : le cout, en fraction du risque, explose. Mesure sur BTC
-//      2012-2026 : 0,022 R en hebdomadaire, 0,059 R en journalier, 0,161 R en
-//      4 h, 0,339 R en 1 h, 0,713 R en 15 min, 3,62 R en 1 minute. C'est une
-//      contrainte arithmetique, pas un reglage. Bloque au-dela de 0,15 R.
-//
-//   3. Regime. Pas de signal hors tendance haussiere.
-//
-// CE QUE L'INDICATEUR EXPLOITE
-//   Actions / indices : acheter la FAIBLESSE dans une tendance haussiere.
-//   Crypto           : acheter la FORCE. L'inverse exact.
-//
-// REGLAGE CRYPTO RETENU (seuil 2 ATR, stop 1,5 ATR, suiveur 3 ATR)
-//   10 actifs, 29 107 barres journalieres 2017-2026, frais 40 bps aller-retour :
-//   381 trades, 36,5 % de reussite, gain/perte 3,8, esperance +0,693 R,
-//   facteur de profit 2,20, t = 3,42. Positif 8 annees sur 9.
-//   Sur BTC en journalier : environ 4 signaux par an. Des centaines de signaux
-//   veut dire que tu n'es pas sur le journalier.
-//
-// PAS DE TAKE PROFIT FIXE : suiveur seul +0,693 R ; objectif 6R +0,447 R ;
-//   3R +0,297 R ; 2R +0,156 R. Couper les gagnants detruit l'edge. Les paliers
-//   1R/2R/3R sont des REPERES, aucun ordre dessus.
-//
-// Methode, limites et chiffres : trading/docs/
-// =============================================================================
+// -------------------------------------------------------------------------
+// AVANT DE COLLER : l'editeur Pine doit etre VIDE.
+// Ctrl+A puis Ctrl+V (le Ctrl+A remplace tout ce qui restait du modele).
+// Un script = UNE declaration. Erreur CE10243 = il reste du texte au-dessus,
+// ou tu as colle l'indicateur et la strategy dans le meme onglet.
+// Explications, chiffres et garde-fous : tout en bas du fichier.
+// -------------------------------------------------------------------------
 
 indicator("VRC 2 - Regime, Volatilite, Continuation", shorttitle="VRC2", overlay=true, max_labels_count=500, max_lines_count=500, max_boxes_count=500)
 
@@ -365,3 +334,44 @@ if showDash and barstate.islast
 // ---------------------------------------------------------------- Alertes
 alertcondition(sigLong, "VRC2 signal", "VRC2 : signal sur {{ticker}} - entree a l'ouverture de la barre suivante")
 alertcondition(watchLong, "VRC2 approche", "VRC2 : {{ticker}} approche du declenchement - preparer l'analyse order flow")
+
+
+
+// =============================================================================
+// VRC 2 - Regime, Volatilite, Continuation
+// -----------------------------------------------------------------------------
+// Fichier ecrit pour resister au copier-coller : une instruction par ligne,
+// aucun caractere accentue, aucune ligne de continuation.
+// -----------------------------------------------------------------------------
+// TROIS GARDE-FOUS. Un indicateur doit refuser de donner des signaux la ou il a
+// ete mesure PERDANT.
+//
+//   1. Unite de temps. Strategie validee sur le JOURNALIER. En dessous,
+//      l'esperance mesuree est negative. Signaux bloques par defaut.
+//
+//   2. Cout en R. Le stop vaut 1,5 ATR, mais les frais sont proportionnels au
+//      PRIX. En descendant en unite de temps l'ATR s'effondre et les frais
+//      restent : le cout, en fraction du risque, explose. Mesure sur BTC
+//      2012-2026 : 0,022 R en hebdomadaire, 0,059 R en journalier, 0,161 R en
+//      4 h, 0,339 R en 1 h, 0,713 R en 15 min, 3,62 R en 1 minute. C'est une
+//      contrainte arithmetique, pas un reglage. Bloque au-dela de 0,15 R.
+//
+//   3. Regime. Pas de signal hors tendance haussiere.
+//
+// CE QUE L'INDICATEUR EXPLOITE
+//   Actions / indices : acheter la FAIBLESSE dans une tendance haussiere.
+//   Crypto           : acheter la FORCE. L'inverse exact.
+//
+// REGLAGE CRYPTO RETENU (seuil 2 ATR, stop 1,5 ATR, suiveur 3 ATR)
+//   10 actifs, 29 107 barres journalieres 2017-2026, frais 40 bps aller-retour :
+//   381 trades, 36,5 % de reussite, gain/perte 3,8, esperance +0,693 R,
+//   facteur de profit 2,20, t = 3,42. Positif 8 annees sur 9.
+//   Sur BTC en journalier : environ 4 signaux par an. Des centaines de signaux
+//   veut dire que tu n'es pas sur le journalier.
+//
+// PAS DE TAKE PROFIT FIXE : suiveur seul +0,693 R ; objectif 6R +0,447 R ;
+//   3R +0,297 R ; 2R +0,156 R. Couper les gagnants detruit l'edge. Les paliers
+//   1R/2R/3R sont des REPERES, aucun ordre dessus.
+//
+// Methode, limites et chiffres : trading/docs/
+// =============================================================================

@@ -1,23 +1,11 @@
 //@version=6
-// =============================================================================
-// VRC 2 - version STRATEGY, pour rejouer le backtest dans TradingView
-// -----------------------------------------------------------------------------
-// Ecrit pour resister au copier-coller : une instruction par ligne, aucun
-// caractere accentue, aucune ligne de continuation.
-//
-// A COLLER DANS UN SCRIPT SEPARE de l'indicateur. Pine n'accepte qu'une seule
-// declaration indicator()/strategy() par script (erreur CE10243 sinon).
-//
-// Reglages imposes pour que le test soit honnete : remplissage a l'OUVERTURE de
-// la barre suivante, frais 0,2 % par cote et slippage actifs, taille calculee
-// sur le risque et non sur un nominal fixe.
-//
-// Reference mesuree hors TradingView, 10 actifs crypto 2017-2026, profil
-// impulsion, seuil 2 ATR, stop 1,5 ATR, suiveur 3 ATR : 381 trades, 36,5 % de
-// reussite, gain/perte 3,8, esperance +0,693 R, facteur de profit 2,20,
-// t = 3,42, positif 8 annees sur 9.
-// ATTENTION : en dessous du journalier l'esperance mesuree est NEGATIVE.
-// =============================================================================
+// -------------------------------------------------------------------------
+// AVANT DE COLLER : l'editeur Pine doit etre VIDE.
+// Ctrl+A puis Ctrl+V (le Ctrl+A remplace tout ce qui restait du modele).
+// Un script = UNE declaration. Erreur CE10243 = il reste du texte au-dessus,
+// ou tu as colle l'indicateur et la strategy dans le meme onglet.
+// Explications, chiffres et garde-fous : tout en bas du fichier.
+// -------------------------------------------------------------------------
 
 strategy("VRC 2 - Strategy", shorttitle="VRC2-S", overlay=true, initial_capital=1000, default_qty_type=strategy.fixed, commission_type=strategy.commission.percent, commission_value=0.2, slippage=2, pyramiding=0, calc_on_every_tick=false, close_entries_rule="ANY", max_labels_count=500)
 
@@ -98,3 +86,25 @@ plot(emaF, "Moyenne rapide", color=color.new(color.orange, 55))
 plot(projLevel, "Declenchement projete", color=color.new(#818cf8, 20), style=plot.style_stepline, linewidth=2)
 plot(strategy.position_size != 0 ? posStop : na, "Stop suiveur", color=color.new(#f43f5e, 0), style=plot.style_linebr, linewidth=2)
 bgcolor(upReg ? color.new(#14b8a6, 94) : na)
+
+
+
+// =============================================================================
+// VRC 2 - version STRATEGY, pour rejouer le backtest dans TradingView
+// -----------------------------------------------------------------------------
+// Ecrit pour resister au copier-coller : une instruction par ligne, aucun
+// caractere accentue, aucune ligne de continuation.
+//
+// A COLLER DANS UN SCRIPT SEPARE de l'indicateur. Pine n'accepte qu'une seule
+// declaration indicator()/strategy() par script (erreur CE10243 sinon).
+//
+// Reglages imposes pour que le test soit honnete : remplissage a l'OUVERTURE de
+// la barre suivante, frais 0,2 % par cote et slippage actifs, taille calculee
+// sur le risque et non sur un nominal fixe.
+//
+// Reference mesuree hors TradingView, 10 actifs crypto 2017-2026, profil
+// impulsion, seuil 2 ATR, stop 1,5 ATR, suiveur 3 ATR : 381 trades, 36,5 % de
+// reussite, gain/perte 3,8, esperance +0,693 R, facteur de profit 2,20,
+// t = 3,42, positif 8 annees sur 9.
+// ATTENTION : en dessous du journalier l'esperance mesuree est NEGATIVE.
+// =============================================================================
