@@ -224,6 +224,56 @@ déclenchement.
 
 ---
 
+## 5 bis. Pourquoi le journalier, et pas plus court
+
+C'est la question qui revient toujours, et la réponse n'est pas une préférence :
+c'est de l'arithmétique.
+
+Le stop vaut **1,5 ATR**. Les frais, eux, sont proportionnels au **prix**, pas à
+l'ATR. Quand on descend en unité de temps, l'ATR s'effondre pendant que les
+frais restent identiques. Le coût, exprimé en fraction du risque, explose.
+
+Mesuré sur BTC 2012-2026, coût aller-retour de 40 bps :
+
+| Unité de temps | ATR médian | Risque (1,5 ATR) | **Coût en R** |
+|---|---:|---:|---:|
+| 1 semaine | 12,21 % | 18,31 % | **0,022 R** |
+| **1 jour** | **4,51 %** | **6,76 %** | **0,059 R** |
+| 4 heures | 1,66 % | 2,49 % | 0,161 R |
+| 1 heure | 0,79 % | 1,18 % | 0,339 R |
+| 15 minutes | 0,37 % | 0,56 % | 0,713 R |
+| 5 minutes | 0,20 % | 0,31 % | 1,309 R |
+| **1 minute** | **0,07 %** | **0,11 %** | **3,62 R** |
+
+En 1 minute, chaque aller-retour coûte **3,6 R** — et jusqu'à 6,3 R sur les
+derniers mois, où l'ATR relatif est plus faible. Il faudrait une espérance
+brute supérieure à cela pour simplement rentrer dans ses frais. Aucune
+stratégie ne fait ça.
+
+**Ce n'est pas un problème de réglage.** Descendre en unité de temps ne rend pas
+le signal moins bon : ça rend les frais insurmontables. Même avec un signal
+parfait, le résultat serait négatif.
+
+### Le garde-fou
+
+L'indicateur calcule ce coût en permanence et **bloque les signaux au-delà de
+0,15 R**. Calibrage :
+
+| Actif (journalier) | Coût médian | 90ᵉ centile |
+|---|---:|---:|
+| TRX | 0,055 R | 0,139 R |
+| BTC | 0,061 R | 0,098 R |
+| ETH | 0,045 R | 0,073 R |
+| SOL | 0,034 R | 0,053 R |
+
+Le pire 90ᵉ centile en journalier est de 0,139 R : le seuil de 0,15 laisse
+passer le journalier sur les dix actifs, et bloque 4 heures (0,161 R) et tout
+ce qui est plus court.
+
+Un second garde-fou bloque directement toute unité de temps inférieure au
+journalier. Les deux sont désactivables, mais le tableau de bord affiche alors
+en rouge « SIGNAUX BLOQUÉS » avec le motif.
+
 ## 6. Ton objectif de 1 % par jour
 
 Il faut le regarder en face, parce qu'il détermine tout le reste.

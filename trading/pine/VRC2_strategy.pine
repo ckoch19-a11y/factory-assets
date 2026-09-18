@@ -37,6 +37,9 @@ stopMult  = input.float(1.5, "Stop initial (ATR)", minval=0.5, maxval=4.0, step=
 trailMult = input.float(3.0, "Stop suiveur (ATR)", minval=1.0, maxval=8.0, step=0.5, group=gG)
 maxBars   = input.int(40, "Duree maximale (barres)", minval=5, maxval=120, group=gG)
 riskPct   = input.float(1.0, "Risque par trade (%)", minval=0.1, maxval=5.0, step=0.1, group=gR)
+bloqueTF  = input.bool(true, "Bloquer les signaux sous le journalier", group=gR)
+seuilCout = input.float(0.15, "Cout maximal tolere (en R)", minval=0.0, maxval=2.0, step=0.05, group=gR)
+coutBps   = input.float(40.0, "Cout aller-retour (points de base)", minval=0.0, maxval=200.0, step=5.0, group=gR)
 dStart    = input.time(timestamp("01 Jan 2000 00:00"), "Debut", group=gT)
 dEnd      = input.time(timestamp("01 Jan 2100 00:00"), "Fin", group=gT)
 
@@ -50,7 +53,15 @@ slope = ta.change(smaT, 20)
 ready = not na(smaT) and not na(emaF) and not na(atrV) and atrV > 0
 ext   = ready ? (close - emaF) / atrV : 0.0
 upReg = ready and close > smaT
-sigLong = upReg and (isCrypto ? ext > impThresh : ext < extThresh)
+// Garde-fous : la strategie n'est validee qu'en journalier, et un stop trop
+// serre par rapport aux frais rend toute esperance impossible. Mesure sur BTC
+// 2012-2026, cout aller-retour de 40 bps exprime en fraction du risque :
+// 0,059 R en journalier, 0,161 R en 4 h, 0,339 R en 1 h, 3,62 R en 1 minute.
+tfOk = not bloqueTF or timeframe.in_seconds() >= 86400
+risqueUnit = ready ? stopMult * atrV : na
+coutR = ready and risqueUnit > 0 ? coutBps / 10000.0 * close / risqueUnit : na
+coutOk = na(coutR) or coutR <= seuilCout
+sigLong = upReg and (isCrypto ? ext > impThresh : ext < extThresh) and tfOk and coutOk
 
 var float sigAtr  = na
 var float posStop = na

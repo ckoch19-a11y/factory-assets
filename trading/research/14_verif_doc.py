@@ -125,6 +125,18 @@ b10 = ru[(ru.config == "B_equilibre") & (ru["risque_par_trade_%"] == 10.0)].iloc
 chk("A 10 % de risque : creux median -86,5 %, ruine 34,1 %",
     abs(b10["dd_median_%"] + 86.5) < 0.2 and abs(b10["prob_perdre_moitie"] - 0.341) < 0.005, "ok")
 
+
+ct = pd.read_csv(os.path.join(R, "41_cout_par_timeframe.csv")).set_index("unite")
+chk("Cout 1 minute = 3,62 R", abs(ct.loc["1 minute", "cout_en_R"] - 3.623) < 0.01, ct.loc["1 minute", "cout_en_R"])
+chk("Cout journalier = 0,059 R", abs(ct.loc["1 jour", "cout_en_R"] - 0.059) < 0.002, ct.loc["1 jour", "cout_en_R"])
+chk("Cout 4 heures = 0,161 R, au-dessus du seuil 0,15",
+    abs(ct.loc["4 heures", "cout_en_R"] - 0.161) < 0.002 and ct.loc["4 heures", "cout_en_R"] > 0.15,
+    ct.loc["4 heures", "cout_en_R"])
+cj = pd.read_csv(os.path.join(R, "42_cout_journalier_par_actif.csv"))
+chk("Pire 90e centile journalier 0,139 R, sous le seuil 0,15",
+    abs(cj["cout_R_p90"].max() - 0.139) < 0.002 and cj["cout_R_p90"].max() < 0.15,
+    cj["cout_R_p90"].max())
+
 print(f"{len(ok)} chiffres conformes, {len(ko)} ecart(s)")
 for x in ok:
     print("  OK    ", x)

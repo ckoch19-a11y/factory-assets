@@ -2,32 +2,40 @@
 // =============================================================================
 // VRC 2 - Regime, Volatilite, Continuation
 // -----------------------------------------------------------------------------
-// Fichier ecrit pour resister au copier-coller : une seule instruction par
-// ligne, aucun caractere accentue, aucune ligne de continuation. Pine exige que
-// les lignes de continuation soient indentees d'un nombre d'espaces qui n'est
-// PAS un multiple de quatre ; tout copier-coller qui normalise les espaces
-// casse un fichier qui en depend. Ici il n'y en a aucune.
+// Fichier ecrit pour resister au copier-coller : une instruction par ligne,
+// aucun caractere accentue, aucune ligne de continuation.
 // -----------------------------------------------------------------------------
+// TROIS GARDE-FOUS, parce qu'un indicateur doit refuser de donner des signaux
+// la ou il a ete mesure PERDANT :
+//
+//   1. Unite de temps. La strategie est validee sur le JOURNALIER. En dessous,
+//      l'esperance mesuree est negative. Les signaux sont bloques par defaut.
+//
+//   2. Cout en R. Le stop vaut 1,5 ATR, mais les frais sont proportionnels au
+//      PRIX. En descendant en unite de temps l'ATR s'effondre et les frais
+//      restent : le cout, exprime en fraction du risque, explose. Mesure sur
+//      BTC 2012-2026 : 0,022 R en hebdomadaire, 0,059 R en journalier, 0,161 R
+//      en 4 h, 0,339 R en 1 h, 0,713 R en 15 min, 3,62 R en 1 minute (et
+//      jusqu'a 6,3 R sur les derniers mois, ou l'ATR relatif est plus faible).
+//      C'est une contrainte arithmetique, pas un reglage. Les signaux sont
+//      bloques au-dela de 0,15 R.
+//
+//   3. Regime. Pas de signal hors tendance haussiere.
+//
 // CE QUE L'INDICATEUR EXPLOITE
 //   Actions / indices : acheter la FAIBLESSE dans une tendance haussiere.
-//   Crypto           : acheter la FORCE. L'inverse exact. Sur crypto, acheter
-//                      le repli ne bat pas une entree au hasard.
+//   Crypto           : acheter la FORCE. L'inverse exact.
 //
 // REGLAGE CRYPTO RETENU (seuil 2 ATR, stop 1,5 ATR, suiveur 3 ATR)
 //   10 actifs, 29 107 barres journalieres 2017-2026, frais 40 bps aller-retour :
 //   381 trades, 36,5 % de reussite, gain/perte 3,8, esperance +0,693 R,
-//   facteur de profit 2,20, t = 3,42. Positif 8 annees sur 9, pire annee -0,6 R.
-//   Bat 40 tirages sur 40 d'entrees ALEATOIRES dans le meme regime avec la meme
-//   gestion : c'est ce controle, et non le rendement, qui prouve le signal.
+//   facteur de profit 2,20, t = 3,42. Positif 8 annees sur 9.
+//   Sur BTC en journalier : environ 4 signaux par an. Si tu en vois des
+//   centaines, c'est que tu n'es pas sur le journalier.
 //
 // PAS DE TAKE PROFIT FIXE : suiveur seul +0,693 R ; objectif 6R +0,447 R ;
 //   4R +0,351 R ; 3R +0,297 R ; 2R +0,156 R. Couper les gagnants detruit
-//   l'edge, qui vit dans les rares tres gros gagnants. Les paliers 1R/2R/3R
-//   sont des REPERES, aucun ordre n'est place dessus.
-//
-// TESTE ET REJETE : vente a decouvert en actions (0 rentable sur 36), cassures
-//   de plus hauts, filtres calendaires et de volatilite, unites de temps sous
-//   le journalier (esperance NEGATIVE).
+//   l'edge. Les paliers 1R/2R/3R sont des REPERES, aucun ordre dessus.
 //
 // Methode, limites et chiffres detailles : trading/docs/
 // =============================================================================
@@ -39,28 +47,32 @@ gP = "1 - Profil"
 gS = "2 - Signal"
 gG = "3 - Gestion"
 gR = "4 - Risque et couts"
-gV = "5 - Affichage"
+gF = "5 - Garde-fous"
+gV = "6 - Affichage"
 
-profil = input.string("Crypto - achat de l'impulsion", "Profil d'actif", options=["Crypto - achat de l'impulsion", "Actions / indices - achat du repli"], group=gP, tooltip="Le reglage le plus important. Crypto : achete la force. Actions : achete la faiblesse. Se tromper de profil ramene l'esperance au niveau du hasard.")
+profil = input.string("Crypto - achat de l'impulsion", "Profil d'actif", options=["Crypto - achat de l'impulsion", "Actions / indices - achat du repli"], group=gP, tooltip="Le reglage le plus important. Crypto : achete la force. Actions : achete la faiblesse.")
 
-trendLen  = input.int(200, "Filtre de tendance (barres)", minval=50, maxval=400, group=gS, tooltip="Plateau mesure de 150 a 250 : reglage peu sensible.")
+trendLen  = input.int(200, "Filtre de tendance (barres)", minval=50, maxval=400, group=gS)
 extLen    = input.int(20, "Moyenne rapide (barres)", minval=5, maxval=60, group=gS)
 atrLen    = input.int(14, "ATR (barres)", minval=5, maxval=50, group=gS)
-impThresh = input.float(2.0, "Seuil crypto - impulsion (ATR)", minval=0.5, maxval=4.0, step=0.25, group=gS, tooltip="Entree quand (cloture - EMA rapide) / ATR depasse ce seuil. Hors echantillon 2023-2026 : +0,422 R a 1,0 ; +0,565 R a 1,5 ; +0,656 R a 2,0. Monotone.")
-extThresh = input.float(-1.0, "Seuil actions - repli (ATR)", minval=-3.0, maxval=-0.25, step=0.25, group=gS, tooltip="Entree quand l'ecart passe SOUS ce seuil. Plateau de -0,5 a -2,0.")
+impThresh = input.float(2.0, "Seuil crypto - impulsion (ATR)", minval=0.5, maxval=4.0, step=0.25, group=gS)
+extThresh = input.float(-1.0, "Seuil actions - repli (ATR)", minval=-3.0, maxval=-0.25, step=0.25, group=gS)
 
-stopMult  = input.float(1.5, "Stop initial (ATR)", minval=0.5, maxval=4.0, step=0.25, group=gG, tooltip="1,5 ATR est le meilleur compromis mesure. Plus serre augmente l'esperance mais fait tomber le taux de reussite sous 25 %.")
-trailMult = input.float(3.0, "Stop suiveur (ATR)", minval=1.0, maxval=8.0, step=0.5, group=gG, tooltip="C'est la sortie reelle du systeme. Hors echantillon : 2 ATR donne +0,339 R, 3 ATR +0,656 R, 5 ATR +1,494 R. Elargir rapporte plus mais rend le trimestre median negatif, avec 81 a 88 % de chances de subir plus de 15 pertes d'affilee. 3 ATR est retenu pour la regularite.")
+stopMult  = input.float(1.5, "Stop initial (ATR)", minval=0.5, maxval=4.0, step=0.25, group=gG)
+trailMult = input.float(3.0, "Stop suiveur (ATR)", minval=1.0, maxval=8.0, step=0.5, group=gG)
 maxBars   = input.int(40, "Duree maximale (barres)", minval=5, maxval=120, group=gG)
 
-riskPct = input.float(1.0, "Risque par trade (% du capital)", minval=0.1, maxval=5.0, step=0.1, group=gR, tooltip="A 1 %, le creux median simule est de -15 %. A 2 %, -29 %. A 5 %, -60 % et 7,6 % de chances de perdre la moitie du capital.")
+riskPct = input.float(1.0, "Risque par trade (% du capital)", minval=0.1, maxval=5.0, step=0.1, group=gR)
 capital = input.float(1000, "Capital de reference", minval=10, group=gR)
-coutBps = input.float(40.0, "Cout aller-retour (points de base)", minval=0.0, maxval=200.0, step=5.0, group=gR, tooltip="40 bps en crypto, 20 bps sur actions liquides. Deduit des statistiques du tableau de bord.")
+coutBps = input.float(40.0, "Cout aller-retour (points de base)", minval=0.0, maxval=200.0, step=5.0, group=gR, tooltip="40 bps en crypto, 20 bps sur actions liquides. Deduit des statistiques ET utilise par le garde-fou de cout.")
 
-showProj   = input.bool(true, "Niveau de declenchement projete", group=gV, tooltip="Trace a l'avance le prix qui declencherait le signal, meme si rien ne se passe. Erreur mediane mesuree : 0,65 % du prix, soit un dixieme d'ATR.")
-showPlan   = input.bool(true, "Plan de trade projete (stop et taille)", group=gV)
-showLevels = input.bool(true, "Stop suiveur et paliers en R", group=gV)
-showZone   = input.bool(true, "Zone d'approche", group=gV)
+bloqueTF   = input.bool(true, "Bloquer les signaux sous le journalier", group=gF, tooltip="La strategie n'est validee qu'en journalier ou plus. En dessous, l'esperance mesuree est NEGATIVE. Ne desactive ce garde-fou que si tu as refait l'etude toi-meme.")
+seuilCout  = input.float(0.15, "Cout maximal tolere (en R)", minval=0.0, maxval=2.0, step=0.05, group=gF, tooltip="Bloque le signal quand les frais aller-retour depassent cette fraction du risque. Mesure sur BTC : 0,059 R en journalier, 0,161 R en 4 h, 0,339 R en 1 h, 3,62 R en 1 minute. A 0,15 le journalier passe sur les 10 actifs testes (pire 90e centile 0,139 R) et tout ce qui est plus court est bloque.")
+
+showProj   = input.bool(true, "Niveau de declenchement projete", group=gV)
+showPlan   = input.bool(true, "Plan de trade projete", group=gV)
+showZones  = input.bool(true, "Zones de risque et d'objectif", group=gV)
+showZone   = input.bool(true, "Marqueur de zone d'approche", group=gV)
 showRegime = input.bool(true, "Fond colore selon le regime", group=gV)
 showDash   = input.bool(true, "Tableau de bord", group=gV)
 showLabels = input.bool(true, "Etiquettes d'entree et de sortie", group=gV)
@@ -87,10 +99,17 @@ ext   = ready ? (close - emaF) / atrV : 0.0
 upReg = ready and close > smaT
 dnReg = ready and close < smaT and nz(slope, 0.0) < 0
 
-sigLong = upReg and (isCrypto ? ext > impThresh : ext < extThresh)
+// --- garde-fous --------------------------------------------------------------
+tfSec = timeframe.in_seconds()
+tfOk  = not bloqueTF or tfSec >= 86400
+risqueUnit = ready ? stopMult * atrV : na
+coutR = ready and risqueUnit > 0 ? coutBps / 10000.0 * close / risqueUnit : na
+coutOk = na(coutR) or coutR <= seuilCout
 
-// Prix qui declencherait le signal. EMA et ATR bougent d'une barre a l'autre :
-// c'est une zone, pas un tick. Erreur mediane mesuree 0,65 % du prix.
+brut = upReg and (isCrypto ? ext > impThresh : ext < extThresh)
+sigLong = brut and tfOk and coutOk
+
+// --- niveau projete ----------------------------------------------------------
 niveauDecl = ready ? emaF + seuil * atrV : na
 stopProj   = ready ? niveauDecl - stopMult * atrV : na
 risqueProj = ready ? math.abs(niveauDecl - stopProj) : na
@@ -98,15 +117,13 @@ tailleProj = risqueProj > 0 ? capital * riskPct / 100.0 / risqueProj : 0.0
 distPct    = ready and close > 0 ? (niveauDecl - close) / close * 100.0 : na
 distATR    = ready ? (niveauDecl - close) / atrV : na
 
-// zone d'approche : regime favorable, prix aux deux tiers du chemin vers le seuil
-approche  = seuil * 0.65
+approche   = seuil * 0.65
 zoneCrypto = ext > approche and ext <= impThresh
 zoneAction = ext < approche and ext >= extThresh
-watchLong  = upReg and not sigLong and (isCrypto ? zoneCrypto : zoneAction)
+watchLong  = upReg and not brut and tfOk and coutOk and (isCrypto ? zoneCrypto : zoneAction)
 
 // ---------------------------------------------------------------- Position
-// Signal calcule sur la cloture de t, entree a l'OUVERTURE de t+1. Identique au
-// backtest : verifie trade par trade sur 10 actifs, zero ecart.
+// Signal calcule sur la cloture de t, entree a l'OUVERTURE de t+1.
 var int   pending  = 0
 var int   dir      = 0
 var float entryPx  = na
@@ -114,6 +131,7 @@ var float stopPx   = na
 var float riskPx   = na
 var float bestPx   = na
 var int   barsIn   = 0
+var int   entryBar = 0
 var float atrAtSig = na
 
 var int   nWin     = 0
@@ -129,6 +147,11 @@ var float ddR      = 0.0
 float exitedR     = 0.0
 bool  justExited  = false
 bool  justEntered = false
+// Copies figees a l'entree. Sans elles, un trade ouvert ET stoppe sur la meme
+// barre affichait "ACHAT NaN stop NaN" : la position etait deja refermee, donc
+// entryPx et stopPx remis a na, quand l'etiquette etait construite.
+float entreeFigee = na
+float stopFige    = na
 
 if pending != 0 and dir == 0
     dir := pending
@@ -137,8 +160,11 @@ if pending != 0 and dir == 0
     riskPx := math.abs(open - stopPx)
     bestPx := open
     barsIn := 0
+    entryBar := bar_index
     pending := 0
     justEntered := true
+    entreeFigee := entryPx
+    stopFige := stopPx
 
 if dir != 0
     if not justEntered
@@ -188,58 +214,58 @@ bgcolor(colFond, title="Regime")
 plot(smaT, "Tendance", color=color.new(cDim, 25), linewidth=2)
 plot(emaF, "Moyenne rapide", color=color.new(cWarn, 55), linewidth=1)
 
-// niveau de declenchement projete : visible AVANT tout signal
-pDecl = showProj and dir == 0 and ready ? niveauDecl : na
-pStop = showProj and showPlan and dir == 0 and ready ? stopProj : na
+pDecl = showProj and dir == 0 and ready and tfOk and coutOk ? niveauDecl : na
 plot(pDecl, "Declenchement projete", color=color.new(cProj, 0), linewidth=2, style=plot.style_stepline)
-plot(pStop, "Stop projete", color=color.new(cDn, 55), linewidth=1, style=plot.style_stepline)
 
 plotshape(sigLong, "Signal", shape.triangleup, location.belowbar, color.new(cUp, 0), size=size.small)
 plotshape(showZone and watchLong, "Approche", shape.circle, location.belowbar, color.new(cUp, 50), size=size.tiny)
 
-// stop suiveur en position : c'est la sortie reelle du systeme
-enPos = showLevels and dir != 0
-plot(enPos ? stopPx : na, "Stop suiveur", color=color.new(cDn, 0), linewidth=2, style=plot.style_linebr)
-plot(enPos ? entryPx : na, "Entree", color=color.new(cInk, 40), linewidth=1, style=plot.style_linebr)
-plot(enPos ? entryPx + dir * riskPx : na, "1R", color=color.new(cUp, 75), linewidth=1, style=plot.style_linebr)
-plot(enPos ? entryPx + dir * 2 * riskPx : na, "2R", color=color.new(cUp, 60), linewidth=1, style=plot.style_linebr)
-plot(enPos ? entryPx + dir * 3 * riskPx : na, "3R", color=color.new(cUp, 45), linewidth=1, style=plot.style_linebr)
+enPos = dir != 0
+plot(enPos ? stopPx : na, "Stop suiveur", color=color.new(cDn, 0), linewidth=3, style=plot.style_linebr)
+plot(enPos ? entryPx : na, "Entree", color=color.new(cInk, 30), linewidth=1, style=plot.style_linebr)
 
-// --- plan de trade projete ---------------------------------------------------
-var label planLbl = na
-var line planLine = na
-if showPlan and barstate.islast
-    label.delete(planLbl)
-    line.delete(planLine)
-    if dir == 0 and ready and upReg
-        string t1 = "DECLENCHEMENT  " + str.tostring(niveauDecl, format.mintick)
-        string t2 = "distance  " + str.tostring(distPct, "#.##") + " %  (" + str.tostring(distATR, "#.##") + " ATR)"
-        string t3 = "stop      " + str.tostring(stopProj, format.mintick)
-        string t4 = "risque    " + str.tostring(risqueProj, format.mintick)
-        string t5 = "taille    " + str.tostring(tailleProj, "#.######")
-        string txt = t1 + "\n" + t2 + "\n" + t3 + "\n" + t4 + "\n" + t5
-        planLine := line.new(bar_index, niveauDecl, bar_index + 12, niveauDecl, color=color.new(cProj, 20), width=2, style=line.style_dashed)
-        planLbl := label.new(bar_index + 12, niveauDecl, txt, style=label.style_label_left, color=color.new(cProj, 15), textcolor=color.white, size=size.small)
-    else if dir != 0 and riskPx > 0
-        float rNow = (close - entryPx) / riskPx
-        string p1 = "EN POSITION  " + str.tostring(rNow, "+#.##") + " R"
-        string p2 = "entree  " + str.tostring(entryPx, format.mintick)
-        string p3 = "stop    " + str.tostring(stopPx, format.mintick)
-        string p4 = "barres  " + str.tostring(barsIn) + " / " + str.tostring(maxBars)
-        string ptxt = p1 + "\n" + p2 + "\n" + p3 + "\n" + p4
-        planLbl := label.new(bar_index + 12, close, ptxt, style=label.style_label_left, color=color.new(rNow >= 0 ? cUp : cDn, 15), textcolor=color.white, size=size.small)
+// --- zones de risque et d'objectif, redessinees a chaque barre ----------------
+var box boxRisk = na
+var box boxCible = na
+var label lblStop = na
+var label lblCible = na
+var label lblPlan = na
+var line linePlan = na
+
+if barstate.islast
+    box.delete(boxRisk)
+    box.delete(boxCible)
+    label.delete(lblStop)
+    label.delete(lblCible)
+    label.delete(lblPlan)
+    line.delete(linePlan)
+
+if showZones and enPos and barstate.islast and riskPx > 0
+    float cible3 = entryPx + dir * 3 * riskPx
+    boxRisk := box.new(entryBar, entryPx, bar_index + 15, stopPx, border_color=color.new(cDn, 40), bgcolor=color.new(cDn, 88), border_width=1)
+    boxCible := box.new(entryBar, entryPx, bar_index + 15, cible3, border_color=color.new(cUp, 40), bgcolor=color.new(cUp, 92), border_width=1)
+    lblStop := label.new(bar_index + 15, stopPx, "STOP  " + str.tostring(stopPx, format.mintick), style=label.style_label_left, color=color.new(cDn, 10), textcolor=color.white, size=size.small)
+    lblCible := label.new(bar_index + 15, cible3, "3R  " + str.tostring(cible3, format.mintick) + "   (repere)", style=label.style_label_left, color=color.new(cUp, 10), textcolor=color.white, size=size.small)
+
+if showPlan and barstate.islast and dir == 0 and ready and upReg and tfOk and coutOk
+    string t1 = "DECLENCHEMENT  " + str.tostring(niveauDecl, format.mintick)
+    string t2 = "distance  " + str.tostring(distPct, "#.##") + " %  (" + str.tostring(distATR, "#.##") + " ATR)"
+    string t3 = "stop      " + str.tostring(stopProj, format.mintick)
+    string t4 = "risque    " + str.tostring(risqueProj, format.mintick)
+    string t5 = "taille    " + str.tostring(tailleProj, "#.######")
+    string txt = t1 + "\n" + t2 + "\n" + t3 + "\n" + t4 + "\n" + t5
+    linePlan := line.new(bar_index, niveauDecl, bar_index + 15, niveauDecl, color=color.new(cProj, 20), width=2, style=line.style_dashed)
+    lblPlan := label.new(bar_index + 15, niveauDecl, txt, style=label.style_label_left, color=color.new(cProj, 15), textcolor=color.white, size=size.small)
 
 if showLabels and justEntered and barstate.isconfirmed
-    string le = "ACHAT\n" + str.tostring(entryPx, format.mintick) + "\nstop " + str.tostring(stopPx, format.mintick)
+    string le = "ACHAT " + str.tostring(entreeFigee, format.mintick) + "\nstop " + str.tostring(stopFige, format.mintick)
     label.new(bar_index, low, le, style=label.style_label_up, color=color.new(cUp, 20), textcolor=color.white, size=size.tiny)
 
 if showLabels and justExited and barstate.isconfirmed
     label.new(bar_index, high, str.tostring(exitedR, "+#.##") + " R", style=label.style_label_down, color=color.new(exitedR >= 0 ? cUp : cDn, 30), textcolor=color.white, size=size.tiny)
 
 // ---------------------------------------------------------------- Tableau
-bool tfCourt = timeframe.isintraday and timeframe.in_seconds() < 86400
-
-var table dash = table.new(position.top_right, 2, 13, border_width=1, border_color=color.new(cDim, 70), frame_width=1, frame_color=color.new(cDim, 50))
+var table dash = table.new(position.top_right, 2, 14, border_width=1, border_color=color.new(cDim, 70), frame_width=1, frame_color=color.new(cDim, 50))
 
 if showDash and barstate.islast
     int nT = nWin + nLoss
@@ -255,66 +281,70 @@ if showDash and barstate.islast
     color kc = color.new(cInk, 25)
     color cNeutre = color.new(cInk, 35)
     color cFaible = faible ? cDim : cNeutre
+    bool bloque = not tfOk or not coutOk
 
-    table.cell(dash, 0, 0, "VRC 2  " + (isCrypto ? "crypto" : "actions"), text_color=color.white, bgcolor=color.new(cProj, 25), text_size=size.small)
-    table.cell(dash, 1, 0, syminfo.ticker + "  " + timeframe.period, text_color=color.white, bgcolor=color.new(cProj, 25), text_size=size.small)
+    string entete = bloque ? "VRC 2  SIGNAUX BLOQUES" : "VRC 2  " + (isCrypto ? "crypto" : "actions")
+    color cEntete = bloque ? color.new(cDn, 15) : color.new(cProj, 25)
+    table.cell(dash, 0, 0, entete, text_color=color.white, bgcolor=cEntete, text_size=size.small)
+    table.cell(dash, 1, 0, syminfo.ticker + "  " + timeframe.period, text_color=color.white, bgcolor=cEntete, text_size=size.small)
+
+    string vMotif = not tfOk ? "sous le journalier" : not coutOk ? "frais trop lourds" : "aucun"
+    color cMotif = bloque ? cDn : cUp
+    table.cell(dash, 0, 1, "Blocage", text_color=kc, bgcolor=bg, text_size=size.small, text_halign=text.align_left)
+    table.cell(dash, 1, 1, vMotif, text_color=cMotif, bgcolor=bg, text_size=size.small)
+
+    string vCout = na(coutR) ? "-" : str.tostring(coutR, "#.###") + " R  / " + str.tostring(seuilCout, "#.##")
+    color cCout = coutOk ? cUp : cDn
+    table.cell(dash, 0, 2, "Cout par trade", text_color=kc, bgcolor=bg, text_size=size.small, text_halign=text.align_left)
+    table.cell(dash, 1, 2, vCout, text_color=cCout, bgcolor=bg, text_size=size.small)
 
     string vRegime = upReg ? "haussier" : dnReg ? "baissier" : "neutre"
     color cRegime = upReg ? cUp : dnReg ? cDn : cDim
-    table.cell(dash, 0, 1, "Regime", text_color=kc, bgcolor=bg, text_size=size.small, text_halign=text.align_left)
-    table.cell(dash, 1, 1, vRegime, text_color=cRegime, bgcolor=bg, text_size=size.small)
+    table.cell(dash, 0, 3, "Regime", text_color=kc, bgcolor=bg, text_size=size.small, text_halign=text.align_left)
+    table.cell(dash, 1, 3, vRegime, text_color=cRegime, bgcolor=bg, text_size=size.small)
 
     string vEcart = str.tostring(ext, "#.##") + "  /  " + str.tostring(seuil, "#.##")
     color cEcart = sigLong ? cUp : watchLong ? cWarn : cNeutre
-    table.cell(dash, 0, 2, "Ecart / seuil", text_color=kc, bgcolor=bg, text_size=size.small, text_halign=text.align_left)
-    table.cell(dash, 1, 2, vEcart, text_color=cEcart, bgcolor=bg, text_size=size.small)
+    table.cell(dash, 0, 4, "Ecart / seuil", text_color=kc, bgcolor=bg, text_size=size.small, text_halign=text.align_left)
+    table.cell(dash, 1, 4, vEcart, text_color=cEcart, bgcolor=bg, text_size=size.small)
 
-    string vDecl = dir != 0 ? "en position" : str.tostring(niveauDecl, format.mintick)
-    table.cell(dash, 0, 3, "Declenchement a", text_color=kc, bgcolor=bg, text_size=size.small, text_halign=text.align_left)
-    table.cell(dash, 1, 3, vDecl, text_color=color.new(cProj, 0), bgcolor=bg, text_size=size.small)
+    string vDecl = enPos ? "en position" : bloque ? "-" : str.tostring(niveauDecl, format.mintick)
+    table.cell(dash, 0, 5, "Declenchement a", text_color=kc, bgcolor=bg, text_size=size.small, text_halign=text.align_left)
+    table.cell(dash, 1, 5, vDecl, text_color=color.new(cProj, 0), bgcolor=bg, text_size=size.small)
 
-    string vDist = dir != 0 ? "-" : str.tostring(distPct, "#.##") + " %  (" + str.tostring(distATR, "#.#") + " ATR)"
-    table.cell(dash, 0, 4, "Distance", text_color=kc, bgcolor=bg, text_size=size.small, text_halign=text.align_left)
-    table.cell(dash, 1, 4, vDist, text_color=cNeutre, bgcolor=bg, text_size=size.small)
+    string vDist = enPos or bloque ? "-" : str.tostring(distPct, "#.##") + " %  (" + str.tostring(distATR, "#.#") + " ATR)"
+    table.cell(dash, 0, 6, "Distance", text_color=kc, bgcolor=bg, text_size=size.small, text_halign=text.align_left)
+    table.cell(dash, 1, 6, vDist, text_color=cNeutre, bgcolor=bg, text_size=size.small)
 
-    string vTaille = dir != 0 ? "-" : str.tostring(tailleProj, "#.######")
-    table.cell(dash, 0, 5, "Taille a placer", text_color=kc, bgcolor=bg, text_size=size.small, text_halign=text.align_left)
-    table.cell(dash, 1, 5, vTaille, text_color=cWarn, bgcolor=bg, text_size=size.small)
+    string vTaille = enPos or bloque ? "-" : str.tostring(tailleProj, "#.######")
+    table.cell(dash, 0, 7, "Taille a placer", text_color=kc, bgcolor=bg, text_size=size.small, text_halign=text.align_left)
+    table.cell(dash, 1, 7, vTaille, text_color=cWarn, bgcolor=bg, text_size=size.small)
 
-    string vPos = dir == 0 ? "aucune" : str.tostring((close - entryPx) / riskPx, "+#.##") + " R  (" + str.tostring(barsIn) + " b)"
-    table.cell(dash, 0, 6, "Position", text_color=kc, bgcolor=bg, text_size=size.small, text_halign=text.align_left)
-    table.cell(dash, 1, 6, vPos, text_color=dir == 0 ? cDim : cWarn, bgcolor=bg, text_size=size.small)
+    string vPos = enPos ? str.tostring((close - entryPx) / riskPx, "+#.##") + " R  (" + str.tostring(barsIn) + " b)" : "aucune"
+    table.cell(dash, 0, 8, "Position", text_color=kc, bgcolor=bg, text_size=size.small, text_halign=text.align_left)
+    table.cell(dash, 1, 8, vPos, text_color=enPos ? cWarn : cDim, bgcolor=bg, text_size=size.small)
 
-    table.cell(dash, 0, 7, "Trades", text_color=kc, bgcolor=bg, text_size=size.small, text_halign=text.align_left)
-    table.cell(dash, 1, 7, str.tostring(nT), text_color=cNeutre, bgcolor=bg, text_size=size.small)
+    table.cell(dash, 0, 9, "Trades", text_color=kc, bgcolor=bg, text_size=size.small, text_halign=text.align_left)
+    table.cell(dash, 1, 9, str.tostring(nT), text_color=cNeutre, bgcolor=bg, text_size=size.small)
 
     string vWr = nT > 0 ? str.tostring(wr, "#.#") + " %" : "-"
     color cWr = faible ? cDim : wr >= 33 ? cUp : cWarn
-    table.cell(dash, 0, 8, "Reussite", text_color=kc, bgcolor=bg, text_size=size.small, text_halign=text.align_left)
-    table.cell(dash, 1, 8, vWr, text_color=cWr, bgcolor=bg, text_size=size.small)
+    table.cell(dash, 0, 10, "Reussite", text_color=kc, bgcolor=bg, text_size=size.small, text_halign=text.align_left)
+    table.cell(dash, 1, 10, vWr, text_color=cWr, bgcolor=bg, text_size=size.small)
 
     string vRr = na(rr) ? "-" : str.tostring(rr, "#.##")
-    table.cell(dash, 0, 9, "Gain sur perte", text_color=kc, bgcolor=bg, text_size=size.small, text_halign=text.align_left)
-    table.cell(dash, 1, 9, vRr, text_color=cFaible, bgcolor=bg, text_size=size.small)
+    table.cell(dash, 0, 11, "Gain sur perte", text_color=kc, bgcolor=bg, text_size=size.small, text_halign=text.align_left)
+    table.cell(dash, 1, 11, vRr, text_color=cFaible, bgcolor=bg, text_size=size.small)
 
     string vEsp = nT > 0 ? str.tostring(esp, "#.###") + " R" : "-"
     color cEsp = faible ? cDim : esp > 0 ? cUp : cDn
-    table.cell(dash, 0, 10, "Esperance", text_color=kc, bgcolor=bg, text_size=size.small, text_halign=text.align_left)
-    table.cell(dash, 1, 10, vEsp, text_color=cEsp, bgcolor=bg, text_size=size.small)
+    table.cell(dash, 0, 12, "Esperance", text_color=kc, bgcolor=bg, text_size=size.small, text_halign=text.align_left)
+    table.cell(dash, 1, 12, vEsp, text_color=cEsp, bgcolor=bg, text_size=size.small)
 
     string vPf = na(pf) ? "-" : str.tostring(pf, "#.##")
     color cPf = faible ? cDim : pf > 1 ? cUp : cDn
-    table.cell(dash, 0, 11, "Facteur de profit", text_color=kc, bgcolor=bg, text_size=size.small, text_halign=text.align_left)
-    table.cell(dash, 1, 11, vPf, text_color=cPf, bgcolor=bg, text_size=size.small)
-
-    string kCreux = faible ? "Echantillon" : "Pire creux"
-    string vCreux = faible ? "insuffisant" : str.tostring(ddR, "#.#") + " R"
-    table.cell(dash, 0, 12, kCreux, text_color=kc, bgcolor=bg, text_size=size.small, text_halign=text.align_left)
-    table.cell(dash, 1, 12, vCreux, text_color=faible ? cWarn : cNeutre, bgcolor=bg, text_size=size.small)
-
-if tfCourt and barstate.islast
-    string avert = "Unite de temps sous le journalier :\nl'esperance mesuree y est NEGATIVE.\nUtiliser le graphique journalier."
-    label.new(bar_index, high, avert, style=label.style_label_down, color=color.new(cWarn, 15), textcolor=color.white, size=size.small)
+    table.cell(dash, 0, 13, "Facteur de profit", text_color=kc, bgcolor=bg, text_size=size.small, text_halign=text.align_left)
+    table.cell(dash, 1, 13, vPf, text_color=cPf, bgcolor=bg, text_size=size.small)
 
 // ---------------------------------------------------------------- Alertes
 alertcondition(sigLong, "VRC2 signal", "VRC2 : signal sur {{ticker}} - entree a l'ouverture de la barre suivante")
