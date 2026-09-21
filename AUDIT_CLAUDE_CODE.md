@@ -98,12 +98,19 @@ sortent pas du même pipeline : `hero_vignoble.mp4` porte une piste timecode
 `tmcd` et un commentaire encodeur `Lavc58.134.100`, résidus d'export absents
 des trois autres. Rien n'est normalisé ni nettoyé avant commit.
 
-### Risque 3 — Binaires en blobs git bruts, sans LFS — irréversible
-Pas de `.gitattributes`, pas de Git LFS. `.git` pèse déjà 7,4 Mo pour 7,1 Mo
-d'assets. Chaque ré-encodage d'un héros ajoutera **son poids complet et définitif**
-à l'historique. À 20 clients × 2 héros × 3 itérations, le clone devient hostile.
-Ce n'est pas urgent aujourd'hui ; c'est incorrigible plus tard sans réécrire
-l'historique. Le bon moment pour poser LFS, c'est maintenant, à 9 fichiers.
+### Risque 3 — Binaires lourds versionnés dans Git — irréversible
+`.git` pèse déjà 7,4 Mo pour 7,1 Mo d'assets. Chaque ré-encodage d'un héros
+ajoutera **son poids complet et définitif** à l'historique. À 20 clients × 2 héros
+× 3 itérations, le clone devient hostile. Ce n'est pas urgent aujourd'hui ; c'est
+incorrigible plus tard sans réécrire l'historique.
+
+> **Correction (21/09) — la première version de cet audit proposait Git LFS.
+> C'est faux ici, et l'objection de Calvin est décisive :** sur un dépôt synchronisé
+> avec Base44, la synchro enverrait les fichiers *pointeurs* LFS au lieu des médias
+> et casserait les visuels des sites en production. **Pas de LFS sur ce dépôt.**
+> La bonne réponse est de sortir les binaires de Git : hébergement sur le stockage
+> média Base44 ou un CDN, et dans le dépôt uniquement les scripts de génération,
+> le manifeste de provenance et les références d'URL.
 
 ### Risque 4 — Provenance et droits non traçables (croise la mission 8)
 Rien ne relie `hero_vignoble.mp4` à un client, une licence ou un prompt.
@@ -231,9 +238,18 @@ ton planning, à condition de lancer la 2 d'abord. Ce qui est le cas.
 
 ## 4. Ce dont j'ai besoin pour continuer
 
-**Bloquant :** accès en lecture à `ckoch19-a11y/application` (ou l'emplacement
-réel du socle). Sans ça, les missions 1 à 12 sont hors d'atteinte depuis cette
-session — elles portent toutes sur du code que je ne peux pas lire.
+**Bloquant :** accès au dépôt du socle, `calvinkoch-ai/usine-vitrine`
+(confirmé par Calvin le 21/09 — ce n'est pas `ckoch19-a11y/application`).
+Deux obstacles distincts, à lever tous les deux :
+
+1. Le compte GitHub `calvinkoch-ai` n'est pas visible du tout par l'espace de
+   travail : l'application GitHub de Claude n'y est pas installée.
+2. Cette session est rattachée au propriétaire `ckoch19-a11y` et ne peut pas
+   être repointée ailleurs ; il faut **ouvrir une nouvelle session** avec
+   `calvinkoch-ai/usine-vitrine` en source initiale.
+
+Sans ces deux points, les missions 1 à 12 sont hors d'atteinte : elles portent
+toutes sur du code que je ne peux pas lire.
 
 **Non bloquant, faisable ici et maintenant si tu le veux :** le dépôt
 `factory-assets` a ses propres défauts, mesurés en section 2.A, et le risque 1
