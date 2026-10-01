@@ -37,14 +37,18 @@ def _lire_json():
         try: return json.loads(l)
         except ValueError: continue
 
-def cb(texte, out, seed):
+def cb(texte, out, seed, _retry=False):
     global _cb
     if _cb is None:
-        _cb = subprocess.Popen([CB_PY, os.path.join(HERE_, 'voix_cb.py'), REF], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, text=True)
+        _cb = subprocess.Popen([CB_PY, os.path.join(HERE_, 'voix_cb.py'), REF], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=open(os.path.join(os.environ.get('TMPDIR','/tmp'),'korvex-voix.err'),'a'), text=True)
         while not _lire_json().get('pret'): pass
-    _cb.stdin.write(json.dumps({"texte": texte, "out": out, "seed": seed}) + "\n"); _cb.stdin.flush()
-    while True:
-        if _lire_json().get('out') == out: return
+    try:
+        _cb.stdin.write(json.dumps({"texte": texte, "out": out, "seed": seed}) + "\n"); _cb.stdin.flush()
+        while True:
+            if _lire_json().get('out') == out: return
+    except (BrokenPipeError, RuntimeError):
+        if _retry: raise
+        print('  moteur voix redémarré', flush=True); _cb = None; return cb(texte, out, seed, _retry=True)
 
 VOIX = os.environ.get('KX_VOIX', 'fr/fr_FR/tom/medium/fr_FR-tom-medium')
 VITESSE = float(os.environ.get('KX_VITESSE', '0.9'))   # < 1 = plus rapide
@@ -170,7 +174,7 @@ if __name__ == '__main__':
     # phase 1 : toutes les voix (le modèle voix occupe ~4 Go : on le libère avant le rendu navigateur)
     for v in jour['videos']:
         if a.only and v['id'] != a.only: continue
-        t0 = __import__('time').time(); voix_seules(v, a.out, mdl); print(f"voix {v['id']} : {__import__('time').time()-t0:.0f} s", flush=True)
+        t0 = __import__('time').time(); voix_seules(v, a.out, mdl); stop_voix(); print(f"voix {v['id']} : {__import__('time').time()-t0:.0f} s", flush=True)
     stop_voix()
     for v in jour['videos']:
         if a.only and v['id'] != a.only: continue
