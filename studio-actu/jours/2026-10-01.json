@@ -1,0 +1,42 @@
+{"date":"2026-10-01","date_courte":"01.10.26",
+"videos":[
+{"id":"01-ia-40-pourcent","serie":"L'actu IA","creneau":"07:45","theme":"papier",
+ "titre":"40 % des TPE-PME utilisent l'IA",
+ "source":"Baromètre France Num 2026 (DGE), 9 000 entreprises, 28/09/2026",
+ "scenes":[
+  {"type":"hook","label":"Baromètre France Num 2026","titre":"L'IA est entrée\n*dans les PME.*","voix":"L'intelligence artificielle est entrée dans les P.M.E. Et vite."},
+  {"type":"chiffre","label":"TPE-PME qui utilisent l'IA","valeur":"40 %","legende":"*+14 points* en un an,\nsur 9 000 entreprises.","voix":"Selon le baromètre France Num 2026, 40 % des T.P.E. et P.M.E. utilisent déjà l'I.A. C'est 14 points de plus qu'il y a un an."},
+  {"type":"chiffre","label":"Chez les PME","valeur":"53 %","legende":"et *85 %* des utilisateurs de solutions\npayantes en voient l'impact.","voix":"Chez les P.M.E., c'est 53 %. Et 85 % de celles qui paient une solution en voient un impact positif."}],
+ "legende":"40 % des TPE-PME utilisent désormais l'IA (+14 points en un an), 53 % chez les PME. Ceux qui investissent voient la différence. #IA #intelligenceartificielle #PME #TPE #FranceNum"},
+{"id":"02-agents-x3","serie":"Le chiffre","creneau":"10:30","theme":"encre",
+ "titre":"Agents IA : les petites structures vont 3 fois plus vite",
+ "source":"Rapport OpenAI « Small Businesses, Bigger Capabilities », 30/09/2026, via LeBigData",
+ "scenes":[
+  {"type":"chiffre","label":"Usage des agents IA, fonctions support","valeur":"×3","legende":"plus fréquent dans les petites structures\nque dans les *grands groupes.*","voix":"Dans la compta, le juridique ou le marketing, les petites entreprises utilisent les agents I.A. trois fois plus souvent que les grands groupes."},
+  {"type":"chiffre","label":"Part des tâches confiées à des agents","valeur":"66 %","legende":"contre *33 %* en avril.\nEn quatre mois.","voix":"Et la part des tâches confiées à des agents autonomes est passée de 33 à 66 % en seulement quatre mois."},
+  {"type":"texte","label":"Ce que ça veut dire","titre":"On ne discute plus\navec l'IA.\n*On lui délègue.*","voix":"Le message est clair : on ne discute plus avec l'I.A., on lui délègue du travail."}],
+ "legende":"Les petites entreprises utilisent les agents IA 3 fois plus que les grands groupes sur les fonctions support. La part des tâches déléguées à des agents a doublé en 4 mois. #agentsIA #IA #PME #TPE #automatisation"},
+{"id":"03-usages-ia","serie":"Décryptage","creneau":"12:30","theme":"papier",
+ "titre":"Ce que les PME font vraiment avec l'IA",
+ "source":"Baromètre France Num 2026 (DGE), 28/09/2026",
+ "scenes":[
+  {"type":"hook","label":"Usages de l'IA en PME","titre":"À quoi sert l'IA\n*dans votre secteur ?*","voix":"Mais concrètement, à quoi sert l'I.A. dans les P.M.E. ?"},
+  {"type":"points","titre":"Les usages en 2026","points":["Rédiger, créer des visuels : 34 %","Assistants et chatbots : 24 %","Automatiser des tâches : 11 %"],"voix":"34 % s'en servent pour rédiger ou créer des visuels. 24 % pour des assistants. Mais seulement 11 % automatisent vraiment des tâches."},
+  {"type":"texte","label":"L'opportunité","titre":"L'avance se joue\nsur *l'automatisation.*","voix":"C'est là que se joue l'avance : faire travailler l'I.A. à votre place, pas seulement lui poser des questions."}],
+ "legende":"34 % des TPE-PME utilisent l'IA pour rédiger, 24 % pour des assistants… mais seulement 11 % automatisent réellement des tâches. C'est là que se fait la différence. #IA #automatisation #PME #TPE"},
+{"id":"04-agent-sur-mesure","serie":"Agent IA","creneau":"17:30","theme":"encre",
+ "titre":"Un agent IA sur mesure, c'est quoi ?",
+ "source":"KORVEX — korvex.website",
+ "scenes":[
+  {"type":"hook","label":"Agent IA sur mesure","titre":"Un collègue\nqui ne dort\n*jamais.*","voix":"Un agent I.A. sur mesure, c'est un collègue qui ne dort jamais."},
+  {"type":"points","titre":"Ce qu'il peut faire","points":["Répondre aux demandes de devis","Relancer les factures impayées","Trier mails et rendez-vous"],"voix":"Il répond aux demandes de devis, relance les factures en retard, trie vos mails et vos rendez-vous."},
+  {"type":"texte","label":"La différence","titre":"Branché sur *vos* outils,\nréglé sur *vos* règles.","voix":"La différence avec ChatGPT : il est branché sur vos outils, et il suit vos règles."}],
+ "legende":"Un agent IA sur mesure : il répond aux devis, relance les impayés, trie mails et rendez-vous. Branché sur vos outils, réglé sur vos règles. On en parle ? #agentsIA #IA #PME #TPE #KORVEX"},
+{"id":"05-conseil-premier-agent","serie":"Le conseil KORVEX","creneau":"19:30","theme":"papier",
+ "titre":"Votre premier agent IA : par où commencer",
+ "source":"Contexte : baromètre France Num 2026 (DGE) — conseil KORVEX",
+ "scenes":[
+  {"type":"hook","label":"Premier agent IA","titre":"Par où\ncommencer ?\n*Petit.*","voix":"Votre premier agent I.A. ? Commencez petit."},
+  {"type":"points","titre":"3 étapes","points":["Une tâche répétitive et chronophage","Branchée sur vos mails et votre agenda","Validation humaine au départ"],"voix":"Un : choisissez une seule tâche répétitive. Deux : branchez l'agent sur vos mails et votre agenda. Trois : gardez une validation humaine au début."}],
+ "legende":"Premier agent IA : une tâche répétitive, branchée sur vos outils, avec validation humaine au départ. Simple, mesurable, rentable. #agentsIA #IA #PME #TPE #conseil"}
+]}

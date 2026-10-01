@@ -1,0 +1,107 @@
+#!/usr/bin/env python3
+"""Usine vidéo KORVEX « L'actu des TPE & PME ».
+python3 fabrique.py jour.json [--out sorties] [--only ID] [--workers 3]
+Une vidéo verticale 1080x1920 30 i/s par entrée de jour.json : voix off (Piper, voix fixe),
+sous-titres karaoké, musique originale synthétisée, sortie normalisée -14 LUFS."""
+import json, os, sys, subprocess, wave, argparse, urllib.request, shutil
+import numpy as np
+HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import musique
+
+VOIX = os.environ.get('KX_VOIX', 'fr/fr_FR/tom/medium/fr_FR-tom-medium')
+VITESSE = float(os.environ.get('KX_VITESSE', '0.9'))   # < 1 = plus rapide
+CACHE = os.path.expanduser('~/.cache/korvex-voix')
+SR = 48000
+CTA_VOIX = os.environ.get("KX_CTA", "KORVEX crée des agents I.A. sur mesure pour les P.M.E. Suivez-nous.")
+
+def sh(*a): subprocess.run(a, check=True)
+
+def modele():
+    os.makedirs(CACHE, exist_ok=True)
+    base = os.path.join(CACHE, os.path.basename(VOIX))
+    for ext in ('.onnx', '.onnx.json'):
+        if not os.path.exists(base + ext):
+            urllib.request.urlretrieve(f'https://huggingface.co/rhasspy/piper-voices/resolve/main/{VOIX}{ext}', base + ext)
+    return base + '.onnx'
+
+def lire(path):
+    sh('ffmpeg', '-v', 'error', '-y', '-i', path, '-ac', '1', '-ar', str(SR), '-f', 'f32le', path + '.raw')
+    x = np.fromfile(path + '.raw', dtype='<f4'); os.remove(path + '.raw'); return x
+
+def voix(texte, out, mdl):
+    raw = out + '.brut.wav'
+    subprocess.run([sys.executable, '-m', 'piper', '-m', mdl, '--length-scale', str(VITESSE), '--sentence-silence', '0.12', '-f', raw],
+                   input=texte.encode(), check=True, capture_output=True)
+    # traitement « studio » : coupe-bas, présence, compression douce, petite pièce
+    sh('ffmpeg', '-v', 'error', '-y', '-i', raw, '-af',
+       'highpass=f=85,lowpass=f=12000,equalizer=f=200:t=q:w=1:g=-2,equalizer=f=3200:t=q:w=1.2:g=3,'
+       'acompressor=threshold=-20dB:ratio=3:attack=8:release=120:makeup=4,aecho=0.8:0.5:28:0.12,'
+       'silenceremove=start_periods=1:start_threshold=-45dB,areverse,silenceremove=start_periods=1:start_threshold=-45dB,areverse',
+       '-ar', str(SR), out)
+    os.remove(raw); return lire(out)
+
+def fabriquer(v, jour, outdir, mdl, workers):
+    vid = v['id']; work = os.path.join(outdir, '_w_' + vid); os.makedirs(work, exist_ok=True)
+    t = 0.35; scenes = []; pistes = []
+    for k, sc in enumerate(v['scenes']):
+        x = voix(sc['voix'], os.path.join(work, f'v{k}.wav'), mdl)
+        d = len(x) / SR
+        v0 = t + (0.45 if k == 0 else 0.25); v1 = v0 + d
+        t1 = max(v1 + 0.4, t + (2.8 if k == 0 else 2.4))
+        s = dict(sc); s.update(t0=round(t, 3), t1=round(t1, 3), v0=round(v0, 3), v1=round(v1, 3)); scenes.append(s)
+        pistes.append((v0, x)); t = t1
+    cta = t; xc = voix(CTA_VOIX, os.path.join(work, 'cta.wav'), mdl); pistes.append((cta + 0.9, xc))
+    duree = round(cta + max(3.6, 0.9 + len(xc) / SR + 0.9), 2)
+    N = int(duree * SR); vt = np.zeros(N)
+    for at, x in pistes:
+        i = int(at * SR); vt[i:i + len(x)] += x[:max(0, N - i)]
+    # musique originale, accordée au thème
+    pulse = v.get('theme', 'papier') == 'encre' or v.get('style') == 'pulse'
+    progs = [[["A2", ["A3", "C4", "E4", "B4"]], ["F2", ["F3", "A3", "C4", "E4"]], ["C3", ["C4", "E4", "G4", "D5"]], ["G2", ["G3", "B3", "D4", "E4"]]],
+             [["D3", ["D4", "F#4", "A4", "E5"]], ["B2", ["B3", "D4", "F#4", "A4"]], ["G2", ["G3", "B3", "D4", "F#4"]], ["A2", ["A3", "D4", "E4", "A4"]]],
+             [["E2", ["E3", "G3", "B3", "F#4"]], ["C3", ["C4", "E4", "G4", "B4"]], ["G2", ["G3", "B3", "D4", "A4"]], ["D3", ["D4", "F#4", "A4", "E5"]]]]
+    h = sum(map(ord, vid + jour.get('date', ''))) % 3
+    cues = [{"type": "whoosh", "t": s['t0'], "dur": 0.7, "amp": 0.05} for s in scenes[1:]]
+    cues += [{"type": "whoosh", "t": cta, "dur": 1.0, "amp": 0.10}, {"type": "impact", "t": cta, "amp": 0.22},
+             {"type": "bell", "t": cta + 0.35, "note": "A5", "amp": 0.10}, {"type": "tick", "t": 0.5, "note": "E6", "amp": 0.04}]
+    cfg = {"dur": duree, "bpm": 100 if pulse else 84, "bars_per_chord": 1, "style": "pulse" if pulse else "piano",
+           "fade_in": 0.6, "fade_out": 1.6, "beat_in": scenes[0]['t1'] if pulse else 99, "beat_out": duree - 0.8,
+           "chords": progs[h], "cues": cues}
+    musique.rng = np.random.default_rng(h + 7)
+    mw = os.path.join(work, 'musique.wav'); musique.render(cfg, mw)
+    m = lire(mw); m = np.pad(m, (0, max(0, N - len(m))))[:N]
+    # ducking : la musique s'efface sous la voix
+    env = np.convolve(np.abs(vt), np.ones(int(.08 * SR)) / int(.08 * SR), 'same')
+    env = np.convolve((env > 0.01).astype(float), np.ones(int(.25 * SR)) / int(.25 * SR), 'same').clip(0, 1)
+    mix = vt * 1.0 + m * (0.30 - 0.19 * env)
+    mix = np.tanh(mix * 1.1) / 1.1
+    st = np.stack([mix, mix], 1)
+    aw = os.path.join(work, 'mix.wav')
+    with wave.open(aw, 'wb') as w:
+        w.setnchannels(2); w.setsampwidth(2); w.setframerate(SR); w.writeframes((st / max(1e-9, np.abs(st).max()) * 0.9 * 32767).astype('<i2').tobytes())
+    an = os.path.join(work, 'mix-norm.wav')
+    sh('ffmpeg', '-v', 'error', '-y', '-i', aw, '-af', 'loudnorm=I=-14:TP=-1.0:LRA=9', '-ar', str(SR), an)
+    spec = {"fps": 30, "duree": duree, "cta_t0": cta, "theme": v.get('theme', 'papier'), "serie": v['serie'],
+            "date_courte": jour.get('date_courte', ''), "source": v.get('source', ''), "scenes": scenes}
+    sp = os.path.join(work, 'spec.json'); json.dump(spec, open(sp, 'w'), ensure_ascii=False)
+    muet = os.path.join(work, 'muet.mp4')
+    sh('node', os.path.join(HERE, 'rendu.mjs'), sp, muet, str(workers))
+    final = os.path.join(outdir, f"{jour['date']}-{vid}.mp4")
+    sh('ffmpeg', '-v', 'error', '-y', '-i', muet, '-i', an, '-c:v', 'copy', '-c:a', 'aac', '-b:a', '192k', '-shortest', '-movflags', '+faststart', final)
+    cover = final[:-4] + '.jpg'
+    sh('ffmpeg', '-v', 'error', '-y', '-ss', str(max(0.5, scenes[0]['t1'] - 0.4)), '-i', muet, '-frames:v', '1', '-q:v', '3', cover)
+    leg = final[:-4] + '.txt'
+    open(leg, 'w').write(v.get('legende', '').strip() + ('\n\nSource : ' + v['source'] if v.get('source') else '') + '\n')
+    shutil.rmtree(work, ignore_errors=True)
+    return {"id": vid, "video": final, "cover": cover, "legende": leg, "duree": duree, "titre": v.get('titre', ''), "creneau": v.get('creneau', '')}
+
+if __name__ == '__main__':
+    ap = argparse.ArgumentParser(); ap.add_argument('jour'); ap.add_argument('--out', default='sorties')
+    ap.add_argument('--only'); ap.add_argument('--workers', type=int, default=3); a = ap.parse_args()
+    jour = json.load(open(a.jour)); os.makedirs(a.out, exist_ok=True); mdl = modele(); res = []
+    for v in jour['videos']:
+        if a.only and v['id'] != a.only: continue
+        try: r = fabriquer(v, jour, a.out, mdl, a.workers); res.append(r); print('OK', r['video'], r['duree'], 's', flush=True)
+        except Exception as e: print('ECHEC', v.get('id'), e, flush=True); res.append({"id": v.get('id'), "erreur": str(e)})
+    json.dump(res, open(os.path.join(a.out, f"{jour['date']}-manifeste.json"), 'w'), ensure_ascii=False, indent=1)
