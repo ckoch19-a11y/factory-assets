@@ -1,0 +1,48 @@
+{"date":"2026-10-01","date_courte":"01.10.26",
+"videos":[
+{"id":"o1-appel-chantier","serie":"L'agent du métier","creneau":"07:45","theme":"papier","fond":"halo","offre":"A","metier":"artisans du bâtiment","hook_type":"perte","reseaux":["linkedin","tiktok"],
+ "titre":"Il a appelé pendant votre chantier. Il est parti.",
+ "source":"KORVEX — cas d'usage type (illustratif)",
+ "scenes":[
+  {"type":"hook","label":"Artisans","objet":"telephone","titre":"Il a appelé.\n*Vous étiez\nsur le toit.*","taille":128,"voix":"Il vous a appelé pendant que vous étiez sur le toit. Vous n'avez pas décroché, alors il a appelé le suivant sur la liste."},
+  {"type":"objet","objet":"agent","autour":["calendrier","enveloppe","bulle","facture"],"label":"La parade","titre":"Un agent qui\n*décroche pour vous.*","voix":"Un agent IA sur mesure répond à sa place, note la demande, propose un créneau, et vous envoie le résumé."},
+  {"type":"texte","objet":"check","label":"Résultat","titre":"Le client est rappelé.\n*Vous restez au travail.*","taille":104,"voix":"Le client a sa réponse en deux minutes. Vous, vous restez sur votre chantier."}],
+ "legende":"Artisans : combien d'appels manqués pendant vos chantiers cette semaine ? Chacun peut être un devis perdu.\nUn agent IA sur mesure répond, note la demande et propose un rendez-vous à votre place.\nCommentez AGENT avec votre métier.",
+ "hashtags":{"linkedin":["#artisanbtp","#agentia","#dirigeantpme"],"tiktok":["#artisanbtp","#couvreur","#agentia","#entrepreneur"],"instagram":[],"facebook":[]}},
+{"id":"o2-13h-paperasse","serie":"Le chiffre","creneau":"10:30","theme":"encre","fond":"points","offre":"B","metier":"artisans du bâtiment","hook_type":"chiffre","reseaux":["tiktok"],
+ "titre":"13 heures de paperasse par semaine",
+ "source":"Qonto / OpinionWay, 300 dirigeants de TPE du BTP, 09/04/2026",
+ "scenes":[
+  {"type":"chiffre","objet":"horloge","label":"Administratif des artisans du BTP","valeur":"13 h","taille":330,"legende":"par semaine.\nPresque *2 jours de chantier.*","voix":"13 heures par semaine. C'est le temps que les artisans du bâtiment passent en administratif. Presque deux jours de chantier."},
+  {"type":"avantapres","label_avant":"Le soir, à la main","label_apres":"Avec un back-office","avant":["Devis recopiés","Factures relancées une à une","Agenda sur papier"],"apres":["Devis en 3 clics","Relances automatiques","Planning partagé"],"voix":"Devis, factures, relances, planning : un back-office bien pensé fait le gros du travail, et vous rend vos soirées."},
+  {"type":"objet","objet":"sablier","label":"La question","titre":"Que feriez-vous\n*de 13 heures ?*","voix":"Alors, que feriez-vous de ces 13 heures ?"}],
+ "legende":"13 heures d'administratif par semaine pour les artisans du BTP (Qonto/OpinionWay, 2026).\nUn back-office sur mesure : devis, factures, relances, planning au même endroit.\nCommentez 13H : on vous montre ce qu'on automatise en premier.",
+ "hashtags":{"tiktok":["#artisanbtp","#gestionentreprise","#tpe","#entrepreneur"],"instagram":[],"linkedin":[],"facebook":[]}},
+{"id":"o3-ia-recommande","serie":"Le test","creneau":"12:30","theme":"sable","fond":"grille","offre":"V","metier":"commerces de proximité","hook_type":"question","reseaux":["instagram","facebook","tiktok"],
+ "titre":"Qui l'IA recommande-t-elle dans votre ville ?",
+ "source":"Démonstration illustrative ; OpinionWay pour SEO.fr (05/05/2026) pour le chiffre",
+ "scenes":[
+  {"type":"hook","label":"Commerçants","objet":"loupe","titre":"Qui l'IA\nrecommande\n*dans votre ville ?*","taille":128,"voix":"Quand un client demande à l'IA une bonne adresse dans votre ville, qui est recommandé ? Vous, ou le voisin ?"},
+  {"type":"recherche","label":"Assistant IA","question":"Un fleuriste ouvert dimanche à Dijon, avec livraison ?","reponse":"Je vous conseille **un fleuriste du centre-ville** : ouvert le dimanche matin, livraison le jour même, avis récents.","cite":"Source : son site","voix":"L'IA cite les commerces dont le site dit clairement les horaires, les services et la zone de livraison."},
+  {"type":"kpis","objet":"globe","label":"Les Français et l'IA · 2026","kpis":[{"valeur":"54 %","label":"utilisent ChatGPT"},{"valeur":"40 %","label":"cherchent déjà sur internet avec une IA"}],"voix":"54 % des Français utilisent déjà ChatGPT, et 40 % s'en servent pour chercher sur internet."}],
+ "legende":"Commerçants : quand un client demande à l'IA une adresse dans votre ville, êtes-vous cité ?\nUn site nouvelle génération que Google classe ET que l'IA comprend.\nCommentez SITE : on teste le vôtre.",
+ "hashtags":{"instagram":["#commercant","#siteweb","#referencement","#dijon","#tpe"],"tiktok":["#commercant","#siteweb","#dijon"],"facebook":["#commercant","#dijon"],"linkedin":[]}},
+{"id":"o4-facture-illegale","serie":"Avant / après","creneau":"17:30","theme":"ardoise","fond":"lignes","offre":"B","metier":"TPE et PME","hook_type":"contre-intuitif","reseaux":["tiktok","facebook"],
+ "titre":"Votre facture PDF va devenir hors la loi",
+ "source":"L-Expert-Comptable, calendrier de la facturation électronique",
+ "scenes":[
+  {"type":"hook","label":"Septembre 2027","objet":"pdf","titre":"Cette facture\n*sera bientôt\nhors la loi.*","taille":124,"voix":"Cette facture en PDF, envoyée par mail ? À partir de septembre 2027, elle ne sera plus valable pour une petite entreprise."},
+  {"type":"objet","objet":"bouclier","autour":["facture","check","cadenas"],"label":"Ce qu'il faut","titre":"Une facture électronique\n*conforme, sans effort.*","taille":96,"voix":"Il faudra émettre des factures électroniques, sous peine de 50 euros d'amende par facture. Un back-office prêt pour 2027 le fait pour vous."},
+  {"type":"texte","objet":"calendrier","label":"Le bon moment","titre":"S'y mettre\n*avant la cohue.*","voix":"Le bon moment pour s'organiser, c'est maintenant, pas la veille de l'échéance."}],
+ "legende":"Septembre 2027 : la facture PDF par mail ne suffira plus pour les TPE et PME. Jusqu'à 50 € d'amende par facture.\nUn back-office qui émet des factures électroniques conformes, sans effort.\nCommentez 2027 : on vous dit où vous en êtes.",
+ "hashtags":{"tiktok":["#factureelectronique","#tpe","#entrepreneur","#gestionentreprise"],"facebook":["#factureelectronique","#tpe"],"instagram":[],"linkedin":[]}},
+{"id":"o5-avis-google","serie":"Le conseil KORVEX","creneau":"19:30","theme":"papier","fond":"bandes","offre":"L","metier":"garagistes","hook_type":"metier","reseaux":["instagram","facebook","tiktok"],
+ "titre":"Garagistes : vos avis Google valent plus qu'une pub",
+ "source":"Conseil KORVEX",
+ "scenes":[
+  {"type":"hook","label":"Garagistes","objet":"etoile","titre":"Garagistes :\nvos avis\n*valent une pub.*","taille":134,"voix":"Garagistes, vos avis Google font plus pour vous que n'importe quelle publicité. À condition de les demander."},
+  {"type":"points","titre":"La méthode simple","points":["Un SMS après chaque réparation","Le lien direct vers votre fiche","Une réponse à chaque avis"],"voix":"Un message après chaque réparation, avec le lien direct vers votre fiche. Et une réponse à chaque avis, même aux mauvais."},
+  {"type":"objet","objet":"epingle","autour":["etoile","voiture","telephone"],"label":"Résultat","titre":"Le premier garage\n*qu'on appelle.*","voix":"C'est comme ça qu'on devient le premier garage qu'on appelle dans sa ville."}],
+ "legende":"Garagistes : vos avis Google valent plus qu'une pub, à condition de les demander.\nUn message après chaque réparation, le lien direct, une réponse à chaque avis : on peut l'automatiser.\nCommentez VILLE : on regarde votre fiche.",
+ "hashtags":{"instagram":["#garagiste","#garageauto","#avisgoogle","#referencementlocal","#dijon"],"tiktok":["#garagiste","#avisgoogle","#garageauto"],"facebook":["#garagiste","#dijon"],"linkedin":[]}}
+]}

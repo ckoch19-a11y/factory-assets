@@ -16,7 +16,7 @@ await Promise.all([...Array(W).keys()].map(async w=>{
   const p=await br.newPage({viewport:{width:1080,height:1920}});const cdp=await p.context().newCDPSession(p);
   p.on('pageerror',e=>console.error('ERR',e.message));
   await p.goto('file://'+page); await p.evaluate(()=>document.fonts.ready);
-  const ff=spawn('ffmpeg',['-v','error','-y','-f','image2pipe','-framerate',String(FPS),'-c:v','mjpeg','-i','-','-vf','noise=alls=3:allf=t','-c:v','libx264','-preset','faster','-crf','17','-pix_fmt','yuv420p','-r',String(FPS),seg],{stdio:['pipe','inherit','inherit']});
+  const ff=spawn('ffmpeg',['-v','error','-y','-f','image2pipe','-framerate',String(FPS),'-c:v','mjpeg','-i','-','-vf','noise=alls=3:allf=t','-c:v','libx264','-preset','faster','-crf','18','-maxrate','7M','-bufsize','14M','-pix_fmt','yuv420p','-r',String(FPS),seg],{stdio:['pipe','inherit','inherit']});
   for(let f=a;f<b;f++){await p.evaluate(f=>window.seek(f),f);const buf=Buffer.from((await cdp.send('Page.captureScreenshot',{format:'jpeg',quality:92,optimizeForSpeed:true})).data,'base64');if(!ff.stdin.write(buf))await new Promise(r=>ff.stdin.once('drain',r));}
   ff.stdin.end(); await new Promise(r=>ff.on('close',r)); await br.close();
 }));

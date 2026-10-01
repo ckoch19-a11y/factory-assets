@@ -2,3 +2,4 @@ sorties/
 node_modules/
 __pycache__/
 _page_*
+stats/export/

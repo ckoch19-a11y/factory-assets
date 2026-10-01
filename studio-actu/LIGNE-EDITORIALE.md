@@ -43,11 +43,12 @@ Varier les hook_types sur la journée (5 vidéos = au moins 4 hook_types différ
 - Champ JSON `hashtags` = {instagram:[…], tiktok:[…], linkedin:[…], facebook:[…]}.
 
 ## 5 bis. Formats visuels — chaque vidéo doit avoir un visuel fort et différent
-Types de scènes : `hook`, `chiffre`, `points`, `texte`, et les formats « démo » :
+Types de scènes : `hook`, `chiffre`, `points`, `texte`, `objet`, et les formats « démo » :
 - `recherche` : conversation avec un assistant IA {label, question, reponse (**gras** = ce qui est cité), cite} — idéal pour l'offre V (« j'ai demandé à l'IA… »). Réponse illustrative et générique : jamais un vrai nom d'entreprise.
 - `notifs` : téléphone qui reçoit des notifications {heure, label, notifs:[{app, heure, titre, texte}] ≤ 4} — idéal pour A (l'agent travaille pendant la nuit).
 - `avantapres` : {label_avant, label_apres, avant[≤3], apres[≤3]} — idéal pour B.
 - `kpis` : 2 à 4 tuiles chiffrées qui comptent {label, kpis:[{valeur, label}]} — chiffres sourcés uniquement.
+Objets illustrés : champ `objet` sur une scène `hook`, `texte` ou `chiffre` (dessiné à l'écran), et scène `objet` {objet, autour[≤4], label, titre} = grand objet central avec objets en orbite. Noms : telephone, facture, pdf, enveloppe, calendrier, loupe, globe, horloge, euro, agent, bulle, graphique, bouclier, cadenas, etoile, epingle, maison, voiture, cle, casque, cloche, check, cible, aimant, eclair, ecran, sablier. Chaque vidéo montre au moins 2 objets en lien direct avec ce qui est dit.
 Règles : chaque vidéo contient au moins 1 format démo OU un `chiffre` fort ; jamais 2 vidéos du jour avec la même suite de types de scènes.
 Habillage : `theme` ∈ papier | encre | sable | ardoise et `fond` ∈ bandes | grille | halo | lignes | points — 5 combinaisons différentes chaque jour (si `fond` absent, le moteur en tire un).
 La fin s'adapte à l'offre (A/V/B/L) : texte et voix de conclusion différents.

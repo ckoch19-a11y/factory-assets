@@ -1,1 +1,1 @@
-date,video_id,creneau,serie,metier,hook_type,reseau,post_id,vues,likes,commentaires,partages,enregistrements,score
+date,id,heure,reseau,offre,format,hook_type,metier,vues,score
