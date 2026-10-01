@@ -70,11 +70,62 @@ def lire(path):
     sh('ffmpeg', '-v', 'error', '-y', '-i', path, '-ac', '1', '-ar', str(SR), '-f', 'f32le', path + '.raw')
     x = np.fromfile(path + '.raw', dtype='<f4'); os.remove(path + '.raw'); return x
 
+MOTEUR = os.environ.get('KX_MOTEUR', 'edge')          # edge (défaut) | cb | piper
+VOIX_EDGE = os.environ.get('KX_VOIX_EDGE', 'fr-FR-VivienneMultilingualNeural')
+EDGE_RATE, EDGE_PITCH = os.environ.get('KX_RATE', '+4%'), os.environ.get('KX_PITCH', '-2Hz')
+
+def _edge_ssl():
+    import ssl, edge_tts.communicate as c
+    ca = '/root/.ccr/ca-bundle.crt'
+    if os.path.exists(ca): c._SSL_CTX = ssl.create_default_context(cafile=ca)
+
+def voix_edge(texte, out):
+    """Voix neuronale lue d'un seul trait + horodatage exact de chaque mot (sous-titres karaoké au mot près)."""
+    import asyncio, edge_tts
+    _edge_ssl()
+    mp3 = out + '.mp3'; mots = []
+    async def go():
+        cm = edge_tts.Communicate(texte, VOIX_EDGE, rate=EDGE_RATE, pitch=EDGE_PITCH, boundary='WordBoundary',
+                                  proxy=os.environ.get('HTTPS_PROXY') or os.environ.get('https_proxy'))
+        with open(mp3, 'wb') as f:
+            async for ch in cm.stream():
+                if ch['type'] == 'audio': f.write(ch['data'])
+                elif ch['type'] == 'WordBoundary': mots.append([ch['text'], ch['offset'] / 1e7, (ch['offset'] + ch['duration']) / 1e7])
+    for essai in range(3):
+        try: mots.clear(); asyncio.run(go()); break
+        except Exception as e:
+            if essai == 2: raise
+            __import__('time').sleep(3)
+    a0 = max(0.0, (mots[0][1] if mots else 0) - 0.04); a1 = (mots[-1][2] + 0.14) if mots else None
+    sh('ffmpeg', '-v', 'error', '-y', '-i', mp3, '-ss', f'{a0:.3f}', *(['-to', f'{a1:.3f}'] if a1 else []), '-af',
+       'highpass=f=70,equalizer=f=3500:t=q:w=1.4:g=1.5,acompressor=threshold=-22dB:ratio=2:attack=10:release=150:makeup=2', '-ar', str(SR), out)
+    os.remove(mp3)
+    json.dump([[w, round(a - a0, 3), round(b - a0, 3)] for w, a, b in mots], open(out + '.mots.json', 'w'), ensure_ascii=False)
+    open(out + '.txt', 'w').write(texte); return lire(out)
+
+def aligne(texte, mots):
+    """Rattache les mots horodatés du moteur aux mots du texte (ponctuation conservée pour les sous-titres)."""
+    nz = lambda w: re.sub(r'[^0-9a-zàâçéèêëîïôûùüÿœæ]', '', w.lower())
+    toks = texte.split(); res = []; j = 0
+    for tk in toks:
+        cible = nz(tk)
+        if not cible:
+            if res: res[-1]['w'] += ' ' + tk
+            continue
+        if j >= len(mots): return None
+        a = mots[j][1]; acc = ''; b = mots[j][2]
+        while j < len(mots) and len(acc) < len(cible):
+            acc += nz(mots[j][0]); b = mots[j][2]; j += 1
+        res.append({'w': tk, 'a': a, 'b': b})
+    return res
+
 def voix(texte, out, mdl):
     if os.path.exists(out) and os.path.exists(out + '.txt') and open(out + '.txt').read() == texte:
         return lire(out)   # cache : même texte déjà généré
     raw = out + '.brut.wav'
-    if os.path.exists(CB_PY) and os.environ.get('KX_MOTEUR', 'cb') == 'cb':
+    if MOTEUR == 'edge':
+        return voix_edge(texte, out)
+    if os.path.exists(CB_PY) and MOTEUR == 'cb':
         # Chatterbox + contrôle Whisper : on garde la prise la plus fidèle au texte (3 essais max)
         best = None
         for seed in (7, 11, 23):
@@ -111,14 +162,19 @@ def fabriquer(v, jour, outdir, mdl, workers):
     vid = v['id']; work = os.path.join(outdir, '_w_' + vid); os.makedirs(work, exist_ok=True)
     t = 0.35; scenes = []; pistes = []
     for k, sc in enumerate(v['scenes']):
-        x = voix(sc['voix'], os.path.join(work, f'v{k}.wav'), mdl)
+        wf = os.path.join(work, f'v{k}.wav'); x = voix(sc['voix'], wf, mdl)
         d = len(x) / SR
-        v0 = t + (0.45 if k == 0 else 0.25); v1 = v0 + d
-        t1 = max(v1 + 0.4, t + (2.8 if k == 0 else 2.4))
-        s = dict(sc); s.update(t0=round(t, 3), t1=round(t1, 3), v0=round(v0, 3), v1=round(v1, 3)); scenes.append(s)
+        serre = MOTEUR == 'edge'
+        v0 = t + ((0.35 if serre else 0.45) if k == 0 else (0.12 if serre else 0.25)); v1 = v0 + d
+        t1 = max(v1 + (0.28 if serre else 0.4), t + (2.4 if k == 0 else 2.0))
+        s = dict(sc); s.update(t0=round(t, 3), t1=round(t1, 3), v0=round(v0, 3), v1=round(v1, 3))
+        if os.path.exists(wf + '.mots.json'):
+            al = aligne(sc['voix'], json.load(open(wf + '.mots.json')))
+            if al: s['mots'] = [{'w': m['w'], 'a': round(v0 + m['a'], 3), 'b': round(v0 + m['b'], 3)} for m in al]
+        scenes.append(s)
         pistes.append((v0, x)); t = t1
     cta = t; xc = voix(CTA_VOIX, os.path.join(work, 'cta.wav'), mdl); pistes.append((cta + 0.9, xc))
-    duree = round(cta + max(3.6, 0.9 + len(xc) / SR + 0.9), 2)
+    duree = round(cta + max(3.4, 0.9 + len(xc) / SR + 0.7), 2)
     N = int(duree * SR); vt = np.zeros(N)
     for at, x in pistes:
         i = int(at * SR); vt[i:i + len(x)] += x[:max(0, N - i)]
@@ -164,13 +220,13 @@ def fabriquer(v, jour, outdir, mdl, workers):
     open(leg, 'w').write(v.get('legende', '').strip() + src + '\n')
     for res, tags in (v.get('hashtags') or {}).items():
         if tags: open(final[:-4] + f'.{res}.txt', 'w').write(v.get('legende', '').strip() + src + '\n\n' + ' '.join(tags) + '\n')
-    shutil.rmtree(work, ignore_errors=True)
+    if not os.environ.get('KX_GARDER'): shutil.rmtree(work, ignore_errors=True)
     return {"id": vid, "reseaux": v.get('reseaux', []), "metier": v.get('metier', ''), "hook_type": v.get('hook_type', ''), "serie": v.get('serie', ''), "video": final, "cover": cover, "legende": leg, "duree": duree, "titre": v.get('titre', ''), "creneau": v.get('creneau', '')}
 
 if __name__ == '__main__':
     ap = argparse.ArgumentParser(); ap.add_argument('jour'); ap.add_argument('--out', default='sorties')
-    ap.add_argument('--only'); ap.add_argument('--workers', type=int, default=3); a = ap.parse_args()
-    jour = json.load(open(a.jour)); os.makedirs(a.out, exist_ok=True); mdl = modele(); res = []
+    ap.add_argument('--only'); ap.add_argument('--workers', type=int, default=max(2, os.cpu_count() or 2)); a = ap.parse_args()
+    jour = json.load(open(a.jour)); os.makedirs(a.out, exist_ok=True); mdl = modele() if MOTEUR == 'piper' else None; res = []
     # phase 1 : toutes les voix (le modèle voix occupe ~4 Go : on le libère avant le rendu navigateur)
     for v in jour['videos']:
         if a.only and v['id'] != a.only: continue

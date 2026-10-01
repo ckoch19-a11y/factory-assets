@@ -1,47 +1,271 @@
-{"date":"2026-10-01","date_courte":"01.10.26",
-"videos":[
-{"id":"01-ia-40-pourcent","serie":"L'actu IA","creneau":"07:45","theme":"papier","metier":"dirigeants","hook_type":"chiffre","reseaux":["linkedin","tiktok"],
- "titre":"40 % des TPE-PME utilisent déjà l'IA",
- "source":"Baromètre France Num 2026 (DGE), 9 000 entreprises, 28/09/2026",
- "scenes":[
-  {"type":"chiffre","label":"TPE-PME qui utilisent l'IA","valeur":"40 %","legende":"*+14 points* en un an.\nVos concurrents s'y sont mis.","voix":"Quarante pour cent des petites entreprises françaises utilisent déjà l'IA. C'est quatorze points de plus qu'il y a un an."},
-  {"type":"chiffre","label":"Celles qui paient une solution","valeur":"85 %","legende":"en voient un *impact positif.*","voix":"Et parmi celles qui ont investi dans une vraie solution, quatre-vingt-cinq pour cent en voient déjà un impact positif sur leur activité."},
-  {"type":"texte","label":"La question","titre":"Votre concurrent\nest dans les 40 %.\n*Et vous ?*","voix":"La vraie question n'est plus de savoir si vous allez vous y mettre, mais quand vous allez le faire."}],
- "legende":"40 % des TPE-PME utilisent déjà l'IA (+14 points en un an). 85 % de celles qui investissent en voient l'impact.\nVotre concurrent est dans les 40 %. Et vous ?\nCommentez AGENT avec votre métier : on vous montre ce qu'un agent IA ferait chez vous.",
- "hashtags":{"linkedin":["#dirigeantpme","#agentia","#FranceNum"],"tiktok":["#dirigeantpme","#agentia","#tpe","#entrepreneur"],"instagram":[],"facebook":[]}},
-{"id":"02-agents-x3","serie":"Le chiffre","creneau":"10:30","theme":"encre","metier":"fonctions support","hook_type":"contre-intuitif","reseaux":["tiktok"],
- "titre":"Les petites boîtes vont 3 fois plus vite que les grands groupes",
- "source":"Rapport OpenAI « Small Businesses, Bigger Capabilities », 30/09/2026, via LeBigData",
- "scenes":[
-  {"type":"chiffre","label":"Usage des agents IA, fonctions support","valeur":"×3","legende":"plus fréquent dans les petites structures\nque dans les *grands groupes.*","voix":"Surprise : sur la compta, le juridique et le marketing, les petites entreprises utilisent les agents IA trois fois plus que les grands groupes."},
-  {"type":"chiffre","label":"Part des tâches confiées à des agents","valeur":"66 %","legende":"contre *33 %* en avril.\nEn quatre mois.","voix":"Et la part du travail confiée à des agents autonomes est passée de trente-trois à soixante-six pour cent en seulement quatre mois."},
-  {"type":"texte","label":"Ce que ça veut dire","titre":"On ne discute plus\navec l'IA.\n*On lui délègue.*","voix":"Le message est clair pour les dirigeants : on ne discute plus avec l'IA, on lui délègue du vrai travail."}],
- "legende":"Les petites entreprises utilisent les agents IA 3 fois plus que les grands groupes sur la compta, le juridique et le marketing.\nOn ne discute plus avec l'IA : on lui délègue.\nCommentez AGENT avec votre métier.",
- "hashtags":{"tiktok":["#agentia","#automatisation","#dirigeantpme","#tpe"],"instagram":[],"linkedin":[],"facebook":[]}},
-{"id":"03-agent-garagiste","serie":"L'agent du métier","creneau":"12:30","theme":"papier","metier":"garagiste","hook_type":"metier","reseaux":["instagram","facebook","tiktok"],
- "titre":"Garagistes : l'agent IA qui gère vos rendez-vous et vos devis",
- "source":"KORVEX — cas d'usage type (illustratif)",
- "scenes":[
-  {"type":"hook","label":"Garagistes","titre":"Garagistes :\nqui décroche quand\n*vous êtes sous le pont ?*","voix":"Garagistes, qui répond au téléphone quand vous avez les mains dans un moteur et que trois clients attendent ?"},
-  {"type":"points","titre":"Ce que fait l'agent","points":["Prend les rendez-vous 24 h/24","Envoie le devis après diagnostic","Prévient quand la voiture est prête"],"voix":"Un agent IA sur mesure prend les rendez-vous jour et nuit, envoie le devis après le diagnostic, et prévient le client dès que sa voiture est prête."},
-  {"type":"texte","label":"La différence","titre":"Branché sur *votre* agenda,\nréglé sur *vos* tarifs.","voix":"Il est branché sur votre agenda et vos tarifs. Vous gardez la main, il fait le reste."}],
- "legende":"Garagistes : qui répond à vos clients quand vous êtes sous le pont ?\nUn agent IA sur mesure prend les rendez-vous 24 h/24, envoie les devis et prévient quand la voiture est prête.\nCommentez AGENT : on vous montre ce qu'il ferait dans votre garage.",
- "hashtags":{"instagram":["#garagiste","#garageauto","#agentia","#dirigeantpme","#automatisation"],"tiktok":["#garagiste","#garageauto","#agentia","#entrepreneur"],"facebook":["#garagiste","#agentia"],"linkedin":[]}},
-{"id":"04-avant-apres-relances","serie":"Avant / après","creneau":"17:30","theme":"encre","metier":"artisans du bâtiment","hook_type":"perte","reseaux":["tiktok","facebook"],
- "titre":"Avant / après : les devis non relancés",
- "source":"KORVEX — cas d'usage type (illustratif)",
- "scenes":[
-  {"type":"hook","label":"Avant","titre":"Un devis\nnon relancé,\n*c'est un client perdu.*","voix":"Chaque devis que vous n'avez pas le temps de relancer, c'est un client qui signe chez votre concurrent."},
-  {"type":"points","titre":"Avec un agent IA","points":["Relance à J+3, J+7, J+15","Répond aux questions du client","Vous alerte quand c'est chaud"],"voix":"Avec un agent IA, chaque devis est relancé automatiquement, les questions du client ont une réponse, et vous êtes prévenu dès qu'il est prêt à signer."},
-  {"type":"texte","label":"Après","titre":"Vous, vous restez\n*sur le chantier.*","voix":"Pendant ce temps-là, vous, vous restez sur le chantier, là où vous gagnez de l'argent."}],
- "legende":"Artisans : combien de devis non relancés ce mois-ci ?\nUn agent IA relance à J+3, J+7, J+15, répond aux questions et vous alerte quand le client est prêt.\nCommentez AGENT avec votre métier.",
- "hashtags":{"tiktok":["#artisanbtp","#devisartisan","#agentia","#entrepreneur"],"facebook":["#artisan","#agentia"],"instagram":[],"linkedin":[]}},
-{"id":"05-conseil-premier-agent","serie":"Le conseil KORVEX","creneau":"19:30","theme":"papier","metier":"dirigeants","hook_type":"question","reseaux":["instagram","facebook","tiktok"],
- "titre":"Votre premier agent IA : par où commencer",
- "source":"Contexte : baromètre France Num 2026 (DGE) — conseil KORVEX",
- "scenes":[
-  {"type":"hook","label":"Premier agent IA","titre":"Votre premier\nagent IA ?\n*Commencez petit.*","voix":"Vous voulez votre premier agent IA mais vous ne savez pas par où commencer ? Commencez petit."},
-  {"type":"points","titre":"3 étapes","points":["Une tâche répétitive et chronophage","Branchée sur vos mails et votre agenda","Validation humaine au départ"],"voix":"Un, choisissez une seule tâche répétitive. Deux, branchez l'agent sur vos mails et votre agenda. Trois, gardez une validation humaine au début."}],
- "legende":"Premier agent IA : par où commencer ?\nUne tâche répétitive, branchée sur vos outils, avec une validation humaine au départ. Simple, mesurable, rentable.\nCommentez AGENT avec votre métier.",
- "hashtags":{"instagram":["#agentia","#dirigeantpme","#tpe","#automatisation","#entrepreneur"],"tiktok":["#agentia","#dirigeantpme","#tpe"],"facebook":["#agentia","#tpe"],"linkedin":[]}}
-]}
+{
+"date": "2026-10-01",
+"date_courte": "01.10.26",
+"videos": [
+{
+"id": "01-ia-40-pourcent",
+"serie": "L'actu IA",
+"creneau": "07:45",
+"theme": "papier",
+"metier": "dirigeants",
+"hook_type": "chiffre",
+"reseaux": [
+"linkedin",
+"tiktok"
+],
+"titre": "40 % des TPE-PME utilisent déjà l'IA",
+"source": "Baromètre France Num 2026 (DGE), 9 000 entreprises, 28/09/2026",
+"scenes": [
+{
+"type": "chiffre",
+"label": "TPE-PME qui utilisent l'IA",
+"valeur": "40 %",
+"legende": "*+14 points* en un an.\nVos concurrents s'y sont mis.",
+"voix": "40 % des petites entreprises françaises utilisent déjà l'IA. C'est 14 points de plus qu'il y a un an."
+},
+{
+"type": "chiffre",
+"label": "Celles qui paient une solution",
+"valeur": "85 %",
+"legende": "en voient un *impact positif.*",
+"voix": "Et parmi celles qui ont investi dans une vraie solution, 85 % en voient déjà un impact positif sur leur activité."
+},
+{
+"type": "texte",
+"label": "La question",
+"titre": "Votre concurrent\nest dans les 40 %.\n*Et vous ?*",
+"voix": "La vraie question n'est plus de savoir si vous allez vous y mettre, mais quand vous allez le faire."
+}
+],
+"legende": "40 % des TPE-PME utilisent déjà l'IA (+14 points en un an). 85 % de celles qui investissent en voient l'impact.\nVotre concurrent est dans les 40 %. Et vous ?\nCommentez AGENT avec votre métier : on vous montre ce qu'un agent IA ferait chez vous.",
+"hashtags": {
+"linkedin": [
+"#dirigeantpme",
+"#agentia",
+"#FranceNum"
+],
+"tiktok": [
+"#dirigeantpme",
+"#agentia",
+"#tpe",
+"#entrepreneur"
+],
+"instagram": [],
+"facebook": []
+}
+},
+{
+"id": "02-agents-x3",
+"serie": "Le chiffre",
+"creneau": "10:30",
+"theme": "encre",
+"metier": "fonctions support",
+"hook_type": "contre-intuitif",
+"reseaux": [
+"tiktok"
+],
+"titre": "Les petites boîtes vont 3 fois plus vite que les grands groupes",
+"source": "Rapport OpenAI « Small Businesses, Bigger Capabilities », 30/09/2026, via LeBigData",
+"scenes": [
+{
+"type": "chiffre",
+"label": "Usage des agents IA, fonctions support",
+"valeur": "×3",
+"legende": "plus fréquent dans les petites structures\nque dans les *grands groupes.*",
+"voix": "Surprise : sur la compta, le juridique et le marketing, les petites entreprises utilisent les agents IA 3 fois plus que les grands groupes."
+},
+{
+"type": "chiffre",
+"label": "Part des tâches confiées à des agents",
+"valeur": "66 %",
+"legende": "contre *33 %* en avril.\nEn quatre mois.",
+"voix": "Et la part du travail confiée à des agents autonomes est passée de 33 à 66 % en seulement quatre mois."
+},
+{
+"type": "texte",
+"label": "Ce que ça veut dire",
+"titre": "On ne discute plus\navec l'IA.\n*On lui délègue.*",
+"voix": "Le message est clair pour les dirigeants : on ne discute plus avec l'IA, on lui délègue du vrai travail."
+}
+],
+"legende": "Les petites entreprises utilisent les agents IA 3 fois plus que les grands groupes sur la compta, le juridique et le marketing.\nOn ne discute plus avec l'IA : on lui délègue.\nCommentez AGENT avec votre métier.",
+"hashtags": {
+"tiktok": [
+"#agentia",
+"#automatisation",
+"#dirigeantpme",
+"#tpe"
+],
+"instagram": [],
+"linkedin": [],
+"facebook": []
+}
+},
+{
+"id": "03-agent-garagiste",
+"serie": "L'agent du métier",
+"creneau": "12:30",
+"theme": "papier",
+"metier": "garagiste",
+"hook_type": "metier",
+"reseaux": [
+"instagram",
+"facebook",
+"tiktok"
+],
+"titre": "Garagistes : l'agent IA qui gère vos rendez-vous et vos devis",
+"source": "KORVEX — cas d'usage type (illustratif)",
+"scenes": [
+{
+"type": "hook",
+"label": "Garagistes",
+"titre": "Garagistes :\nqui décroche quand\n*vous êtes sous le pont ?*",
+"voix": "Garagistes, qui répond au téléphone quand vous avez les mains dans un moteur et que trois clients attendent ?"
+},
+{
+"type": "points",
+"titre": "Ce que fait l'agent",
+"points": [
+"Prend les rendez-vous 24 h/24",
+"Envoie le devis après diagnostic",
+"Prévient quand la voiture est prête"
+],
+"voix": "Un agent IA sur mesure prend les rendez-vous jour et nuit, envoie le devis après le diagnostic, et prévient le client dès que sa voiture est prête."
+},
+{
+"type": "texte",
+"label": "La différence",
+"titre": "Branché sur *votre* agenda,\nréglé sur *vos* tarifs.",
+"voix": "Il est branché sur votre agenda et vos tarifs. Vous gardez la main, il fait le reste."
+}
+],
+"legende": "Garagistes : qui répond à vos clients quand vous êtes sous le pont ?\nUn agent IA sur mesure prend les rendez-vous 24 h/24, envoie les devis et prévient quand la voiture est prête.\nCommentez AGENT : on vous montre ce qu'il ferait dans votre garage.",
+"hashtags": {
+"instagram": [
+"#garagiste",
+"#garageauto",
+"#agentia",
+"#dirigeantpme",
+"#automatisation"
+],
+"tiktok": [
+"#garagiste",
+"#garageauto",
+"#agentia",
+"#entrepreneur"
+],
+"facebook": [
+"#garagiste",
+"#agentia"
+],
+"linkedin": []
+}
+},
+{
+"id": "04-avant-apres-relances",
+"serie": "Avant / après",
+"creneau": "17:30",
+"theme": "encre",
+"metier": "artisans du bâtiment",
+"hook_type": "perte",
+"reseaux": [
+"tiktok",
+"facebook"
+],
+"titre": "Avant / après : les devis non relancés",
+"source": "KORVEX — cas d'usage type (illustratif)",
+"scenes": [
+{
+"type": "hook",
+"label": "Avant",
+"titre": "Un devis\nnon relancé,\n*c'est un client perdu.*",
+"voix": "Chaque devis que vous n'avez pas le temps de relancer, c'est un client qui signe chez votre concurrent."
+},
+{
+"type": "points",
+"titre": "Avec un agent IA",
+"points": [
+"Relance à J+3, J+7, J+15",
+"Répond aux questions du client",
+"Vous alerte quand c'est chaud"
+],
+"voix": "Avec un agent IA, chaque devis est relancé automatiquement, les questions du client ont une réponse, et vous êtes prévenu dès qu'il est prêt à signer."
+},
+{
+"type": "texte",
+"label": "Après",
+"titre": "Vous, vous restez\n*sur le chantier.*",
+"voix": "Pendant ce temps-là, vous, vous restez sur le chantier, là où vous gagnez de l'argent."
+}
+],
+"legende": "Artisans : combien de devis non relancés ce mois-ci ?\nUn agent IA relance à J+3, J+7, J+15, répond aux questions et vous alerte quand le client est prêt.\nCommentez AGENT avec votre métier.",
+"hashtags": {
+"tiktok": [
+"#artisanbtp",
+"#devisartisan",
+"#agentia",
+"#entrepreneur"
+],
+"facebook": [
+"#artisan",
+"#agentia"
+],
+"instagram": [],
+"linkedin": []
+}
+},
+{
+"id": "05-conseil-premier-agent",
+"serie": "Le conseil KORVEX",
+"creneau": "19:30",
+"theme": "papier",
+"metier": "dirigeants",
+"hook_type": "question",
+"reseaux": [
+"instagram",
+"facebook",
+"tiktok"
+],
+"titre": "Votre premier agent IA : par où commencer",
+"source": "Contexte : baromètre France Num 2026 (DGE) — conseil KORVEX",
+"scenes": [
+{
+"type": "hook",
+"label": "Premier agent IA",
+"titre": "Votre premier\nagent IA ?\n*Commencez petit.*",
+"voix": "Vous voulez votre premier agent IA mais vous ne savez pas par où commencer ? Commencez petit."
+},
+{
+"type": "points",
+"titre": "3 étapes",
+"points": [
+"Une tâche répétitive et chronophage",
+"Branchée sur vos mails et votre agenda",
+"Validation humaine au départ"
+],
+"voix": "Un, choisissez une seule tâche répétitive. Deux, branchez l'agent sur vos mails et votre agenda. Trois, gardez une validation humaine au début."
+}
+],
+"legende": "Premier agent IA : par où commencer ?\nUne tâche répétitive, branchée sur vos outils, avec une validation humaine au départ. Simple, mesurable, rentable.\nCommentez AGENT avec votre métier.",
+"hashtags": {
+"instagram": [
+"#agentia",
+"#dirigeantpme",
+"#tpe",
+"#automatisation",
+"#entrepreneur"
+],
+"tiktok": [
+"#agentia",
+"#dirigeantpme",
+"#tpe"
+],
+"facebook": [
+"#agentia",
+"#tpe"
+],
+"linkedin": []
+}
+}
+]
+}
