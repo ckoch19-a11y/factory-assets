@@ -1,0 +1,48 @@
+{"date":"2026-10-01","date_courte":"01.10.26",
+"videos":[
+{"id":"d1-chatgpt-plombier","serie":"Le test","creneau":"07:45","theme":"sable","fond":"grille","offre":"V","metier":"plombiers","hook_type":"contre-intuitif","reseaux":["linkedin","tiktok"],
+ "titre":"J'ai demandé à l'IA un plombier à Dijon",
+ "source":"Démonstration illustrative — réponse type d'un assistant IA",
+ "scenes":[
+  {"type":"hook","label":"Le test","titre":"J'ai demandé\nà l'IA un plombier\n*à Dijon.*","taille":128,"voix":"J'ai demandé à ChatGPT de me trouver un plombier à Dijon. Regardez sa réponse."},
+  {"type":"recherche","label":"Assistant IA","question":"Un plombier fiable à Dijon pour une fuite, ce soir ?","reponse":"Je vous recommande **un plombier du quartier Montchapet** : avis récents, tarifs affichés, intervention le soir.","cite":"Source : son site","voix":"Il cite un seul artisan. Celui dont le site explique clairement ses tarifs, ses délais et ses avis. Pas forcément le meilleur."},
+  {"type":"texte","label":"La question","titre":"Votre site est beau.\nMais l'IA,\n*le lit-elle ?*","voix":"Votre site est peut-être beau. Mais s'il n'est pas lisible par l'IA, c'est votre concurrent qu'elle recommande."}],
+ "legende":"Plombiers : quand un client demande à ChatGPT un artisan à Dijon, qui est cité ?\nL'IA recommande les sites qu'elle comprend : tarifs, délais, avis, zone d'intervention.\nCommentez SITE : on teste le vôtre gratuitement.",
+ "hashtags":{"linkedin":["#dirigeantpme","#siteweb","#Dijon"],"tiktok":["#plombier","#artisan","#siteweb","#Dijon"],"instagram":[],"facebook":[]}},
+{"id":"d2-facture-2027","serie":"Avant / après","creneau":"10:30","theme":"ardoise","fond":"lignes","offre":"B","metier":"artisans et TPE","hook_type":"perte","reseaux":["tiktok"],
+ "titre":"Votre facture PDF ne suffira plus en 2027",
+ "source":"L-Expert-Comptable, calendrier de la facturation électronique",
+ "scenes":[
+  {"type":"hook","label":"Septembre 2027","titre":"Votre facture PDF\n*ne suffira plus.*","voix":"Votre facture en PDF envoyée par mail ? En septembre 2027, elle ne suffira plus."},
+  {"type":"avantapres","label_avant":"Aujourd'hui","label_apres":"Avec un back-office","avant":["PDF envoyé par mail","Relances à la main","Factures éparpillées"],"apres":["Facture électronique prête","Relance automatique","Tout au même endroit"],"voix":"Toutes les petites entreprises devront émettre leurs factures en électronique, sous peine de 50 euros d'amende par facture. Un back-office bien fait règle tout d'un coup."},
+  {"type":"texte","label":"Le bon moment","titre":"Préparez-vous\n*avant la cohue.*","voix":"Le bon moment pour s'organiser, c'est maintenant, pas la veille de l'échéance."}],
+ "legende":"Septembre 2027 : la facture PDF par mail ne suffira plus pour les TPE et PME. Jusqu'à 50 € d'amende par facture.\nUn back-office prêt pour la facture électronique, avec relances automatiques.\nCommentez 2027 : on vous dit où vous en êtes.",
+ "hashtags":{"tiktok":["#factureelectronique","#tpe","#artisan","#entrepreneur"],"instagram":[],"linkedin":[],"facebook":[]}},
+{"id":"d3-rdv-23h","serie":"L'agent du métier","creneau":"12:30","theme":"papier","fond":"halo","offre":"A","metier":"garagistes","hook_type":"question","reseaux":["instagram","facebook","tiktok"],
+ "titre":"Garagistes : l'agent qui prend vos rendez-vous à 23 h",
+ "source":"KORVEX — cas d'usage type (illustratif)",
+ "scenes":[
+  {"type":"hook","label":"Garagistes","titre":"Il est 23 h.\nVotre garage\n*prend des rendez-vous.*","taille":124,"voix":"Il est 23 heures. Votre garage est fermé, et pourtant, il prend des rendez-vous."},
+  {"type":"notifs","heure":"23:04","label":"Mardi","notifs":[{"app":"Agent du garage","heure":"22:51","titre":"RDV confirmé : vidange jeudi 9 h","texte":"Client rappelé du devis du 12/09"},{"app":"Agent du garage","heure":"22:58","titre":"Devis envoyé : plaquettes avant","texte":"Prix de votre grille, validé par vous"},{"app":"Agent du garage","heure":"23:03","titre":"3 mails triés, 1 urgent","texte":"Assurance : sinistre à traiter demain"}],"voix":"Un agent sur mesure répond aux demandes, envoie les devis de votre grille, et trie vos mails. Le matin, vous n'avez plus qu'à valider."},
+  {"type":"texte","label":"La différence","titre":"Vos tarifs,\nvos règles,\n*votre validation.*","voix":"Il suit vos tarifs et vos règles. Rien ne part sans votre accord."}],
+ "legende":"Garagistes : combien de rendez-vous perdus parce que personne n'a répondu ?\nUn agent sur mesure répond, envoie les devis de votre grille et trie vos mails, même à 23 h. Rien ne part sans votre validation.\nCommentez AGENT : on vous montre ce qu'il ferait dans votre garage.",
+ "hashtags":{"instagram":["#garagiste","#garageauto","#agentia","#automatisation","#dirigeantpme"],"tiktok":["#garagiste","#garageauto","#agentia"],"facebook":["#garagiste","#agentia"],"linkedin":[]}},
+{"id":"d4-13-milliards","serie":"Le chiffre","creneau":"17:30","theme":"encre","fond":"points","offre":"A+B","metier":"TPE et PME","hook_type":"chiffre","reseaux":["tiktok","facebook"],
+ "titre":"13 milliards dorment chez vos clients",
+ "source":"Observatoire des délais de paiement (Banque de France), rapport du 23/09/2026",
+ "scenes":[
+  {"type":"chiffre","label":"Retards de paiement subis par les TPE-PME","valeur":"13 Md€","taille":300,"legende":"manquent dans *leur trésorerie.*","voix":"13 milliards d'euros. C'est ce qui manque aux petites et moyennes entreprises à cause des retards de paiement."},
+  {"type":"kpis","label":"Banque de France · 2026","kpis":[{"valeur":"13,4 j","label":"de retard moyen"},{"valeur":"48 %","label":"des grandes entreprises paient à l'heure"}],"voix":"En moyenne, 13 jours de retard. Et moins d'une grande entreprise sur deux paie dans les délais."},
+  {"type":"texte","label":"La solution simple","titre":"Relancer *à J+7,\nJ+15, J+30,*\nsans y penser.","voix":"Un back-office qui relance vos factures automatiquement, au bon moment, avec le bon ton, ça se rembourse vite."}],
+ "legende":"13 milliards d'euros manquent aux TPE et PME à cause des retards de paiement (Banque de France, 2026).\nDes relances automatiques J+7, J+15, J+30, courtoises et sans oubli.\nCommentez RELANCE : on vous montre comment.",
+ "hashtags":{"tiktok":["#tresorerie","#impayes","#tpe","#entrepreneur"],"facebook":["#tpe","#tresorerie"],"instagram":[],"linkedin":[]}},
+{"id":"d5-google-ou-chatgpt","serie":"Décryptage","creneau":"19:30","theme":"papier","fond":"bandes","offre":"V+L","metier":"dirigeants","hook_type":"question","reseaux":["instagram","facebook","tiktok"],
+ "titre":"Google ou ChatGPT ? Les deux.",
+ "source":"OpinionWay pour SEO.fr, publiée le 05/05/2026",
+ "scenes":[
+  {"type":"hook","label":"Décryptage","titre":"Google\nou ChatGPT ?\n*Les deux.*","voix":"Vos clients vous cherchent sur Google ou sur ChatGPT ? La vraie réponse : les deux."},
+  {"type":"kpis","label":"Les Français et la recherche · 2026","kpis":[{"valeur":"54 %","label":"utilisent ChatGPT"},{"valeur":"98 %","label":"utilisent encore un moteur de recherche"}],"voix":"54 % des Français utilisent ChatGPT, mais 98 % passent encore par un moteur de recherche."},
+  {"type":"texte","label":"Ce qu'il faut","titre":"Un site lu\npar Google\n*et par l'IA.*","voix":"Il vous faut donc un site que Google classe, et que l'IA comprend assez bien pour vous recommander."}],
+ "legende":"Google ou ChatGPT ? 54 % des Français utilisent ChatGPT, 98 % un moteur de recherche (OpinionWay, 2026).\nUn site lu par Google ET par l'IA : c'est ça, un site nouvelle génération.\nCommentez SITE : on teste le vôtre.",
+ "hashtags":{"instagram":["#siteweb","#referencement","#dirigeantpme","#tpe"],"tiktok":["#siteweb","#chatgpt","#entrepreneur"],"facebook":["#siteweb","#tpe"],"linkedin":[]}}
+]}

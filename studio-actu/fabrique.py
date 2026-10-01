@@ -56,6 +56,16 @@ CACHE = os.path.expanduser('~/.cache/korvex-voix')
 SR = 48000
 CTA_VOIX = os.environ.get("KX_CTA", "KORVEX crée des agents IA sur mesure pour les petites et moyennes entreprises. Suivez-nous.")
 
+CTA_OFFRES = {  # offre -> (texte écran, voix de fin)
+    'A': ('<span class="acc" style="color:var(--acc)">Agents IA sur mesure</span><br>pour les PME.', "KORVEX crée des agents IA sur mesure pour les petites entreprises. Suivez-nous."),
+    'V': ('Des sites que<br><span class="acc" style="color:var(--acc)">l’IA recommande.</span>', "KORVEX crée des sites que Google et l'IA recommandent. Suivez-nous."),
+    'B': ('<span class="acc" style="color:var(--acc)">Devis, factures, relances</span><br>au même endroit.', "KORVEX crée des back-offices sur mesure, prêts pour la facture électronique. Suivez-nous."),
+    'L': ('Le premier appelé<br><span class="acc" style="color:var(--acc)">dans votre ville.</span>', "KORVEX vous rend visible dans votre ville, sur Google comme sur l'IA. Suivez-nous."),
+}
+def cta_de(v):
+    o = (v.get('offre') or 'A').split('+')[0].strip().upper()
+    return CTA_OFFRES.get(o, CTA_OFFRES['A'])
+
 def sh(*a): subprocess.run(a, check=True)
 
 def modele():
@@ -152,7 +162,7 @@ def voix(texte, out, mdl):
 def voix_seules(v, outdir, mdl):
     work = os.path.join(outdir, '_w_' + v['id']); os.makedirs(work, exist_ok=True)
     for k, sc in enumerate(v['scenes']): voix(sc['voix'], os.path.join(work, f'v{k}.wav'), mdl)
-    voix(CTA_VOIX, os.path.join(work, 'cta.wav'), mdl)
+    voix(cta_de(v)[1], os.path.join(work, 'cta.wav'), mdl)
 
 def stop_voix():
     global _cb
@@ -173,13 +183,13 @@ def fabriquer(v, jour, outdir, mdl, workers):
             if al: s['mots'] = [{'w': m['w'], 'a': round(v0 + m['a'], 3), 'b': round(v0 + m['b'], 3)} for m in al]
         scenes.append(s)
         pistes.append((v0, x)); t = t1
-    cta = t; xc = voix(CTA_VOIX, os.path.join(work, 'cta.wav'), mdl); pistes.append((cta + 0.9, xc))
+    cta = t; xc = voix(cta_de(v)[1], os.path.join(work, 'cta.wav'), mdl); pistes.append((cta + 0.9, xc))
     duree = round(cta + max(3.4, 0.9 + len(xc) / SR + 0.7), 2)
     N = int(duree * SR); vt = np.zeros(N)
     for at, x in pistes:
         i = int(at * SR); vt[i:i + len(x)] += x[:max(0, N - i)]
     # musique originale, accordée au thème
-    pulse = v.get('theme', 'papier') == 'encre' or v.get('style') == 'pulse'
+    pulse = v.get('theme', 'papier') in ('encre', 'ardoise') or v.get('style') == 'pulse'
     progs = [[["A2", ["A3", "C4", "E4", "B4"]], ["F2", ["F3", "A3", "C4", "E4"]], ["C3", ["C4", "E4", "G4", "D5"]], ["G2", ["G3", "B3", "D4", "E4"]]],
              [["D3", ["D4", "F#4", "A4", "E5"]], ["B2", ["B3", "D4", "F#4", "A4"]], ["G2", ["G3", "B3", "D4", "F#4"]], ["A2", ["A3", "D4", "E4", "A4"]]],
              [["E2", ["E3", "G3", "B3", "F#4"]], ["C3", ["C4", "E4", "G4", "B4"]], ["G2", ["G3", "B3", "D4", "A4"]], ["D3", ["D4", "F#4", "A4", "E5"]]]]
@@ -206,7 +216,9 @@ def fabriquer(v, jour, outdir, mdl, workers):
         w.setnchannels(2); w.setsampwidth(2); w.setframerate(SR); w.writeframes((st / max(1e-9, np.abs(st).max()) * 0.9 * 32767).astype('<i2').tobytes())
     an = os.path.join(work, 'mix-norm.wav')
     sh('ffmpeg', '-v', 'error', '-y', '-i', aw, '-af', 'loudnorm=I=-14:TP=-1.0:LRA=9', '-ar', str(SR), an)
-    spec = {"fps": 30, "duree": duree, "cta_t0": cta, "theme": v.get('theme', 'papier'), "serie": v['serie'],
+    FONDS = ['bandes', 'grille', 'halo', 'lignes', 'points']
+    fond = v.get('fond') or FONDS[(h + sum(map(ord, vid))) % len(FONDS)]
+    spec = {"fps": 30, "duree": duree, "cta_t0": cta, "fond": fond, "cta_txt": cta_de(v)[0], "theme": v.get('theme', 'papier'), "serie": v['serie'],
             "date_courte": jour.get('date_courte', ''), "source": v.get('source', ''), "scenes": scenes}
     sp = os.path.join(work, 'spec.json'); json.dump(spec, open(sp, 'w'), ensure_ascii=False)
     muet = os.path.join(work, 'muet.mp4')
