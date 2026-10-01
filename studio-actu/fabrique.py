@@ -7,13 +7,50 @@ import json, os, sys, subprocess, wave, argparse, urllib.request, shutil
 import numpy as np
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
-import musique
+import musique, re, difflib
+HERE_ = os.path.dirname(os.path.abspath(__file__))
+CB_PY = os.environ.get('KX_CB_PY', os.path.expanduser('~/.korvex-cb/bin/python'))
+REF = os.path.join(HERE_, 'voix-ref.wav')
+_cb = None; _asr = None
+
+def oral(t):
+    """Texte lu par la voix : sigles prononçables (« IA » → « i-a »)."""
+    t = re.sub(r"\bI\.?\s?A\.?(?=[\s,;:!?)]|$)", "i-a", t)
+    return t.replace('%', ' pour cent').replace('€', ' euros')
+
+def norm(t):
+    t = t.lower().replace('i-a', 'ia').replace('iha', 'ia').replace('i a ', 'ia ').replace('%', ' pour cent')
+    t = re.sub(r"[^a-z0-9àâçéèêëîïôûùüÿœ ]", " ", t.replace("'", " "))
+    return t.split()
+
+def asr(path):
+    global _asr
+    if _asr is None:
+        from faster_whisper import WhisperModel
+        _asr = WhisperModel(os.environ.get('KX_ASR', 'small'), device='cpu', compute_type='int8')
+    segs, _ = _asr.transcribe(path, language='fr'); return ' '.join(x.text for x in segs)
+
+def _lire_json():
+    while True:
+        l = _cb.stdout.readline()
+        if not l: raise RuntimeError('moteur voix Chatterbox arrêté')
+        try: return json.loads(l)
+        except ValueError: continue
+
+def cb(texte, out, seed):
+    global _cb
+    if _cb is None:
+        _cb = subprocess.Popen([CB_PY, os.path.join(HERE_, 'voix_cb.py'), REF], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, text=True)
+        while not _lire_json().get('pret'): pass
+    _cb.stdin.write(json.dumps({"texte": texte, "out": out, "seed": seed}) + "\n"); _cb.stdin.flush()
+    while True:
+        if _lire_json().get('out') == out: return
 
 VOIX = os.environ.get('KX_VOIX', 'fr/fr_FR/tom/medium/fr_FR-tom-medium')
 VITESSE = float(os.environ.get('KX_VITESSE', '0.9'))   # < 1 = plus rapide
 CACHE = os.path.expanduser('~/.cache/korvex-voix')
 SR = 48000
-CTA_VOIX = os.environ.get("KX_CTA", "KORVEX crée des agents I.A. sur mesure pour les P.M.E. Suivez-nous.")
+CTA_VOIX = os.environ.get("KX_CTA", "KORVEX crée des agents IA sur mesure pour les petites et moyennes entreprises. Suivez-nous.")
 
 def sh(*a): subprocess.run(a, check=True)
 
@@ -30,16 +67,41 @@ def lire(path):
     x = np.fromfile(path + '.raw', dtype='<f4'); os.remove(path + '.raw'); return x
 
 def voix(texte, out, mdl):
+    if os.path.exists(out) and os.path.exists(out + '.txt') and open(out + '.txt').read() == texte:
+        return lire(out)   # cache : même texte déjà généré
     raw = out + '.brut.wav'
-    subprocess.run([sys.executable, '-m', 'piper', '-m', mdl, '--length-scale', str(VITESSE), '--sentence-silence', '0.12', '-f', raw],
-                   input=texte.encode(), check=True, capture_output=True)
-    # traitement « studio » : coupe-bas, présence, compression douce, petite pièce
-    sh('ffmpeg', '-v', 'error', '-y', '-i', raw, '-af',
-       'highpass=f=85,lowpass=f=12000,equalizer=f=200:t=q:w=1:g=-2,equalizer=f=3200:t=q:w=1.2:g=3,'
-       'acompressor=threshold=-20dB:ratio=3:attack=8:release=120:makeup=4,aecho=0.8:0.5:28:0.12,'
+    if os.path.exists(CB_PY) and os.environ.get('KX_MOTEUR', 'cb') == 'cb':
+        # Chatterbox + contrôle Whisper : on garde la prise la plus fidèle au texte (3 essais max)
+        best = None
+        for seed in (7, 11, 23):
+            cb(oral(texte), raw + f'.{seed}.wav', seed)
+            att, eu = norm(texte), norm(asr(raw + f'.{seed}.wav'))
+            sc = difflib.SequenceMatcher(None, att, eu).ratio()
+            if best is None or sc > best[0]: best = (sc, raw + f'.{seed}.wav')
+            print(f'  voix seed {seed} : fidélité {sc:.2f}', flush=True)
+            if sc >= 0.88: break
+        if best[0] < 0.8: print(f'  ⚠ voix douteuse ({best[0]:.2f}) : {texte[:60]}', flush=True)
+        os.replace(best[1], raw)
+        for f in os.listdir(os.path.dirname(out)):
+            if f.startswith(os.path.basename(raw) + '.'): os.remove(os.path.join(os.path.dirname(out), f))
+        chain = 'atempo=1.07,highpass=f=80,equalizer=f=3200:t=q:w=1.2:g=2,acompressor=threshold=-20dB:ratio=2.5:attack=8:release=120:makeup=3,'
+    else:
+        subprocess.run([sys.executable, '-m', 'piper', '-m', mdl, '--length-scale', str(VITESSE), '--sentence-silence', '0.12', '-f', raw],
+                       input=texte.encode(), check=True, capture_output=True)
+        chain = 'highpass=f=85,lowpass=f=12000,equalizer=f=200:t=q:w=1:g=-2,equalizer=f=3200:t=q:w=1.2:g=3,acompressor=threshold=-20dB:ratio=3:attack=8:release=120:makeup=4,aecho=0.8:0.5:28:0.12,'
+    sh('ffmpeg', '-v', 'error', '-y', '-i', raw, '-af', chain +
        'silenceremove=start_periods=1:start_threshold=-45dB,areverse,silenceremove=start_periods=1:start_threshold=-45dB,areverse',
        '-ar', str(SR), out)
-    os.remove(raw); return lire(out)
+    os.remove(raw); open(out + '.txt', 'w').write(texte); return lire(out)
+
+def voix_seules(v, outdir, mdl):
+    work = os.path.join(outdir, '_w_' + v['id']); os.makedirs(work, exist_ok=True)
+    for k, sc in enumerate(v['scenes']): voix(sc['voix'], os.path.join(work, f'v{k}.wav'), mdl)
+    voix(CTA_VOIX, os.path.join(work, 'cta.wav'), mdl)
+
+def stop_voix():
+    global _cb
+    if _cb: _cb.stdin.close(); _cb.wait(timeout=60); _cb = None
 
 def fabriquer(v, jour, outdir, mdl, workers):
     vid = v['id']; work = os.path.join(outdir, '_w_' + vid); os.makedirs(work, exist_ok=True)
@@ -71,10 +133,12 @@ def fabriquer(v, jour, outdir, mdl, workers):
     musique.rng = np.random.default_rng(h + 7)
     mw = os.path.join(work, 'musique.wav'); musique.render(cfg, mw)
     m = lire(mw); m = np.pad(m, (0, max(0, N - len(m))))[:N]
-    # ducking : la musique s'efface sous la voix
-    env = np.convolve(np.abs(vt), np.ones(int(.08 * SR)) / int(.08 * SR), 'same')
-    env = np.convolve((env > 0.01).astype(float), np.ones(int(.25 * SR)) / int(.25 * SR), 'same').clip(0, 1)
-    mix = vt * 1.0 + m * (0.30 - 0.19 * env)
+    # musique uniquement hors parole : masque voix élargi de 0,5 s, fondus de 0,3 s
+    actif = np.zeros(N)
+    for at, x in pistes:
+        a = max(0, int((at - 0.5) * SR)); b = min(N, int((at + len(x) / SR + 0.5) * SR)); actif[a:b] = 1
+    k = int(.3 * SR); g = 1 - np.convolve(actif, np.ones(k) / k, 'same').clip(0, 1)
+    mix = vt * 1.0 + m * 0.30 * g
     mix = np.tanh(mix * 1.1) / 1.1
     st = np.stack([mix, mix], 1)
     aw = os.path.join(work, 'mix.wav')
@@ -92,14 +156,22 @@ def fabriquer(v, jour, outdir, mdl, workers):
     cover = final[:-4] + '.jpg'
     sh('ffmpeg', '-v', 'error', '-y', '-ss', str(max(0.5, scenes[0]['t1'] - 0.4)), '-i', muet, '-frames:v', '1', '-q:v', '3', cover)
     leg = final[:-4] + '.txt'
-    open(leg, 'w').write(v.get('legende', '').strip() + ('\n\nSource : ' + v['source'] if v.get('source') else '') + '\n')
+    src = ('\n\nSource : ' + v['source']) if v.get('source') and 'KORVEX' not in v['source'] else ''
+    open(leg, 'w').write(v.get('legende', '').strip() + src + '\n')
+    for res, tags in (v.get('hashtags') or {}).items():
+        if tags: open(final[:-4] + f'.{res}.txt', 'w').write(v.get('legende', '').strip() + src + '\n\n' + ' '.join(tags) + '\n')
     shutil.rmtree(work, ignore_errors=True)
-    return {"id": vid, "video": final, "cover": cover, "legende": leg, "duree": duree, "titre": v.get('titre', ''), "creneau": v.get('creneau', '')}
+    return {"id": vid, "reseaux": v.get('reseaux', []), "metier": v.get('metier', ''), "hook_type": v.get('hook_type', ''), "serie": v.get('serie', ''), "video": final, "cover": cover, "legende": leg, "duree": duree, "titre": v.get('titre', ''), "creneau": v.get('creneau', '')}
 
 if __name__ == '__main__':
     ap = argparse.ArgumentParser(); ap.add_argument('jour'); ap.add_argument('--out', default='sorties')
     ap.add_argument('--only'); ap.add_argument('--workers', type=int, default=3); a = ap.parse_args()
     jour = json.load(open(a.jour)); os.makedirs(a.out, exist_ok=True); mdl = modele(); res = []
+    # phase 1 : toutes les voix (le modèle voix occupe ~4 Go : on le libère avant le rendu navigateur)
+    for v in jour['videos']:
+        if a.only and v['id'] != a.only: continue
+        t0 = __import__('time').time(); voix_seules(v, a.out, mdl); print(f"voix {v['id']} : {__import__('time').time()-t0:.0f} s", flush=True)
+    stop_voix()
     for v in jour['videos']:
         if a.only and v['id'] != a.only: continue
         try: r = fabriquer(v, jour, a.out, mdl, a.workers); res.append(r); print('OK', r['video'], r['duree'], 's', flush=True)
