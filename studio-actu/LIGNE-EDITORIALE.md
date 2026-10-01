@@ -31,7 +31,7 @@ Varier les hook_types sur la journée (5 vidéos = au moins 4 hook_types différ
 
 ## 4. Écriture
 - 18-27 s, 2-3 scènes, voix ≤ 30 mots par scène. Une idée par vidéo.
-- Voix (moteur Chatterbox) : écrire « IA » (lu automatiquement « i-a »). **Jamais** de sigles PME/TPE dans la voix : dire « petites entreprises », « dirigeants », « artisans ». Phrases de 10 à 25 mots (les phrases très courtes sont mal lues). Nombres en chiffres, « pour cent » géré automatiquement.
+- Voix : Vivienne (voix neuronale, lue d'un seul trait par scène, sous-titres calés au mot). Écrire « IA », les nombres en chiffres (« 40 % », « 3 fois »), ponctuation soignée (elle fait les pauses). **Jamais** de sigles PME/TPE dans la voix : « petites entreprises », « dirigeants », « artisans ». Aucune musique pendant la parole (gérée par le moteur).
 - À l'écran : groupes insécables avec espace insécable (« 24 h/24 », « 40 % »). `*mot*` = italique accent (une étoile de chaque côté d'un groupe de mots). Titres ≤ 3 lignes.
 - Faits réels, sources datées dans `source`. Aucun chiffre inventé. Cas d'usage = ce qu'un agent FAIT (devis, relances, tri mails, RDV, saisie, SAV, veille, réponses clients). Pas de promesse chiffrée sur KORVEX (gain, prix). Aucun client nommé.
 - Ton : direct, concret, vouvoiement, zéro jargon (« LLM », « prompt », « RAG » interdits à l'écran).
