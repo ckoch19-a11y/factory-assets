@@ -3,3 +3,5 @@ node_modules/
 __pycache__/
 _page_*
 stats/export/
+diffusion/
+*.part.mp4
