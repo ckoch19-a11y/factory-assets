@@ -1,0 +1,339 @@
+{
+ "date": "2026-10-02",
+ "date_courte": "02.10.26",
+ "videos": [
+  {
+   "id": "01-facture-2027-14pc",
+   "serie": "L'actu",
+   "creneau": "07:45",
+   "theme": "papier",
+   "fond": "lignes",
+   "offre": "B",
+   "metier": "PME industrielles",
+   "hook_type": "chiffre",
+   "reseaux": [
+    "linkedin",
+    "tiktok"
+   ],
+   "titre": "Industriels, facture électronique : seuls 14 % des dirigeants sont prêts pour 2027",
+   "source": "Enquête Ipsos BVA pour Kolecto, via Europe 1 / AFP, 01/10/2026",
+   "scenes": [
+    {
+     "type": "chiffre",
+     "objet": "facture",
+     "label": "Dirigeants prêts pour septembre 2027",
+     "valeur": "14 %",
+     "taille": 330,
+     "legende": "seulement.\n*34 %* ont commencé à s'y préparer.",
+     "voix": "Seuls 14 % des dirigeants se disent prêts pour la facture électronique obligatoire de septembre 2027. C'est un sondage Ipsos publié hier."
+    },
+    {
+     "type": "kpis",
+     "label": "Septembre 2026 · déjà vécu",
+     "kpis": [
+      {
+       "valeur": "34 %",
+       "label": "ont eu des clients ou fournisseurs pas prêts"
+      },
+      {
+       "valeur": "56 %",
+       "label": "dans l'industrie"
+      }
+     ],
+     "voix": "Depuis septembre, tout le monde reçoit déjà des factures électroniques. 34 % des entreprises ont eu des partenaires pas prêts. Dans l'industrie : 56 %."
+    },
+    {
+     "type": "texte",
+     "objet": "calendrier",
+     "label": "Industriels",
+     "titre": "Vos partenaires\nne sont pas prêts.\n*Votre outil doit l'être.*",
+     "voix": "Industriels : en 2027, c'est votre logiciel de facturation qui devra émettre. Pas celui de votre comptable."
+    }
+   ],
+   "legende": "Industriels : seuls 14 % des dirigeants sont prêts pour la facture électronique de septembre 2027 (Ipsos BVA pour Kolecto, 01/10/2026). Dans l'industrie, 56 % ont déjà eu des clients ou fournisseurs pas prêts.\nUn back-office qui émet et reçoit vos factures électroniques, relances comprises.\nCommentez 2027 : on vous dit où vous en êtes.",
+   "hashtags": {
+    "linkedin": [
+     "#industrie",
+     "#factureelectronique",
+     "#dirigeantpme"
+    ],
+    "tiktok": [
+     "#industrie",
+     "#factureelectronique",
+     "#dirigeantpme",
+     "#pme"
+    ],
+    "instagram": [],
+    "facebook": []
+   }
+  },
+  {
+   "id": "02-immo-clics-google",
+   "serie": "Le chiffre",
+   "creneau": "10:30",
+   "theme": "encre",
+   "fond": "halo",
+   "offre": "V",
+   "metier": "agents immobiliers",
+   "hook_type": "perte",
+   "reseaux": [
+    "tiktok"
+   ],
+   "titre": "Agents immobiliers : Google répond à la place de votre site",
+   "source": "Ahrefs, via Stratégies, 20/08/2026 — réponse d'assistant IA illustrative",
+   "scenes": [
+    {
+     "type": "hook",
+     "objet": "loupe",
+     "label": "Agents immobiliers",
+     "titre": "Google répond\n*à la place\nde votre site.*",
+     "taille": 124,
+     "voix": "Agents immobiliers : depuis cet été, Google répond lui-même aux questions de vos clients. Et ils cliquent moins sur votre site."
+    },
+    {
+     "type": "chiffre",
+     "objet": "graphique",
+     "label": "Clics perdus avec les résumés IA de Google",
+     "valeur": "−23,1 %",
+     "taille": 260,
+     "legende": "au maximum.\nMédiane : *−5,7 %.*",
+     "voix": "Mesuré par Ahrefs : jusqu'à 23 % de clics en moins pour les sites, depuis l'arrivée des résumés IA de Google en France."
+    },
+    {
+     "type": "recherche",
+     "label": "Assistant IA",
+     "question": "Quelle agence pour vendre vite un appartement à Dijon ?",
+     "reponse": "Je vous conseille **une agence du centre-ville** qui affiche ses honoraires, ses délais de vente et des avis récents.",
+     "cite": "Source : son site",
+     "voix": "Ce que l'IA cite, ce sont les sites qui répondent clairement : honoraires, délais, quartiers, avis. Le vôtre, il le fait ?"
+    }
+   ],
+   "legende": "Agents immobiliers : depuis que Google répond lui-même avec l'IA, les sites perdent jusqu'à 23,1 % de clics (Ahrefs, 2026).\nUn site que l'IA lit et cite : honoraires, délais, quartiers et avis clairs.\nCommentez SITE : on teste le vôtre.",
+   "hashtags": {
+    "tiktok": [
+     "#agentimmobilier",
+     "#immobilier",
+     "#siteweb",
+     "#dirigeantpme"
+    ],
+    "instagram": [],
+    "linkedin": [],
+    "facebook": []
+   }
+  },
+  {
+   "id": "03-agent-courtier",
+   "serie": "L'agent du métier",
+   "creneau": "12:30",
+   "theme": "papier",
+   "fond": "grille",
+   "offre": "A",
+   "metier": "courtiers en assurance",
+   "hook_type": "question",
+   "reseaux": [
+    "instagram",
+    "facebook",
+    "tiktok"
+   ],
+   "titre": "Courtiers en assurance : qui répond à vos assurés le samedi ?",
+   "source": "KORVEX — cas d'usage type (illustratif)",
+   "scenes": [
+    {
+     "type": "hook",
+     "objet": "bulle",
+     "label": "Courtiers en assurance",
+     "titre": "Samedi, 10 h.\nUn assuré a un sinistre.\n*Qui lui répond ?*",
+     "taille": 116,
+     "voix": "Courtiers en assurance : samedi matin, un assuré a un dégât des eaux. Votre cabinet est fermé. Qui lui répond ?"
+    },
+    {
+     "type": "notifs",
+     "heure": "10:12",
+     "label": "Samedi",
+     "notifs": [
+      {
+       "app": "Agent du cabinet",
+       "heure": "10:02",
+       "titre": "Sinistre déclaré : dégât des eaux",
+       "texte": "Photos et constat reçus, dossier ouvert"
+      },
+      {
+       "app": "Agent du cabinet",
+       "heure": "10:05",
+       "titre": "Marche à suivre envoyée",
+       "texte": "Selon vos procédures, validées par vous"
+      },
+      {
+       "app": "Agent du cabinet",
+       "heure": "10:09",
+       "titre": "RDV lundi 9 h avec votre gestionnaire",
+       "texte": "Ajouté à l'agenda du cabinet"
+      }
+     ],
+     "voix": "Un agent sur mesure recueille la déclaration, envoie la marche à suivre de votre cabinet, et cale un rendez-vous lundi avec votre gestionnaire."
+    },
+    {
+     "type": "texte",
+     "objet": "cadenas",
+     "label": "La règle",
+     "titre": "Vos procédures.\nVotre validation.\n*Rien d'autre.*",
+     "voix": "Il suit vos procédures, ne promet rien à votre place, et vous gardez la main sur chaque dossier."
+    }
+   ],
+   "legende": "Courtiers en assurance : qui répond à vos assurés quand le cabinet est fermé ?\nUn agent sur mesure recueille la déclaration, envoie vos consignes et cale le rendez-vous avec votre gestionnaire.\nCommentez AGENT avec votre métier.",
+   "hashtags": {
+    "instagram": [
+     "#courtierassurance",
+     "#assurance",
+     "#agentia",
+     "#dirigeantpme",
+     "#automatisation"
+    ],
+    "tiktok": [
+     "#courtierassurance",
+     "#assurance",
+     "#agentia"
+    ],
+    "facebook": [
+     "#courtierassurance",
+     "#agentia"
+    ],
+    "linkedin": []
+   }
+  },
+  {
+   "id": "04-electricien-paperasse",
+   "serie": "Avant / après",
+   "creneau": "17:30",
+   "theme": "encre",
+   "fond": "points",
+   "offre": "B",
+   "metier": "électriciens",
+   "hook_type": "metier",
+   "reseaux": [
+    "tiktok",
+    "facebook"
+   ],
+   "titre": "Électriciens : 13 h de paperasse par semaine, avant / après",
+   "source": "Qonto / OpinionWay, 300 dirigeants de TPE du BTP, 09/04/2026",
+   "scenes": [
+    {
+     "type": "hook",
+     "objet": "eclair",
+     "label": "Électriciens",
+     "titre": "Électriciens :\n13 h de paperasse\n*chaque semaine.*",
+     "taille": 120,
+     "voix": "Électriciens : 13 heures par semaine. C'est le temps que les artisans du bâtiment passent dans l'administratif."
+    },
+    {
+     "type": "avantapres",
+     "label_avant": "Le soir, à la main",
+     "label_apres": "Avec un back-office",
+     "avant": [
+      "Devis tapés le soir",
+      "Factures en PDF",
+      "Relances oubliées"
+     ],
+     "apres": [
+      "Devis signé sur le chantier",
+      "Facture électronique prête",
+      "Relances automatiques"
+     ],
+     "voix": "Avant : devis tapés le soir, factures en PDF, relances oubliées. Après : devis signé sur le téléphone, facture prête pour 2027, relances automatiques."
+    },
+    {
+     "type": "texte",
+     "objet": "check",
+     "label": "Après",
+     "titre": "Vos soirées,\n*rendues.*",
+     "taille": 130,
+     "voix": "Et le soir, vous faites enfin autre chose que de la paperasse."
+    }
+   ],
+   "legende": "Électriciens : les artisans du bâtiment passent 13 h par semaine dans l'administratif (Qonto / OpinionWay, 2026).\nDevis signé sur le chantier, facture électronique prête pour 2027, relances automatiques : tout au même endroit.\nCommentez 2027 : on vous dit où vous en êtes.",
+   "hashtags": {
+    "tiktok": [
+     "#electricien",
+     "#artisanbtp",
+     "#factureelectronique",
+     "#entrepreneur"
+    ],
+    "facebook": [
+     "#electricien",
+     "#factureelectronique"
+    ],
+    "instagram": [],
+    "linkedin": []
+   }
+  },
+  {
+   "id": "05-restaurateur-fiche-google",
+   "serie": "Le conseil KORVEX",
+   "creneau": "19:30",
+   "theme": "papier",
+   "fond": "bandes",
+   "offre": "L",
+   "metier": "restaurateurs",
+   "hook_type": "contre-intuitif",
+   "reseaux": [
+    "instagram",
+    "facebook",
+    "tiktok"
+   ],
+   "titre": "Restaurateurs : votre fiche Google, c'est votre vrai site",
+   "source": "Conseil KORVEX — Mode IA de Google déployé en France depuis le 22/07/2026 ; réponse IA illustrative",
+   "scenes": [
+    {
+     "type": "hook",
+     "objet": "epingle",
+     "label": "Restaurateurs",
+     "titre": "Votre vrai site ?\n*C'est votre\nfiche Google.*",
+     "taille": 124,
+     "voix": "Restaurateurs : votre vrai site, ce n'est pas votre site. C'est votre fiche Google."
+    },
+    {
+     "type": "recherche",
+     "label": "Mode IA de Google",
+     "question": "Un restaurant ouvert dimanche midi à Beaune, avec terrasse ?",
+     "reponse": "Je vous suggère **un bistrot du centre** : ouvert le dimanche midi, terrasse, menu affiché et avis récents.",
+     "cite": "Source : sa fiche Google",
+     "voix": "Quand on demande à Google un restaurant ouvert dimanche midi, son IA s'appuie sur les fiches : horaires, photos, menu, avis récents."
+    },
+    {
+     "type": "objet",
+     "objet": "etoile",
+     "autour": [
+      "horloge",
+      "telephone",
+      "epingle",
+      "bulle"
+     ],
+     "label": "3 réflexes",
+     "titre": "Horaires, photos,\n*réponse à chaque avis.*",
+     "voix": "Trois réflexes cette semaine : des horaires à jour, jours fériés compris. Des photos récentes. Et une réponse à chaque avis."
+    }
+   ],
+   "legende": "Restaurateurs : quand un client demande à Google un restaurant ouvert dimanche midi, c'est votre fiche qu'il lit, pas votre site.\nHoraires à jour, photos récentes, réponse à chaque avis : soyez le premier qu'on trouve dans votre ville.\nCommentez VILLE : on regarde votre fiche.",
+   "hashtags": {
+    "instagram": [
+     "#restaurateur",
+     "#restaurant",
+     "#fichegoogle",
+     "#dirigeantpme",
+     "#beaune"
+    ],
+    "tiktok": [
+     "#restaurateur",
+     "#restaurant",
+     "#fichegoogle",
+     "#beaune"
+    ],
+    "facebook": [
+     "#restaurateur",
+     "#fichegoogle"
+    ],
+    "linkedin": []
+   }
+  }
+ ]
+}
