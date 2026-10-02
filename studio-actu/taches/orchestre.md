@@ -1,6 +1,6 @@
 # Tâche « Orchestre » — produire le lot de vidéos de J (la veille au soir)
 
-Lancée chaque jour à 20:30 (heure de Paris) par la tâche planifiée « KORVEX — Orchestre vidéos ». Elle tourne dans le cloud, sans le Mac.
+Lancée chaque jour à 20:25 (heure de Paris) par la tâche planifiée « KORVEX — Orchestre vidéos ». Elle tourne dans le cloud, sans le Mac.
 J = demain. Si la tâche est lancée avant 12:00, J = aujourd'hui (rattrapage).
 Régie : https://claude.ai/artifact/CUgQUZ6Fmv9A3ft2ULHcWz (collections `videos` et `orchestre`).
 La diffusion (programmation sur les réseaux et relevé des stats) est une AUTRE tâche, sur le Mac : `taches/diffusion.md`. Ici, on produit et on dépose dans la régie.

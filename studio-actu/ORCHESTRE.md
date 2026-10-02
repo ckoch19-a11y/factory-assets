@@ -1,7 +1,7 @@
 # L'orchestre KORVEX — qui décide quoi, chaque matin
 
 Deux tâches planifiées, zéro geste de Calvin :
-- **Orchestre** (`taches/orchestre.md`, 20:30, cloud) produit le lot du lendemain et le dépose dans la régie.
+- **Orchestre** (`taches/orchestre.md`, 20:25, cloud) produit le lot du lendemain et le dépose dans la régie.
 - **Diffusion** (`taches/diffusion.md`, 21:50 + rattrapage 06:50, sur le Mac) pilote le Chrome de Calvin : programme chaque vidéo sur TikTok / Meta (Facebook + Instagram) / LinkedIn à son créneau, puis relève les stats des 7 derniers jours dans la régie.
 Les posts sont programmés chez les réseaux eux-mêmes : ils partent à l'heure même si le Mac est éteint ensuite.
 Régie **Studio KORVEX** https://claude.ai/artifact/CUgQUZ6Fmv9A3ft2ULHcWz — base `videos/<date>-<id>` (champs `diffusion`, `publie`, `stats` remplis automatiquement) et `orchestre/<date>` (état de chaque production).
