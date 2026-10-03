@@ -5,8 +5,10 @@ J = demain. Si la tâche est lancée avant 12:00, J = aujourd'hui (rattrapage).
 Régie : https://claude.ai/artifact/CUgQUZ6Fmv9A3ft2ULHcWz (collections `videos` et `orchestre`).
 La diffusion (programmation sur les réseaux et relevé des stats) est une AUTRE tâche, sur le Mac : `taches/diffusion.md`. Ici, on produit et on dépose dans la régie.
 
+Avant tout : lis `orchestre/J` dans la régie (ArtifactData `get`). S'il existe avec `"statut": "pret"`, le lot est déjà produit. Termine alors avec un message d'une ligne, sans rien refaire.
+
 Règle d'or : la tâche ne se termine jamais sans avoir écrit son état dans la régie (`orchestre/J`).
-- Dès le départ : `{"date": J, "statut": "en cours"}`.
+- Dès le départ : `{"date": J, "statut": "en cours"}` (avec `if_version` si le document existait déjà).
 - À la fin : `"pret"` ou `"erreur"`, avec le champ `erreur` (étape et cause).
 - Si une étape casse : corrige-la si c'est rapide (≤ 2 essais), sinon écris l'erreur, pousse ce qui existe et termine.
 
