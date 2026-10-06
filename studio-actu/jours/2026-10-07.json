@@ -1,0 +1,422 @@
+{
+ "date": "2026-10-07",
+ "date_courte": "07.10.26",
+ "videos": [
+  {
+   "id": "01-ia-sans-cadre",
+   "serie": "L'actu IA",
+   "creneau": "07:45",
+   "theme": "papier",
+   "fond": "halo",
+   "offre": "A",
+   "metier": "cabinets comptables",
+   "hook_type": "chiffre",
+   "reseaux": [
+    "linkedin",
+    "tiktok"
+   ],
+   "titre": "Cabinets comptables : 6 entreprises françaises sur 10 utilisent l'IA sans cadre formalisé",
+   "source": "Coface / Les Echos Études, Baromètre Data & IA, 900 décideurs — ActuIA, 06/10/2026 (https://actuia.com/actualite/six-entreprises-sur-dix-utilisent-lia-sans-cadre-selon-coface)",
+   "scenes": [
+    {
+     "type": "chiffre",
+     "objet": "cadenas",
+     "label": "Entreprises françaises et IA · Coface 2026",
+     "valeur": "60 %",
+     "taille": 330,
+     "legende": "utilisent l'IA\n*sans cadre formalisé.*",
+     "voix": "60 %. 6 entreprises françaises sur 10 n'ont aucun cadre formalisé pour leurs usages de l'IA. Seulement 17 % ont une politique écrite et communiquée."
+    },
+    {
+     "type": "points",
+     "objet": "pdf",
+     "titre": "Cabinets comptables :\n*3 règles simples*",
+     "points": [
+      "Quelles données l'IA peut voir",
+      "Qui valide ce qui part",
+      "Où tout est tracé"
+     ],
+     "voix": "Dans un cabinet comptable, les données clients sont sensibles. 3 règles suffisent : ce que l'IA peut voir, qui valide, et où tout est tracé."
+    },
+    {
+     "type": "objet",
+     "objet": "agent",
+     "autour": [
+      "bouclier",
+      "check",
+      "enveloppe"
+     ],
+     "label": "La bonne approche",
+     "titre": "Un agent qui suit\n*vos règles.*",
+     "voix": "Un agent IA sur mesure applique ces règles à chaque tâche. Rien ne part sans votre validation."
+    }
+   ],
+   "legende": "Cabinets comptables : 6 entreprises françaises sur 10 utilisent l'IA sans cadre formalisé (Coface, octobre 2026). Seules 17 % ont une politique écrite.\nUn agent IA sur mesure travaille avec vos règles : ce qu'il voit, qui valide, tout est tracé.\nCommentez AGENT avec votre métier.",
+   "hashtags": {
+    "linkedin": [
+     "#expertcomptable",
+     "#agentia",
+     "#dirigeantpme"
+    ],
+    "tiktok": [
+     "#expertcomptable",
+     "#agentia",
+     "#automatisation",
+     "#dirigeantpme"
+    ],
+    "instagram": [],
+    "facebook": []
+   }
+  },
+  {
+   "id": "02-tresorerie-3-mois",
+   "serie": "Le chiffre",
+   "creneau": "10:30",
+   "theme": "encre",
+   "fond": "points",
+   "offre": "B",
+   "metier": "plombiers",
+   "hook_type": "perte",
+   "reseaux": [
+    "tiktok"
+   ],
+   "titre": "Plombiers : une facture impayée, et la trésorerie vacille",
+   "source": "SDI, Baromètre des TPE 3e trimestre 2026, 1 378 dirigeants — 06/10/2026 (https://sdi-pme.fr/actus_et_ressources/barometre-des-tpe-3e-trimestre-2026-etat-des-lieux-et-chiffres-cles/)",
+   "scenes": [
+    {
+     "type": "hook",
+     "label": "Plombiers",
+     "objet": "euro",
+     "titre": "Une facture impayée.\n*Et votre trésorerie\nvacille.*",
+     "taille": 118,
+     "voix": "Plombiers, une facture impayée de plus, et c'est votre réserve qui fond. Pour beaucoup de petites entreprises, elle ne tient déjà plus que quelques mois."
+    },
+    {
+     "type": "kpis",
+     "objet": "graphique",
+     "label": "Baromètre SDI · 3e trimestre 2026",
+     "kpis": [
+      {
+       "valeur": "55 %",
+       "label": "ont des problèmes de trésorerie"
+      },
+      {
+       "valeur": "42 %",
+       "label": "moins de 3 mois de charges couvertes"
+      }
+     ],
+     "voix": "55 % des dirigeants de petites entreprises ont des problèmes de trésorerie. Et 42 % ont moins de 3 mois de charges couvertes."
+    },
+    {
+     "type": "avantapres",
+     "label_avant": "Relances à la main",
+     "label_apres": "Avec un back-office",
+     "avant": [
+      "Factures oubliées",
+      "Relance tardive",
+      "Trésorerie à l'aveugle"
+     ],
+     "apres": [
+      "Relance à J+7 automatique",
+      "Impayés visibles d'un coup d'œil",
+      "Encaissements suivis"
+     ],
+     "voix": "Un back-office relance chaque facture au bon moment, et vous montre d'un coup d'œil ce qui reste à encaisser."
+    }
+   ],
+   "legende": "Plombiers : une facture impayée pèse lourd quand 42 % des petites entreprises ont moins de 3 mois de charges couvertes (SDI, octobre 2026).\nUn back-office qui relance vos factures automatiquement et suit vos encaissements.\nCommentez RELANCE : on vous montre comment.",
+   "hashtags": {
+    "tiktok": [
+     "#plombier",
+     "#impayes",
+     "#tresorerie",
+     "#tpe"
+    ],
+    "instagram": [],
+    "linkedin": [],
+    "facebook": []
+   }
+  },
+  {
+   "id": "03-transporteur-agent",
+   "serie": "L'agent du métier",
+   "creneau": "12:30",
+   "theme": "sable",
+   "fond": "grille",
+   "offre": "A",
+   "metier": "transporteurs",
+   "hook_type": "question",
+   "reseaux": [
+    "instagram",
+    "facebook",
+    "tiktok"
+   ],
+   "titre": "Transporteurs : qui répond à vos clients quand vous roulez ?",
+   "source": "Cas d'usage type (illustratif) ; OpinionWay pour Alibaba.com, 501 dirigeants, 24/08-11/09/2026, publié le 01/10/2026 (PR Newswire) https://www.prnewswire.com/fr/communiques-de-presse/etude-opinionway-x-alibabacom--en-france-plus-de-deux-tiers-des-dirigeants-de-tpepme-aimeraient-etre-assistes-par-des-agents-ia-mais-seuls-8-l-utilisent-302895930.html",
+   "scenes": [
+    {
+     "type": "hook",
+     "label": "Transporteurs",
+     "objet": "voiture",
+     "titre": "Vous roulez.\n*Qui répond\nà vos clients ?*",
+     "taille": 124,
+     "voix": "Transporteurs, vous êtes sur la route. Qui répond à vos clients qui demandent un devis ou l'heure de livraison ?"
+    },
+    {
+     "type": "notifs",
+     "heure": "18:42",
+     "label": "Mercredi",
+     "notifs": [
+      {
+       "app": "Agent du transport",
+       "heure": "17:58",
+       "titre": "Devis préparé : Dijon → Lyon, 3 palettes",
+       "texte": "Selon votre grille, à valider"
+      },
+      {
+       "app": "Agent du transport",
+       "heure": "18:21",
+       "titre": "Client informé : livraison demain 10 h",
+       "texte": "Suivi envoyé par mail"
+      },
+      {
+       "app": "Agent du transport",
+       "heure": "18:40",
+       "titre": "2 mails triés, 1 urgent",
+       "texte": "Réclamation à traiter demain matin"
+      }
+     ],
+     "voix": "Un agent IA sur mesure prépare les devis selon votre grille, informe les clients de leur livraison, et trie vos mails. Vous validez le soir."
+    },
+    {
+     "type": "kpis",
+     "objet": "agent",
+     "label": "Dirigeants et agents IA · OpinionWay 2026",
+     "kpis": [
+      {
+       "valeur": "8 %",
+       "label": "ont testé ou adopté un agent IA"
+      },
+      {
+       "valeur": "69 %",
+       "label": "aimeraient en être assistés"
+      }
+     ],
+     "voix": "Seuls 8 % des dirigeants ont déjà testé ou intégré un agent IA. Mais 69 % aimeraient être assistés."
+    }
+   ],
+   "legende": "Transporteurs : qui répond à vos clients quand vous êtes sur la route ?\nUn agent IA sur mesure prépare les devis selon votre grille, informe vos clients et trie vos mails. Vous validez.\nCommentez AGENT avec votre métier.",
+   "hashtags": {
+    "instagram": [
+     "#transporteur",
+     "#agentia",
+     "#automatisation",
+     "#dirigeantpme",
+     "#bourgogne"
+    ],
+    "tiktok": [
+     "#transporteur",
+     "#agentia",
+     "#entrepreneur"
+    ],
+    "facebook": [
+     "#transporteur",
+     "#agentia"
+    ],
+    "linkedin": []
+   }
+  },
+  {
+   "id": "04-formation-cpf",
+   "serie": "Le chiffre",
+   "creneau": "15:00",
+   "theme": "ardoise",
+   "fond": "lignes",
+   "offre": "V",
+   "metier": "organismes de formation",
+   "hook_type": "metier",
+   "reseaux": [
+    "tiktok"
+   ],
+   "titre": "Organismes de formation : le CPF pourrait coûter jusqu'à 350 € au stagiaire",
+   "source": "Batinfo, 05/10/2026, projet de budget 2027 (https://batinfo.com/actualite/budget-2027-les-organismes-de-formation-contestent-la-hausse-du-reste-a-charge-du-cpf_37522) ; démonstration illustrative",
+   "scenes": [
+    {
+     "type": "hook",
+     "label": "Organismes de formation",
+     "objet": "euro",
+     "titre": "Le CPF :\njusqu'à *350 €*\npour vos stagiaires.",
+     "taille": 120,
+     "voix": "Organismes de formation : avec le projet de budget, le reste à charge du CPF pourrait monter jusqu'à 350 euros, contre 150 aujourd'hui."
+    },
+    {
+     "type": "recherche",
+     "label": "Assistant IA",
+     "question": "Une formation en gestion de chantier près de Dijon, finançable par mon entreprise ?",
+     "reponse": "Je vous conseille **un organisme de formation dijonnais** : programme détaillé, prochaines dates, prise en charge par l'entreprise expliquée.",
+     "cite": "Source : son site",
+     "voix": "Les entreprises cherchent aussi avec l'IA. Elle cite l'organisme dont le site explique clairement le programme, les dates et le financement."
+    },
+    {
+     "type": "texte",
+     "objet": "globe",
+     "label": "La parade",
+     "titre": "Être trouvé\npar les entreprises,\n*pas que par le CPF.*",
+     "voix": "Un site lisible par Google et par l'IA vous fait trouver par les entreprises, pas seulement par le CPF."
+    }
+   ],
+   "legende": "Organismes de formation : le reste à charge du CPF pourrait monter jusqu'à 350 €, contre 150 € aujourd'hui (projet de budget, Batinfo, 05/10/2026).\nUn site que Google classe et que l'IA cite vous fait trouver par les entreprises.\nCommentez SITE : on teste le vôtre.",
+   "hashtags": {
+    "tiktok": [
+     "#organismedeformation",
+     "#referencement",
+     "#dirigeantpme",
+     "#dijon"
+    ],
+    "instagram": [],
+    "linkedin": [],
+    "facebook": []
+   }
+  },
+  {
+   "id": "05-couvreur-site",
+   "serie": "Avant / après",
+   "creneau": "17:30",
+   "theme": "encre",
+   "fond": "bandes",
+   "offre": "V",
+   "metier": "couvreurs",
+   "hook_type": "contre-intuitif",
+   "reseaux": [
+    "tiktok",
+    "facebook"
+   ],
+   "titre": "Couvreurs : votre site est beau, mais l'IA ne le lit pas",
+   "source": "Conseil KORVEX (démonstration illustrative, sans chiffre)",
+   "scenes": [
+    {
+     "type": "hook",
+     "label": "Couvreurs",
+     "objet": "maison",
+     "titre": "Votre site est beau.\n*L'IA ne le lit pas.*",
+     "taille": 120,
+     "voix": "Couvreurs, votre site est peut-être beau. Mais quand un client demande un couvreur à l'IA, elle ne le lit pas forcément."
+    },
+    {
+     "type": "avantapres",
+     "label_avant": "Site vitrine classique",
+     "label_apres": "Site lu par l'IA",
+     "avant": [
+      "Belles photos, peu de texte",
+      "Zone d'intervention floue",
+      "Services dans une image"
+     ],
+     "apres": [
+      "Services écrits clairement",
+      "Communes listées",
+      "Questions fréquentes répondues"
+     ],
+     "voix": "L'IA a besoin de texte clair : vos services, vos communes, vos délais, les questions que posent vos clients. Pas seulement de belles photos."
+    },
+    {
+     "type": "texte",
+     "objet": "loupe",
+     "label": "Résultat",
+     "titre": "Le couvreur\n*qu'elle recommande.*",
+     "voix": "C'est ce qui donne à l'IA de quoi vous recommander, plutôt que celui d'à côté."
+    }
+   ],
+   "legende": "Couvreurs : votre site est beau, mais l'IA le lit-elle quand un client cherche un couvreur ?\nUn site nouvelle génération : services, communes et réponses écrits pour Google et pour l'IA.\nCommentez SITE : on teste le vôtre.",
+   "hashtags": {
+    "tiktok": [
+     "#couvreur",
+     "#artisanbtp",
+     "#siteweb",
+     "#entrepreneur"
+    ],
+    "facebook": [
+     "#couvreur",
+     "#siteweb"
+    ],
+    "instagram": [],
+    "linkedin": []
+   }
+  },
+  {
+   "id": "06-commerce-avis",
+   "serie": "Le conseil KORVEX",
+   "creneau": "19:30",
+   "theme": "papier",
+   "fond": "grille",
+   "offre": "L",
+   "metier": "commerces de proximité",
+   "hook_type": "metier",
+   "reseaux": [
+    "instagram",
+    "facebook",
+    "tiktok"
+   ],
+   "titre": "Commerçants : vos meilleurs clients ne laissent pas d'avis",
+   "source": "Conseil KORVEX (sans chiffre)",
+   "scenes": [
+    {
+     "type": "hook",
+     "label": "Commerçants",
+     "objet": "etoile",
+     "titre": "Vos clients ravis\n*ne laissent\npas d'avis.*",
+     "taille": 124,
+     "voix": "Commerçants, vos clients ravis ne laissent presque jamais d'avis. Les mécontents, eux, n'oublient pas. Alors demandez."
+    },
+    {
+     "type": "avantapres",
+     "label_avant": "Avis au hasard",
+     "label_apres": "Avis demandés",
+     "avant": [
+      "Seuls les mécontents écrivent",
+      "Pas de lien à donner",
+      "Avis sans réponse"
+     ],
+     "apres": [
+      "Un QR code au comptoir",
+      "Le lien envoyé après l'achat",
+      "Une réponse à chaque avis"
+     ],
+     "voix": "Un QR code au comptoir, le lien direct envoyé par message après l'achat, et une réponse à chaque avis, même aux mauvais."
+    },
+    {
+     "type": "objet",
+     "objet": "epingle",
+     "autour": [
+      "etoile",
+      "telephone",
+      "bulle"
+     ],
+     "label": "Résultat",
+     "titre": "La boutique\n*qu'on trouve en premier.*",
+     "voix": "C'est comme ça qu'on devient la boutique qu'on trouve en premier dans sa ville."
+    }
+   ],
+   "legende": "Commerçants : vos clients ravis ne laissent pas d'avis Google si vous ne les demandez pas.\nQR code au comptoir, lien direct après l'achat, réponse à chaque avis : on peut l'automatiser.\nCommentez VILLE : on regarde votre fiche.",
+   "hashtags": {
+    "instagram": [
+     "#commercant",
+     "#avisgoogle",
+     "#referencementlocal",
+     "#tpe",
+     "#dijon"
+    ],
+    "tiktok": [
+     "#commercant",
+     "#avisgoogle",
+     "#referencementlocal",
+     "#tpe"
+    ],
+    "facebook": [
+     "#commercant",
+     "#dijon"
+    ],
+    "linkedin": []
+   }
+  }
+ ]
+}
