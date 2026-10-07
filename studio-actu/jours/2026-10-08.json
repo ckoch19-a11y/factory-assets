@@ -1,0 +1,356 @@
+{
+ "date": "2026-10-08",
+ "date_courte": "08.10.26",
+ "videos": [
+  {
+   "id": "01-industrie-ia-payante",
+   "serie": "Le chiffre",
+   "creneau": "07:45",
+   "theme": "papier",
+   "fond": "lignes",
+   "offre": "A",
+   "metier": "PME industrielles",
+   "hook_type": "chiffre",
+   "reseaux": [
+    "linkedin",
+    "tiktok"
+   ],
+   "titre": "Industriels : l'IA, beaucoup l'essaient, peu la paient",
+   "source": "Baromètre France Num 2026, 9 000 entreprises — economie.gouv.fr, 28/09/2026 (https://www.economie.gouv.fr/node/3242215)",
+   "scenes": [
+    {
+     "type": "chiffre",
+     "objet": "graphique",
+     "label": "Petites entreprises et IA · France Num 2026",
+     "valeur": "19 %",
+     "taille": 330,
+     "legende": "paient un outil d'IA.\n*Les autres font sans,\nou au gratuit.*",
+     "voix": "19 %. C'est la part des petites entreprises qui paient un outil d'IA. Pourtant, 40 % l'utilisent."
+    },
+    {
+     "type": "kpis",
+     "label": "Baromètre France Num · 2026",
+     "kpis": [
+      {
+       "valeur": "53 %",
+       "label": "des PME utilisent l'IA"
+      },
+      {
+       "valeur": "32 %",
+       "label": "des PME paient un outil"
+      }
+     ],
+     "voix": "Dans les entreprises un peu plus grandes, c'est 53 % d'utilisateurs, mais seulement 32 % qui paient un outil."
+    },
+    {
+     "type": "objet",
+     "objet": "agent",
+     "autour": [
+      "facture",
+      "enveloppe",
+      "calendrier",
+      "check"
+     ],
+     "label": "Industriels",
+     "titre": "Un assistant\n*taillé pour votre atelier.*",
+     "voix": "Industriels : dans votre atelier, un agent sur mesure prépare les devis, relance les commandes et trie les mails fournisseurs. Vous validez, il exécute."
+    }
+   ],
+   "legende": "Industriels : 53 % des PME, tous secteurs, utilisent l'IA, mais seulement 32 % paient un outil (Baromètre France Num, 28/09/2026).\nUn agent IA sur mesure : devis, relances de commandes, tri des mails fournisseurs, avec votre validation.\nCommentez AGENT avec votre métier.",
+   "hashtags": {
+    "linkedin": [
+     "#industrie",
+     "#agentia",
+     "#dirigeantpme"
+    ],
+    "tiktok": [
+     "#industrie",
+     "#agentia",
+     "#automatisation",
+     "#dirigeantpme"
+    ],
+    "instagram": [],
+    "facebook": []
+   }
+  },
+  {
+   "id": "02-macon-retard-paiement",
+   "serie": "Le chiffre",
+   "creneau": "10:30",
+   "theme": "encre",
+   "fond": "points",
+   "offre": "B",
+   "metier": "artisans du bâtiment",
+   "hook_type": "perte",
+   "reseaux": [
+    "tiktok"
+   ],
+   "titre": "Maçons : la moitié des entreprises paient en retard",
+   "source": "Étude Altares, 1er semestre 2026 — blog Tiime, 22/09/2026 (https://blog.tiime.fr/retards-de-paiement-auto-entrepreneurs-tpe-pme-2026)",
+   "scenes": [
+    {
+     "type": "hook",
+     "label": "Maçons, couvreurs",
+     "objet": "euro",
+     "titre": "Le chantier est fini.\n*Le virement,\npas encore.*",
+     "taille": 118,
+     "voix": "Maçons, le chantier est terminé, la situation de travaux est envoyée. Mais le virement n'arrive pas, et vos fournisseurs, eux, veulent être payés tout de suite."
+    },
+    {
+     "type": "kpis",
+     "label": "Altares · 1er semestre 2026",
+     "kpis": [
+      {
+       "valeur": "12,3 j",
+       "label": "de retard moyen"
+      },
+      {
+       "valeur": "49,7 %",
+       "label": "des entreprises paient à l'heure"
+      }
+     ],
+     "voix": "En moyenne, plus de 12 jours de retard au premier semestre 2026. Et à peine une entreprise sur deux paie dans les délais."
+    },
+    {
+     "type": "texte",
+     "objet": "cloche",
+     "label": "La parade",
+     "titre": "Relancer\n*le jour même,\nsans y penser.*",
+     "taille": 110,
+     "voix": "Un back-office qui relance chaque facture à l'échéance, le jour même, pendant que vous êtes sur le chantier."
+    }
+   ],
+   "legende": "Maçons et couvreurs : 12,3 jours de retard de paiement en moyenne, et à peine une entreprise sur deux paie à l'heure (Altares, 1er semestre 2026).\nUn back-office qui relance chaque facture à l'échéance, sans que vous y pensiez.\nCommentez RELANCE.",
+   "hashtags": {
+    "tiktok": [
+     "#artisanbtp",
+     "#impayes",
+     "#tresorerie",
+     "#entrepreneur"
+    ],
+    "instagram": [],
+    "linkedin": [],
+    "facebook": []
+   }
+  },
+  {
+   "id": "03-garage-revisions",
+   "serie": "L'agent du métier",
+   "creneau": "12:30",
+   "theme": "sable",
+   "fond": "halo",
+   "offre": "A",
+   "metier": "garages",
+   "hook_type": "question",
+   "reseaux": [
+    "instagram",
+    "facebook",
+    "tiktok"
+   ],
+   "titre": "Garagistes : qui prévient vos clients de leur révision ?",
+   "source": "KORVEX — cas d'usage type (illustratif)",
+   "scenes": [
+    {
+     "type": "hook",
+     "label": "Garagistes",
+     "objet": "voiture",
+     "titre": "Qui prévient\nvos clients\n*de leur révision ?*",
+     "taille": 124,
+     "voix": "Garagistes, qui prévient vos clients que leur révision approche ? Personne ? Alors ils vont chez celui qui les a appelés."
+    },
+    {
+     "type": "notifs",
+     "heure": "07:12",
+     "label": "Jeudi",
+     "notifs": [
+      {
+       "app": "Agent du garage",
+       "heure": "06:58",
+       "titre": "Rappel envoyé : révision à prévoir",
+       "texte": "Client de mars dernier, kilométrage estimé"
+      },
+      {
+       "app": "Agent du garage",
+       "heure": "07:04",
+       "titre": "RDV proposé : mardi 8 h 30",
+       "texte": "Créneau libre de votre planning"
+      },
+      {
+       "app": "Agent du garage",
+       "heure": "07:10",
+       "titre": "RDV confirmé : vidange + filtres",
+       "texte": "Ajouté à l'agenda de l'atelier"
+      }
+     ],
+     "voix": "Un agent sur mesure repère les révisions à venir, prévient le client, et propose un créneau libre de votre planning."
+    },
+    {
+     "type": "objet",
+     "objet": "calendrier",
+     "autour": [
+      "cle",
+      "telephone",
+      "check"
+     ],
+     "label": "Résultat",
+     "titre": "Un planning\n*sans trous.*",
+     "voix": "Vos clients reviennent au bon moment, et votre atelier tourne sans trous dans le planning."
+    }
+   ],
+   "legende": "Garagistes : qui prévient vos clients que leur révision approche ? Sans rappel, ils vont ailleurs.\nUn agent IA sur mesure repère les révisions, prévient le client et remplit les trous du planning.\nCommentez AGENT avec votre métier.",
+   "hashtags": {
+    "instagram": [
+     "#garagiste",
+     "#entrepreneur",
+     "#agentia",
+     "#automatisation",
+     "#dijon"
+    ],
+    "tiktok": [
+     "#garagiste",
+     "#garageauto",
+     "#agentia",
+     "#entrepreneur"
+    ],
+    "facebook": [
+     "#garagiste",
+     "#agentia"
+    ],
+    "linkedin": []
+   }
+  },
+  {
+   "id": "04-immo-efactures-recues",
+   "serie": "Avant / après",
+   "creneau": "17:30",
+   "theme": "ardoise",
+   "fond": "grille",
+   "offre": "B",
+   "metier": "agents immobiliers",
+   "hook_type": "contre-intuitif",
+   "reseaux": [
+    "tiktok",
+    "facebook"
+   ],
+   "titre": "Agents immobiliers : vous recevez déjà des factures électroniques",
+   "source": "Weblex, « Facturation électronique : la réforme entre en vigueur ce 1er septembre 2026 », 01/09/2026 (https://www.weblex.fr/articles/facturation-electronique-la-reforme-entre-en-vigueur-ce-1er-septembre-2026)",
+   "scenes": [
+    {
+     "type": "hook",
+     "label": "Agents immobiliers",
+     "objet": "facture",
+     "titre": "2027 ?\n*Non : c'est\ndéjà commencé.*",
+     "taille": 126,
+     "voix": "Agents immobiliers, vous pensez que la facture électronique, c'est pour 2027 ? Depuis le 1er septembre 2026, toute entreprise soumise à la TVA doit pouvoir en recevoir."
+    },
+    {
+     "type": "avantapres",
+     "label_avant": "Aujourd'hui",
+     "label_apres": "Avec un back-office",
+     "avant": [
+      "Factures reçues par mail",
+      "Classées à la main",
+      "Émission en PDF"
+     ],
+     "apres": [
+      "Réception centralisée",
+      "Rapprochées des mandats",
+      "Émission prête pour 2027"
+     ],
+     "voix": "Pour une agence, c'est le moment de tout centraliser : factures reçues, honoraires, et une émission prête pour septembre 2027."
+    },
+    {
+     "type": "texte",
+     "objet": "calendrier",
+     "label": "Septembre 2027",
+     "titre": "L'émission arrive.\n*Prenez de l'avance.*",
+     "taille": 110,
+     "voix": "L'obligation d'émettre arrive le 1er septembre 2027. Mieux vaut s'y préparer pendant que c'est calme."
+    }
+   ],
+   "legende": "Agents immobiliers : depuis le 1er septembre 2026, toutes les entreprises soumises à la TVA doivent pouvoir recevoir des factures électroniques. L'émission suit au 1er septembre 2027.\nUn back-office qui centralise factures reçues et honoraires, prêt pour 2027.\nCommentez 2027 : on vous dit où vous en êtes.",
+   "hashtags": {
+    "tiktok": [
+     "#agentimmobilier",
+     "#factureelectronique",
+     "#gestionentreprise",
+     "#tpe"
+    ],
+    "facebook": [
+     "#agentimmobilier",
+     "#factureelectronique"
+    ],
+    "instagram": [],
+    "linkedin": []
+   }
+  },
+  {
+   "id": "05-chauffagiste-ia",
+   "serie": "Le conseil KORVEX",
+   "creneau": "19:30",
+   "theme": "papier",
+   "fond": "bandes",
+   "offre": "V",
+   "metier": "chauffagistes",
+   "hook_type": "metier",
+   "reseaux": [
+    "instagram",
+    "facebook",
+    "tiktok"
+   ],
+   "titre": "Chauffagistes : l'IA vous cite-t-elle pour une chaudière en panne ?",
+   "source": "Démonstration illustrative (réponse générique, aucune entreprise réelle)",
+   "scenes": [
+    {
+     "type": "hook",
+     "label": "Chauffagistes",
+     "objet": "loupe",
+     "titre": "Chauffagistes :\nl'IA vous cite\n*quand il fait froid ?*",
+     "taille": 120,
+     "voix": "Chauffagistes, les premiers froids arrivent. Quand un client demande à l'IA qui peut réparer sa chaudière, est-ce votre nom qui sort ?"
+    },
+    {
+     "type": "recherche",
+     "label": "Assistant IA",
+     "question": "Un chauffagiste à Beaune pour une chaudière en panne cette semaine ?",
+     "reponse": "Je vous recommande **un chauffagiste de Beaune** : zone d'intervention claire, délais affichés, avis récents.",
+     "cite": "Source : son site",
+     "voix": "L'IA cite l'artisan dont le site dit clairement sa zone, ses délais et ses spécialités. Pas forcément le meilleur."
+    },
+    {
+     "type": "objet",
+     "objet": "globe",
+     "autour": [
+      "epingle",
+      "cle",
+      "horloge"
+     ],
+     "label": "3 infos à écrire",
+     "titre": "Zone, marques, délais :\n*écrivez-les sur votre site.*",
+     "voix": "3 infos suffisent pour commencer : votre zone d'intervention, les marques que vous réparez, et vos délais de dépannage."
+    }
+   ],
+   "legende": "Chauffagistes : quand un client demande à l'IA qui peut réparer sa chaudière, êtes-vous cité ?\nUn site nouvelle génération que Google classe et que l'IA comprend : zone, marques, délais.\nCommentez SITE : on teste le vôtre.",
+   "hashtags": {
+    "instagram": [
+     "#chauffagiste",
+     "#entrepreneur",
+     "#siteweb",
+     "#referencement",
+     "#beaune"
+    ],
+    "tiktok": [
+     "#chauffagiste",
+     "#siteweb",
+     "#beaune",
+     "#entrepreneur"
+    ],
+    "facebook": [
+     "#chauffagiste",
+     "#siteweb"
+    ],
+    "linkedin": []
+   }
+  }
+ ]
+}
