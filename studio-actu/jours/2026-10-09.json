@@ -1,0 +1,361 @@
+{
+ "date": "2026-10-09",
+ "date_courte": "09.10.26",
+ "videos": [
+  {
+   "id": "01-restaurant-whatsapp",
+   "serie": "L'actu",
+   "creneau": "07:45",
+   "theme": "papier",
+   "fond": "halo",
+   "offre": "L",
+   "metier": "restaurateurs",
+   "hook_type": "metier",
+   "reseaux": [
+    "linkedin",
+    "tiktok"
+   ],
+   "titre": "Restaurateurs : Google teste un bouton WhatsApp sur les fiches d'établissement",
+   "source": "Bouton WhatsApp dans le panneau local Google — Search Engine Roundtable, 07/10/2026 (https://www.seroundtable.com/google-local-panel-whatsapp-button-42230.html) ; aucun pays précisé, déploiement non confirmé",
+   "scenes": [
+    {
+     "type": "hook",
+     "label": "Restaurateurs",
+     "objet": "telephone",
+     "titre": "Restaurateurs :\nGoogle teste\n*WhatsApp sur votre fiche.*",
+     "taille": 118,
+     "voix": "Restaurateurs, Google affiche un bouton WhatsApp sur certaines fiches d'établissement, à la place ou à côté des boutons appeler et itinéraire. Vos clients peuvent vous écrire directement."
+    },
+    {
+     "type": "avantapres",
+     "label_avant": "Fiche négligée",
+     "label_apres": "Fiche suivie",
+     "avant": [
+      "Pas de numéro WhatsApp",
+      "Horaires périmés",
+      "Messages sans réponse"
+     ],
+     "apres": [
+      "Numéro WhatsApp relié",
+      "Horaires à jour",
+      "Réponse rapide"
+     ],
+     "voix": "Vérifiez 3 choses : un numéro WhatsApp relié à votre établissement, des horaires à jour, et quelqu'un qui répond vite."
+    },
+    {
+     "type": "objet",
+     "objet": "epingle",
+     "autour": [
+      "bulle",
+      "telephone",
+      "etoile",
+      "check"
+     ],
+     "label": "Fiche Google",
+     "titre": "Une fiche complète,\n*des clients qui écrivent.*",
+     "voix": "Un message sans réponse, c'est une table vide. Une fiche complète et suivie vous donne toutes vos chances."
+    }
+   ],
+   "legende": "Restaurateurs : Google teste un bouton WhatsApp sur certaines fiches d'établissement, déploiement non confirmé (Search Engine Roundtable, 07/10/2026).\nNuméro relié, horaires à jour, réponse rapide : votre fiche Google doit être prête.\nCommentez VILLE.",
+   "hashtags": {
+    "linkedin": [
+     "#restaurateur",
+     "#referencementlocal",
+     "#dirigeantpme"
+    ],
+    "tiktok": [
+     "#restaurateur",
+     "#referencementlocal",
+     "#fichegoogle",
+     "#tpe"
+    ],
+    "instagram": [],
+    "facebook": []
+   }
+  },
+  {
+   "id": "02-electricien-tresorerie",
+   "serie": "Le chiffre",
+   "creneau": "10:30",
+   "theme": "encre",
+   "fond": "lignes",
+   "offre": "B",
+   "metier": "électriciens",
+   "hook_type": "chiffre",
+   "reseaux": [
+    "tiktok"
+   ],
+   "titre": "Électriciens : 66 % des indépendants interrogés par le SDI voient leur trésorerie baisser",
+   "source": "Baromètre des TPE T3 2026 du SDI, 1 378 adhérents volontaires (non représentatif), enquête du 21 au 27/09/2026 — TPE Actu, 07/10/2026 (https://tpeactu.fr/2026/10/07/barometre-sdi-tpe-tresorerie-cessation-2026/)",
+   "scenes": [
+    {
+     "type": "chiffre",
+     "objet": "graphique",
+     "label": "Électriciens · Baromètre SDI, sept. 2026",
+     "valeur": "66 %",
+     "taille": 330,
+     "legende": "des 1 378 indépendants interrogés :\n*trésorerie en baisse.*",
+     "voix": "Électriciens, 66 %. C'est la part des 1 378 indépendants interrogés par le SDI, tous métiers confondus, qui voient leur trésorerie baisser."
+    },
+    {
+     "type": "kpis",
+     "label": "1 378 adhérents du SDI · sept. 2026",
+     "kpis": [
+      {
+       "valeur": "55 %",
+       "label": "en difficulté de trésorerie"
+      },
+      {
+       "valeur": "29 %",
+       "label": "envisagent d'arrêter"
+      }
+     ],
+     "voix": "55 % disent avoir des difficultés de trésorerie. Et 29 % envisagent d'arrêter leur activité."
+    },
+    {
+     "type": "objet",
+     "objet": "facture",
+     "autour": [
+      "cloche",
+      "calendrier",
+      "euro",
+      "check"
+     ],
+     "label": "Avec un back-office",
+     "titre": "Chaque facture relancée,\n*vos impayés en vue.*",
+     "voix": "Un back-office relance chaque facture à son échéance et vous montre vos impayés d'un coup d'œil. Vous voyez venir, au lieu de subir."
+    }
+   ],
+   "legende": "Électriciens : 66 % des indépendants interrogés voient leur trésorerie baisser (Baromètre SDI, 3e trimestre 2026, 1 378 adhérents volontaires, tous métiers).\nUn back-office qui relance chaque facture à l'échéance et montre vos impayés d'un coup d'œil.\nCommentez RELANCE.",
+   "hashtags": {
+    "tiktok": [
+     "#electricien",
+     "#tresorerie",
+     "#impayes",
+     "#entrepreneur"
+    ],
+    "instagram": [],
+    "linkedin": [],
+    "facebook": []
+   }
+  },
+  {
+   "id": "03-plombier-agent-soir",
+   "serie": "L'agent du métier",
+   "creneau": "12:30",
+   "theme": "sable",
+   "fond": "grille",
+   "offre": "A",
+   "metier": "plombiers",
+   "hook_type": "question",
+   "reseaux": [
+    "instagram",
+    "facebook",
+    "tiktok"
+   ],
+   "titre": "Plombiers : qui répond aux urgences pendant le chantier ?",
+   "source": "Cas d'usage type (illustratif), sans chiffre",
+   "scenes": [
+    {
+     "type": "hook",
+     "label": "Plombiers",
+     "objet": "cle",
+     "titre": "Plombiers,\nmains dans l'évier :\n*qui décroche ?*",
+     "taille": 118,
+     "voix": "Plombiers, vous avez les mains dans un chantier. Le téléphone sonne : une fuite, un devis, un client qui attend. Qui répond ?"
+    },
+    {
+     "type": "notifs",
+     "heure": "19:12",
+     "label": "Vendredi",
+     "notifs": [
+      {
+       "app": "Agent de la plomberie",
+       "heure": "17:46",
+       "titre": "Urgence notée : fuite sous évier",
+       "texte": "Adresse et photos reçues, à rappeler"
+      },
+      {
+       "app": "Agent de la plomberie",
+       "heure": "18:20",
+       "titre": "Devis préparé : chauffe-eau 200 L",
+       "texte": "Selon votre grille, à valider"
+      },
+      {
+       "app": "Agent de la plomberie",
+       "heure": "19:05",
+       "titre": "RDV proposé : mardi 8 h",
+       "texte": "Client prévenu par SMS"
+      }
+     ],
+     "voix": "Un agent IA sur mesure note les urgences, prépare les devis selon votre grille et propose les rendez-vous. Le soir, vous validez."
+    },
+    {
+     "type": "objet",
+     "objet": "agent",
+     "autour": [
+      "telephone",
+      "calendrier",
+      "facture",
+      "check"
+     ],
+     "label": "La parade",
+     "titre": "Un agent qui\n*note chaque demande.*",
+     "voix": "Vous restez sur le chantier. Chaque demande est notée, et vous rappelez le bon client au bon moment."
+    }
+   ],
+   "legende": "Plombiers : qui répond aux urgences et aux devis quand vous êtes sur un chantier ?\nUn agent IA sur mesure note les demandes, prépare les devis selon votre grille et propose les rendez-vous. Vous validez.\nCommentez AGENT avec votre métier.",
+   "hashtags": {
+    "instagram": [
+     "#plombier",
+     "#agentia",
+     "#artisanbtp",
+     "#tpe",
+     "#bourgogne"
+    ],
+    "tiktok": [
+     "#plombier",
+     "#agentia",
+     "#artisanbtp",
+     "#dirigeantpme"
+    ],
+    "facebook": [
+     "#plombier",
+     "#agentia"
+    ],
+    "linkedin": []
+   }
+  },
+  {
+   "id": "04-menuisier-40-euros",
+   "serie": "Avant / après",
+   "creneau": "17:30",
+   "theme": "ardoise",
+   "fond": "points",
+   "offre": "B",
+   "metier": "menuisiers",
+   "hook_type": "perte",
+   "reseaux": [
+    "tiktok",
+    "facebook"
+   ],
+   "titre": "Menuisiers : 40 € par facture payée en retard, que vous pouvez réclamer",
+   "source": "Code de commerce L441-10 et D441-5 (indemnité 40 €, délai max 60 jours date de facture) — Kohen Avocats, 08/10/2026 (https://kohenavocats.fr/2026/10/08/delais-paiement-interentreprises-facture-impayee-penalites-40-euros-dgccrf-2026/)",
+   "scenes": [
+    {
+     "type": "hook",
+     "label": "Menuisiers",
+     "objet": "facture",
+     "titre": "Payé à 90 jours ?\n*La loi dit 60.*",
+     "taille": 118,
+     "voix": "Menuisiers, un client professionnel vous impose 90 jours de paiement ? La loi plafonne à 60 jours après la date de facture."
+    },
+    {
+     "type": "chiffre",
+     "objet": "euro",
+     "label": "Code de commerce · L441-10",
+     "valeur": "40 €",
+     "taille": 330,
+     "legende": "par facture payée en retard,\n*en plus des pénalités.*",
+     "voix": "Et pour chaque facture payée en retard par un professionnel, vous pouvez réclamer 40 € d'indemnité, en plus des pénalités."
+    },
+    {
+     "type": "avantapres",
+     "label_avant": "Aujourd'hui",
+     "label_apres": "Avec un back-office",
+     "avant": [
+      "Retards subis sans rien dire",
+      "Pénalités jamais calculées",
+      "Relances oubliées"
+     ],
+     "apres": [
+      "Échéance suivie facture par facture",
+      "Pénalités et 40 € calculés",
+      "Relance prête à envoyer"
+     ],
+     "voix": "Un back-office suit chaque échéance, calcule les pénalités et prépare la relance. Vous décidez de l'envoyer."
+    }
+   ],
+   "legende": "Menuisiers : 40 € d'indemnité par facture payée en retard par un professionnel, en plus des pénalités, et 60 jours maximum (Code de commerce, L441-10).\nUn back-office qui suit chaque échéance et prépare la relance.\nCommentez RELANCE.",
+   "hashtags": {
+    "tiktok": [
+     "#menuisier",
+     "#impayes",
+     "#tresorerie",
+     "#artisanbtp",
+     "#tpe"
+    ],
+    "facebook": [
+     "#menuisier",
+     "#impayes"
+    ],
+    "instagram": [],
+    "linkedin": []
+   }
+  },
+  {
+   "id": "05-coiffeur-prix-fiche",
+   "serie": "Le conseil KORVEX",
+   "creneau": "19:30",
+   "theme": "papier",
+   "fond": "bandes",
+   "offre": "V",
+   "metier": "coiffeurs",
+   "hook_type": "contre-intuitif",
+   "reseaux": [
+    "instagram",
+    "facebook",
+    "tiktok"
+   ],
+   "titre": "Coiffeurs : prix et promos interdits dans le contenu promotionnel de votre fiche Google",
+   "source": "Mise à jour des règles Google Maps / fiches d'établissement — Search Engine Roundtable, 06/10/2026 (https://www.seroundtable.com/google-maps-policy-listings-or-posts-42228.html)",
+   "scenes": [
+    {
+     "type": "hook",
+     "label": "Coiffeurs",
+     "objet": "loupe",
+     "titre": "Coiffeurs :\nvos promos\n*réservées aux posts Google.*",
+     "taille": 118,
+     "voix": "Coiffeurs, les règles de Google interdisent, dans la fiche d'établissement, le contenu promotionnel avec prix ou promotions limitées dans le temps. Vos offres, elles, restent permises dans les posts."
+    },
+    {
+     "type": "recherche",
+     "label": "Assistant IA",
+     "question": "Combien coûte une coupe femme dans un salon près de chez moi ?",
+     "reponse": "D'après **le site d'un salon du centre-ville** : coupe, brushing et tarifs détaillés par prestation.",
+     "cite": "Source : son site",
+     "voix": "Alors, où l'IA trouve-t-elle vos tarifs ? Sur votre site. Si vos prestations et vos prix n'y sont pas, elle risque d'en citer un autre."
+    },
+    {
+     "type": "texte",
+     "objet": "ecran",
+     "label": "Le conseil",
+     "titre": "Vos tarifs\n*sur votre site,\nlisibles par l'IA.*",
+     "taille": 110,
+     "voix": "Le conseil : une page claire avec chaque prestation et son prix, que Google et les assistants IA savent lire."
+    }
+   ],
+   "legende": "Coiffeurs : les règles Google interdisent le contenu promotionnel avec prix ou promos limitées dans le temps dans la fiche d'établissement ; les offres restent permises dans les posts (Search Engine Roundtable, 06/10/2026).\nVos tarifs ont leur place sur votre site, sur une page que Google et les IA savent lire.\nCommentez SITE : on teste le vôtre.",
+   "hashtags": {
+    "instagram": [
+     "#coiffeur",
+     "#siteweb",
+     "#referencement",
+     "#entrepreneur",
+     "#dijon"
+    ],
+    "tiktok": [
+     "#coiffeur",
+     "#siteweb",
+     "#visibiliteweb",
+     "#tpe"
+    ],
+    "facebook": [
+     "#coiffeur",
+     "#siteweb"
+    ],
+    "linkedin": []
+   }
+  }
+ ]
+}
