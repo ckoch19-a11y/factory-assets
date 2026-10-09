@@ -1,0 +1,343 @@
+{
+ "date": "2026-10-10",
+ "date_courte": "10.10.26",
+ "videos": [
+  {
+   "id": "01-comptable-20-millions",
+   "serie": "Le chiffre",
+   "creneau": "10:30",
+   "theme": "encre",
+   "fond": "points",
+   "offre": "B",
+   "metier": "cabinets comptables",
+   "hook_type": "chiffre",
+   "reseaux": [
+    "tiktok"
+   ],
+   "titre": "Experts-comptables : 20 millions d'e-factures déjà échangées",
+   "source": "L'Appel, 09/10/2026 (https://www.lappelfrance.fr/2026/10/09/facture-electronique-letat-salue-le-demarrage-les-pme-redoutent-2027/) : selon le ministère de l'Action et des Comptes publics, plus de 20 millions de factures électroniques échangées au 04/10/2026 et 3 entreprises assujetties à la TVA sur 4 avec une plateforme agréée ; dès 2027, 50 € par facture non émise en électronique, plafond 15 000 €/an ; baromètre Ipsos BVA pour Kolecto, 503 dirigeants, 01-18/09/2026 : 44 % n'ont pas vraiment testé",
+   "scenes": [
+    {
+     "type": "chiffre",
+     "objet": "facture",
+     "label": "Experts-comptables · facture électronique",
+     "valeur": "20 M",
+     "taille": 300,
+     "legende": "de factures électroniques\n*déjà échangées.*",
+     "voix": "Plus de 20 millions de factures électroniques déjà échangées en France au 4 octobre. Experts-comptables, la réforme a bel et bien démarré chez vos clients."
+    },
+    {
+     "type": "kpis",
+     "label": "Facture électronique · octobre 2026",
+     "kpis": [
+      {
+       "valeur": "3 sur 4",
+       "label": "entreprises ont choisi leur plateforme"
+      },
+      {
+       "valeur": "44 %",
+       "label": "des dirigeants interrogés n'ont pas vraiment testé"
+      },
+      {
+       "valeur": "50 €",
+       "label": "d'amende par facture non électronique dès 2027"
+      }
+     ],
+     "voix": "3 entreprises sur 4 ont choisi leur plateforme. Mais 44 % des dirigeants interrogés n'ont pas vraiment testé. Et dès 2027, c'est 50 euros d'amende par facture non électronique."
+    },
+    {
+     "type": "texte",
+     "objet": "calendrier",
+     "label": "Le bon réflexe",
+     "titre": "Tester la réception\n*dès maintenant.*",
+     "taille": 110,
+     "voix": "Le bon réflexe : faire tester la réception par vos clients maintenant, et préparer l'émission avec un back-office prêt pour 2027."
+    }
+   ],
+   "legende": "Experts-comptables : plus de 20 millions de factures électroniques déjà échangées, mais 44 % des dirigeants interrogés n'ont pas vraiment testé (Ipsos BVA / Kolecto).\nUn back-office qui prépare vos factures, les transmet via votre plateforme agréée et les range, prêt pour 2027.\nCommentez 2027 : on vous dit où vous en êtes.",
+   "hashtags": {
+    "tiktok": [
+     "#expertcomptable",
+     "#factureelectronique",
+     "#tpe",
+     "#gestionentreprise"
+    ],
+    "instagram": [],
+    "linkedin": [],
+    "facebook": []
+   }
+  },
+  {
+   "id": "02-kine-agent-seance",
+   "serie": "L'agent du métier",
+   "creneau": "12:30",
+   "theme": "sable",
+   "fond": "halo",
+   "offre": "A",
+   "metier": "cabinets paramédicaux (kinés)",
+   "hook_type": "question",
+   "reseaux": [
+    "instagram",
+    "facebook",
+    "tiktok"
+   ],
+   "titre": "Kinés : qui décroche pendant vos séances ?",
+   "source": "Cas d'usage type (illustratif), sans chiffre ; aucune donnée de santé traitée",
+   "scenes": [
+    {
+     "type": "hook",
+     "label": "Kinésithérapeutes",
+     "objet": "telephone",
+     "titre": "Kinés, en pleine séance :\n*qui décroche ?*",
+     "taille": 118,
+     "voix": "Kinés, vous êtes en pleine séance. Le téléphone sonne : un nouveau patient, un rendez-vous à déplacer. Qui décroche ?"
+    },
+    {
+     "type": "notifs",
+     "heure": "18:42",
+     "label": "Mardi",
+     "notifs": [
+      {
+       "app": "Agent du cabinet",
+       "heure": "10:12",
+       "titre": "Nouveau rendez-vous : jeudi 18 h",
+       "texte": "Créneau libre proposé, confirmé par SMS"
+      },
+      {
+       "app": "Agent du cabinet",
+       "heure": "11:05",
+       "titre": "Rendez-vous déplacé : lundi 9 h",
+       "texte": "Ancien créneau proposé à la liste d'attente"
+      },
+      {
+       "app": "Agent du cabinet",
+       "heure": "18:30",
+       "titre": "Rappels envoyés pour demain",
+       "texte": "Patients prévenus par SMS"
+      }
+     ],
+     "voix": "Un agent IA sur mesure répond aux appels, propose les créneaux libres et envoie les rappels. Il ne demande jamais le motif ni les symptômes."
+    },
+    {
+     "type": "objet",
+     "objet": "agent",
+     "autour": [
+      "calendrier",
+      "telephone",
+      "cloche",
+      "check"
+     ],
+     "label": "La parade",
+     "titre": "Vous soignez.\n*L'agent gère l'agenda.*",
+     "voix": "Vous restez avec votre patient. L'agenda se remplit, et les créneaux libérés trouvent preneur."
+    }
+   ],
+   "legende": "Kinés : qui répond au téléphone quand vous êtes en pleine séance ?\nUn agent IA sur mesure répond, propose les créneaux libres et envoie les rappels, sans jamais demander le motif ni les symptômes.\nCommentez AGENT avec votre métier.",
+   "hashtags": {
+    "instagram": [
+     "#kinesitherapeute",
+     "#agentia",
+     "#automatisation",
+     "#tpe",
+     "#dijon"
+    ],
+    "tiktok": [
+     "#kine",
+     "#agentia",
+     "#automatisation",
+     "#entrepreneur"
+    ],
+    "facebook": [
+     "#kinesitherapeute",
+     "#agentia"
+    ],
+    "linkedin": []
+   }
+  },
+  {
+   "id": "03-transporteur-relances",
+   "serie": "Avant / après",
+   "creneau": "17:30",
+   "theme": "ardoise",
+   "fond": "grille",
+   "offre": "A",
+   "metier": "transporteurs",
+   "hook_type": "perte",
+   "reseaux": [
+    "tiktok"
+   ],
+   "titre": "Transporteurs : livré depuis des semaines, toujours pas payé",
+   "source": "Baromètre SDI des TPE, 3e trimestre 2026 (1 378 adhérents, 21-27/09/2026), via TPE Actu 07/10/2026",
+   "scenes": [
+    {
+     "type": "hook",
+     "label": "Transporteurs",
+     "objet": "euro",
+     "titre": "Livré depuis\ndes semaines.\n*Toujours pas payé.*",
+     "taille": 118,
+     "voix": "Transporteurs, la marchandise est livrée depuis des semaines. La facture, elle, attend toujours. Et c'est vous qui avancez le gasoil."
+    },
+    {
+     "type": "avantapres",
+     "label_avant": "Relances à la main",
+     "label_apres": "Avec un agent",
+     "avant": [
+      "Factures oubliées dans un tableur",
+      "Relance quand on y pense",
+      "Appel gêné au client"
+     ],
+     "apres": [
+      "Échéances suivies chaque jour",
+      "Relance polie au bon moment",
+      "Vous gardez les cas délicats"
+     ],
+     "voix": "Un agent IA sur mesure suit chaque échéance, envoie la relance au bon moment, avec le bon ton. Vous ne gardez que les cas délicats."
+    },
+    {
+     "type": "chiffre",
+     "objet": "graphique",
+     "label": "Trésorerie des TPE · 3e trimestre 2026",
+     "valeur": "55 %",
+     "taille": 300,
+     "legende": "des petites entreprises interrogées\n*en difficulté de trésorerie.*",
+     "voix": "Ce trimestre, 55 % des petites entreprises interrogées déclarent des difficultés de trésorerie. Chaque facture relancée à temps compte."
+    }
+   ],
+   "legende": "Transporteurs : la livraison est faite, la facture attend. 55 % des TPE interrogées par le SDI déclarent des difficultés de trésorerie (3e trimestre 2026).\nUn agent IA sur mesure suit les échéances et relance au bon moment, avec le bon ton.\nCommentez AGENT avec votre métier.",
+   "hashtags": {
+    "tiktok": [
+     "#transporteur",
+     "#impayes",
+     "#agentia",
+     "#dirigeantpme"
+    ],
+    "instagram": [],
+    "linkedin": [],
+    "facebook": []
+   }
+  },
+  {
+   "id": "04-immo-apercus-ia",
+   "serie": "Le conseil KORVEX",
+   "creneau": "19:30",
+   "theme": "papier",
+   "fond": "bandes",
+   "offre": "V",
+   "metier": "agents immobiliers",
+   "hook_type": "contre-intuitif",
+   "reseaux": [
+    "instagram",
+    "facebook",
+    "tiktok"
+   ],
+   "titre": "Agents immobiliers : Google répond avant votre site",
+   "source": "Aperçus IA de Google lancés en France le 22/07/2026 (The Media Leader, 08/10/2026) ; conseil KORVEX",
+   "scenes": [
+    {
+     "type": "hook",
+     "label": "Agents immobiliers",
+     "objet": "loupe",
+     "titre": "Google répond\n*avant votre site.*",
+     "taille": 124,
+     "voix": "Agents immobiliers : depuis juillet, sur beaucoup de recherches, Google affiche une réponse écrite par l'IA, au-dessus des liens. Votre site arrive après."
+    },
+    {
+     "type": "points",
+     "titre": "3 choses que l'IA reprend",
+     "points": [
+      "Vos secteurs et vos services, écrits clairement",
+      "Les vraies questions de vos vendeurs, avec réponses",
+      "Des avis récents, avec vos réponses"
+     ],
+     "voix": "Pour être repris, votre site doit dire clairement vos secteurs et vos services, répondre aux vraies questions de vos vendeurs, et montrer des avis récents."
+    },
+    {
+     "type": "objet",
+     "objet": "epingle",
+     "autour": [
+      "maison",
+      "etoile",
+      "bulle"
+     ],
+     "label": "Résultat",
+     "titre": "Le nom qu'on lit\n*dans la réponse.*",
+     "voix": "C'est ce qui donne à votre agence sa chance d'être le nom qu'on lit dans la réponse, pas 3 liens plus bas."
+    }
+   ],
+   "legende": "Agents immobiliers : depuis juillet, Google affiche souvent une réponse de l'IA avant votre site.\nUn site nouvelle génération que Google classe ET que l'IA comprend et cite.\nCommentez SITE : on teste le vôtre.",
+   "hashtags": {
+    "instagram": [
+     "#agentimmobilier",
+     "#siteweb",
+     "#referencement",
+     "#bourgogne",
+     "#entrepreneur"
+    ],
+    "tiktok": [
+     "#agentimmobilier",
+     "#siteweb",
+     "#referencement",
+     "#dirigeantpme"
+    ],
+    "facebook": [
+     "#agentimmobilier",
+     "#siteweb"
+    ],
+    "linkedin": []
+   }
+  },
+  {
+   "id": "05-garage-ia-samedi",
+   "serie": "Le test",
+   "creneau": "21:00",
+   "theme": "encre",
+   "fond": "lignes",
+   "offre": "V",
+   "metier": "garages",
+   "hook_type": "metier",
+   "reseaux": [
+    "tiktok"
+   ],
+   "titre": "Garagistes : l'IA connaît vos horaires du samedi ?",
+   "source": "Démonstration illustrative, réponse générique (aucune entreprise réelle)",
+   "scenes": [
+    {
+     "type": "hook",
+     "label": "Garagistes",
+     "objet": "voiture",
+     "titre": "Garagistes :\nl'IA connaît\n*vos horaires ?*",
+     "taille": 124,
+     "voix": "Garagistes : un samedi, un voyant s'allume. Votre futur client ne cherche plus seulement sur Google, il demande à l'IA. Elle connaît vos horaires ?"
+    },
+    {
+     "type": "recherche",
+     "label": "Assistant IA",
+     "question": "Un garage ouvert samedi près de Beaune pour un voyant moteur ?",
+     "reponse": "Je vous conseille **un garage qui affiche ses horaires du samedi** et le diagnostic sur rendez-vous, avec des avis récents.",
+     "cite": "Source : son site",
+     "voix": "L'IA s'appuie sur les sites qui disent clairement les horaires, les services et la zone. Sans ces infos, vous risquez de ne pas apparaître."
+    },
+    {
+     "type": "texte",
+     "objet": "horloge",
+     "label": "À vérifier ce soir",
+     "titre": "Horaires, services, ville :\n*écrits en clair.*",
+     "taille": 100,
+     "voix": "Ce soir, vérifiez une chose : vos horaires, vos services et votre ville sont-ils écrits en clair sur votre site ? Sinon, l'IA risque de citer le voisin."
+    }
+   ],
+   "legende": "Garagistes : le samedi, vos clients demandent à l'IA un garage ouvert. Êtes-vous cité ?\nUn site nouvelle génération que l'IA lit : horaires, services, ville, écrits en clair.\nCommentez SITE : on teste le vôtre.",
+   "hashtags": {
+    "tiktok": [
+     "#garagiste",
+     "#siteweb",
+     "#entrepreneur",
+     "#beaune"
+    ],
+    "instagram": [],
+    "linkedin": [],
+    "facebook": []
+   }
+  }
+ ]
+}
