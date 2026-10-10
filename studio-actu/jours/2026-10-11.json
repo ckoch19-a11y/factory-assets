@@ -1,0 +1,353 @@
+{
+ "date": "2026-10-11",
+ "date_courte": "11.10.26",
+ "videos": [
+  {
+   "id": "01-electricien-75-pourcent",
+   "serie": "Le chiffre",
+   "creneau": "10:30",
+   "theme": "encre",
+   "fond": "grille",
+   "offre": "B",
+   "metier": "électriciens",
+   "hook_type": "chiffre",
+   "reseaux": [
+    "tiktok"
+   ],
+   "titre": "Électriciens : 75 % des entreprises ont leur plateforme de facture électronique. Et vous ?",
+   "source": "TPE Actu, 10/10/2026 (https://tpeactu.fr/2026/10/10/facturation-electronique-premier-bilan-octobre-2026/) : communiqué du ministère de l'Action et des Comptes publics du 09/10/2026, données au 04/10/2026 : 75 % des entreprises déclarant la TVA ont désigné une plateforme de réception ; plus de 70 milliards d'euros facturés en électronique (valeur des factures). Amende 2027 : 50 € par facture, plafond 15 000 €/an (L-Expert-Comptable).",
+   "scenes": [
+    {
+     "type": "chiffre",
+     "objet": "facture",
+     "label": "Électriciens · facture électronique",
+     "valeur": "75 %",
+     "taille": 300,
+     "legende": "ont choisi leur\n*plateforme. Et vous ?*",
+     "voix": "Électriciens : au 4 octobre, 75 % des entreprises qui déclarent la TVA avaient désigné leur plateforme pour recevoir les factures électroniques. Et la vôtre ?"
+    },
+    {
+     "type": "kpis",
+     "label": "Facture électronique · bilan au 4 octobre",
+     "kpis": [
+      {
+       "valeur": "70 Md€",
+       "label": "et plus, déjà facturés en électronique"
+      },
+      {
+       "valeur": "50 €",
+       "label": "d'amende par facture non électronique dès 2027"
+      }
+     ],
+     "voix": "Plus de 70 milliards d'euros ont déjà été facturés en électronique. En septembre 2027, ce sera votre tour d'émettre : 50 euros d'amende par facture non conforme."
+    },
+    {
+     "type": "texte",
+     "objet": "calendrier",
+     "label": "À faire cette semaine",
+     "titre": "Choisir sa plateforme,\n*puis préparer 2027.*",
+     "taille": 104,
+     "voix": "Cette semaine : choisissez votre plateforme. Ensuite, préparez des devis et des factures qui partiront au bon format en 2027."
+    }
+   ],
+   "legende": "Électriciens : au 4 octobre, 75 % des entreprises qui déclarent la TVA avaient désigné leur plateforme de réception des factures électroniques (ministère, 09/10). Et la vôtre ?\nUn back-office qui prépare vos devis et factures au bon format, prêt pour l'émission en 2027.\nCommentez 2027 : on vous dit où vous en êtes.",
+   "hashtags": {
+    "tiktok": [
+     "#electricien",
+     "#factureelectronique",
+     "#artisanbtp",
+     "#tpe"
+    ],
+    "instagram": [],
+    "linkedin": [],
+    "facebook": []
+   }
+  },
+  {
+   "id": "02-boulanger-commandes",
+   "serie": "L'agent du métier",
+   "creneau": "12:30",
+   "theme": "papier",
+   "fond": "points",
+   "offre": "A",
+   "metier": "boulangeries",
+   "hook_type": "question",
+   "reseaux": [
+    "instagram",
+    "facebook",
+    "tiktok"
+   ],
+   "titre": "Boulangers : qui prend les commandes pendant la fournée ?",
+   "source": "Cas d'usage type (illustratif), sans chiffre ; aucune entreprise réelle",
+   "scenes": [
+    {
+     "type": "hook",
+     "label": "Boulangeries",
+     "objet": "telephone",
+     "titre": "Boulangers, au fournil :\n*qui prend les commandes ?*",
+     "taille": 112,
+     "voix": "Boulangers, il est 5 heures, vous êtes au fournil. Un client veut 3 tartes pour dimanche, un autre un gâteau d'anniversaire. Qui prend la commande ?"
+    },
+    {
+     "type": "notifs",
+     "heure": "06:15",
+     "label": "Samedi",
+     "notifs": [
+      {
+       "app": "Agent de la boulangerie",
+       "heure": "05:02",
+       "titre": "Commande : 3 tartes aux pommes",
+       "texte": "Retrait dimanche 10 h, confirmé par SMS"
+      },
+      {
+       "app": "Agent de la boulangerie",
+       "heure": "05:40",
+       "titre": "Gâteau d'anniversaire, 8 parts",
+       "texte": "Inscription et allergènes notés pour validation"
+      },
+      {
+       "app": "Agent de la boulangerie",
+       "heure": "06:10",
+       "titre": "Récapitulatif du jour prêt",
+       "texte": "4 commandes à préparer avant midi"
+      }
+     ],
+     "voix": "Un agent IA sur mesure répond aux messages, note chaque commande avec l'heure de retrait, et vous prépare le récapitulatif du jour."
+    },
+    {
+     "type": "objet",
+     "objet": "agent",
+     "autour": [
+      "bulle",
+      "calendrier",
+      "check",
+      "cloche"
+     ],
+     "label": "La parade",
+     "titre": "Vous pétrissez.\n*L'agent note les commandes.*",
+     "voix": "Vous restez au fournil. Les commandes arrivent notées, confirmées, et plus aucune commande sur un coin de papier entre deux fournées."
+    }
+   ],
+   "legende": "Boulangers : qui prend les commandes quand vous êtes au fournil ?\nUn agent IA sur mesure répond aux messages, note chaque commande et vous prépare le récapitulatif du jour.\nCommentez AGENT avec votre métier.",
+   "hashtags": {
+    "instagram": [
+     "#boulangerie",
+     "#agentia",
+     "#commercant",
+     "#entrepreneur",
+     "#dijon"
+    ],
+    "tiktok": [
+     "#boulanger",
+     "#agentia",
+     "#automatisation",
+     "#entrepreneur"
+    ],
+    "facebook": [
+     "#boulangerie",
+     "#agentia"
+    ],
+    "linkedin": []
+   }
+  },
+  {
+   "id": "03-industrie-faux-iban",
+   "serie": "Avant / après",
+   "creneau": "17:30",
+   "theme": "ardoise",
+   "fond": "lignes",
+   "offre": "B",
+   "metier": "PME industrielles",
+   "hook_type": "perte",
+   "reseaux": [
+    "tiktok"
+   ],
+   "titre": "Industriels : un faux IBAN, et le virement part chez l'escroc",
+   "source": "FrenchBreaches, 09/10/2026 (https://frenchbreaches.com/blog/cyberattaque-les-donnees-de-22-millions-de-personnes-exposees-chez-un-service-du-groupe-la-poste) : violation de données confirmée par Docaposte (document du 05/10/2026), 22 millions de personnes concernées, montants de factures et IBAN d'entreprises clientes exposés. Fraude au changement d'IBAN : scénario type, sans chiffre.",
+   "scenes": [
+    {
+     "type": "hook",
+     "label": "PME industrielles",
+     "objet": "cadenas",
+     "titre": "Un mail « nouvel IBAN ».\n*Le virement part\nchez l'escroc.*",
+     "taille": 104,
+     "voix": "Industriels : un mail de votre fournisseur annonce un nouvel IBAN. Tout semble normal. Le virement part, et l'argent arrive chez un escroc."
+    },
+    {
+     "type": "avantapres",
+     "label_avant": "IBAN changé par mail",
+     "label_apres": "Avec un back-office",
+     "avant": [
+      "IBAN modifié sur simple mail",
+      "Une seule personne valide",
+      "Virement parti, trop tard"
+     ],
+     "apres": [
+      "Changement d'IBAN bloqué",
+      "Double validation obligatoire",
+      "Rappel au numéro habituel"
+     ],
+     "voix": "Avec un back-office métier, un changement d'IBAN est bloqué tant que 2 personnes ne l'ont pas validé, après un rappel au numéro habituel du fournisseur."
+    },
+    {
+     "type": "chiffre",
+     "objet": "bouclier",
+     "label": "Fuite de données · octobre 2026",
+     "valeur": "22 M",
+     "taille": 300,
+     "legende": "de personnes concernées par une fuite\n*avec des IBAN d'entreprises.*",
+     "voix": "Ce mois-ci, une fuite de données révélée en France concerne 22 millions de personnes, avec des IBAN d'entreprises clientes. Les escrocs ont de quoi être crédibles."
+    }
+   ],
+   "legende": "Industriels : un mail « nouvel IBAN » de votre fournisseur, et le virement part chez un escroc. Une fuite révélée cette semaine expose des IBAN d'entreprises clientes.\nUn back-office qui bloque tout changement d'IBAN sans double validation.\nCommentez RELANCE : on vous montre le circuit.",
+   "hashtags": {
+    "tiktok": [
+     "#industrie",
+     "#cybersecurite",
+     "#gestionentreprise",
+     "#dirigeantpme"
+    ],
+    "instagram": [],
+    "linkedin": [],
+    "facebook": []
+   }
+  },
+  {
+   "id": "04-formation-reseaux-ia",
+   "serie": "Le conseil KORVEX",
+   "creneau": "19:30",
+   "theme": "sable",
+   "fond": "bandes",
+   "offre": "V",
+   "metier": "organismes de formation",
+   "hook_type": "contre-intuitif",
+   "reseaux": [
+    "instagram",
+    "facebook",
+    "tiktok"
+   ],
+   "titre": "Organismes de formation : l'IA de Google cite aussi vos réseaux",
+   "source": "SE Ranking, analyse de 100 000 mots-clés, relayée par Social Media Today le 07/10/2026 et Comdigitale le 08/10/2026 (https://comdigitale.blog/lia-favorise-les-marques-actives-sur-le-social) : liens vers des réseaux sociaux dans 67,66 % des Aperçus IA de Google, 32,39 % des réponses du Mode IA, 8,4 % des réponses de ChatGPT",
+   "scenes": [
+    {
+     "type": "hook",
+     "label": "Organismes de formation",
+     "objet": "loupe",
+     "titre": "Formateurs : l'IA de Google\n*cite aussi les réseaux.*",
+     "taille": 120,
+     "voix": "Organismes de formation : quand Google répond avec l'IA, il ne cite pas que des sites. Il va chercher aussi sur les réseaux sociaux."
+    },
+    {
+     "type": "kpis",
+     "label": "Liens vers un réseau social dans les réponses IA",
+     "kpis": [
+      {
+       "valeur": "67,66 %",
+       "label": "des Aperçus IA de Google"
+      },
+      {
+       "valeur": "32,39 %",
+       "label": "des réponses du Mode IA"
+      },
+      {
+       "valeur": "8,4 %",
+       "label": "des réponses de ChatGPT"
+      }
+     ],
+     "voix": "Selon une analyse de 100 000 mots-clés, 67,66 % des Aperçus IA de Google contiennent un lien vers un réseau social. Dans ChatGPT, c'est 8,4 %."
+    },
+    {
+     "type": "objet",
+     "objet": "globe",
+     "autour": [
+      "bulle",
+      "epingle",
+      "check"
+     ],
+     "label": "Le bon duo",
+     "titre": "Un site clair,\n*des réseaux qui y renvoient.*",
+     "voix": "Le conseil : un site clair avec la durée, le prix et le financement, des réseaux actifs qui y renvoient, et les mêmes informations partout."
+    }
+   ],
+   "legende": "Organismes de formation : l'IA de Google cite des réseaux sociaux dans 67,66 % de ses aperçus (SE Ranking, 100 000 mots-clés).\nUn site nouvelle génération que Google classe et que l'IA comprend, relié à vos réseaux.\nCommentez SITE : on teste le vôtre.",
+   "hashtags": {
+    "instagram": [
+     "#organismedeformation",
+     "#siteweb",
+     "#referencement",
+     "#bourgogne",
+     "#entrepreneur"
+    ],
+    "tiktok": [
+     "#organismedeformation",
+     "#siteweb",
+     "#visibiliteweb",
+     "#dirigeantpme"
+    ],
+    "facebook": [
+     "#organismedeformation",
+     "#siteweb"
+    ],
+    "linkedin": []
+   }
+  },
+  {
+   "id": "05-plombier-dimanche-soir",
+   "serie": "Le test",
+   "creneau": "21:00",
+   "theme": "encre",
+   "fond": "halo",
+   "offre": "L",
+   "metier": "plombiers",
+   "hook_type": "metier",
+   "reseaux": [
+    "tiktok"
+   ],
+   "titre": "Plombiers : une fuite le dimanche soir, qui est trouvé ?",
+   "source": "Démonstration illustrative, réponse générique (aucune entreprise réelle)",
+   "scenes": [
+    {
+     "type": "hook",
+     "label": "Plombiers",
+     "objet": "maison",
+     "titre": "Plombiers :\nfuite le dimanche soir.\n*Qui est trouvé ?*",
+     "taille": 112,
+     "voix": "Plombiers : dimanche soir, une fuite sous l'évier. Votre futur client prend son téléphone et cherche un plombier près de chez lui. Qui apparaît ?"
+    },
+    {
+     "type": "recherche",
+     "label": "Assistant IA",
+     "question": "Un plombier disponible ce soir près de Dijon pour une fuite ?",
+     "reponse": "Je vous conseille **un plombier dont la fiche Google indique l'urgence le soir**, sa zone d'intervention et des avis récents.",
+     "cite": "Source : sa fiche Google",
+     "voix": "Ici, la réponse met en avant une fiche Google à jour : horaires d'urgence, zone d'intervention, avis récents. Une fiche vide, et c'est un concurrent qui sort."
+    },
+    {
+     "type": "objet",
+     "objet": "epingle",
+     "autour": [
+      "etoile",
+      "horloge",
+      "telephone"
+     ],
+     "label": "À vérifier ce soir",
+     "titre": "Horaires, zone, avis :\n*votre fiche à jour.*",
+     "voix": "Ce soir, ouvrez votre fiche Google. Horaires d'urgence, zone, numéro, réponses aux avis : tout est à jour ?"
+    }
+   ],
+   "legende": "Plombiers : une fuite le dimanche soir, votre client cherche sur son téléphone. Votre fiche Google vous fait-elle apparaître ?\nHoraires d'urgence, zone d'intervention, avis récents : une fiche à jour pour que vos clients vous trouvent dans votre ville.\nCommentez VILLE : on regarde votre fiche.",
+   "hashtags": {
+    "tiktok": [
+     "#plombier",
+     "#referencementlocal",
+     "#avisgoogle",
+     "#entrepreneur",
+     "#dijon"
+    ],
+    "instagram": [],
+    "linkedin": [],
+    "facebook": []
+   }
+  }
+ ]
+}
