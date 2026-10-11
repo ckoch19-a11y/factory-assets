@@ -1,0 +1,370 @@
+{
+ "date": "2026-10-12",
+ "date_courte": "12.10.26",
+ "videos": [
+  {
+   "id": "01-courtier-collegue-ia",
+   "serie": "L'actu IA",
+   "creneau": "07:45",
+   "theme": "papier",
+   "fond": "lignes",
+   "offre": "A",
+   "metier": "courtiers en assurance",
+   "hook_type": "contre-intuitif",
+   "reseaux": [
+    "linkedin",
+    "tiktok"
+   ],
+   "titre": "Courtiers : votre prochain collègue aura une adresse e-mail. Ce sera une IA.",
+   "source": "Blog du Modérateur, 09/10/2026 (https://www.blogdumoderateur.com/google-agent-gemini-unique-travail-entreprise/) : Google présente l'agent Gemini (keynote Gemini at Work 2026) : tâches sur plusieurs jours, compte Workspace avec adresse e-mail, agenda et Drive, journal d'audit, plafond de dépense par projet ; ni tarif ni date de disponibilité annoncés.",
+   "scenes": [
+    {
+     "type": "hook",
+     "label": "Courtiers en assurance",
+     "objet": "enveloppe",
+     "titre": "Votre prochain collègue\naura un e-mail.\n*Une IA.*",
+     "taille": 104,
+     "voix": "Courtiers, votre prochain collègue aura son adresse e-mail et son agenda. Et ce sera une IA. Google vient de l'annoncer."
+    },
+    {
+     "type": "notifs",
+     "heure": "08:10",
+     "label": "Cabinet de courtage",
+     "notifs": [
+      {
+       "app": "Agent du cabinet",
+       "heure": "07:02",
+       "titre": "Pièce manquante relancée",
+       "texte": "Relevé d'informations demandé au client"
+      },
+      {
+       "app": "Agent du cabinet",
+       "heure": "07:31",
+       "titre": "Rendez-vous calé jeudi 14 h",
+       "texte": "Renouvellement du contrat habitation"
+      },
+      {
+       "app": "Agent du cabinet",
+       "heure": "08:05",
+       "titre": "Actions notées au journal",
+       "texte": "Tout est prêt pour votre validation"
+      }
+     ],
+     "voix": "Cette semaine, Google a présenté un agent qui mène une tâche sur plusieurs jours, avec son propre e-mail, son agenda, et chaque action notée."
+    },
+    {
+     "type": "texte",
+     "objet": "agent",
+     "label": "Pour un cabinet de courtage",
+     "titre": "Relances, pièces, rendez-vous :\n*l'agent prépare,\nvous signez.*",
+     "taille": 96,
+     "voix": "Pour un cabinet de courtage, un agent sur mesure peut déjà relancer les pièces manquantes et caler les rendez-vous. Vous, vous validez."
+    }
+   ],
+   "legende": "Courtiers en assurance : votre prochain collègue aura une adresse e-mail et un agenda… et ce sera une IA (annonce Google de cette semaine).\nUn agent IA sur mesure relance les pièces manquantes et cale les rendez-vous ; vous validez.\nCommentez AGENT avec votre métier.",
+   "hashtags": {
+    "linkedin": [
+     "#courtierassurance",
+     "#agentia",
+     "#dirigeantpme"
+    ],
+    "tiktok": [
+     "#courtierassurance",
+     "#agentia",
+     "#automatisation",
+     "#entrepreneur"
+    ],
+    "instagram": [],
+    "facebook": []
+   }
+  },
+  {
+   "id": "02-restaurateur-defaillances",
+   "serie": "Le chiffre",
+   "creneau": "10:30",
+   "theme": "encre",
+   "fond": "points",
+   "offre": "B",
+   "metier": "restaurateurs",
+   "hook_type": "chiffre",
+   "reseaux": [
+    "tiktok"
+   ],
+   "titre": "Restaurateurs : +8,5 % de défaillances en un an dans l'hébergement-restauration.",
+   "source": "Banque de France, Défaillances d'entreprises, août 2026, mis en ligne le 09/10/2026 (https://www.banque-france.fr/fr/statistiques/entreprises/defaillances-dentreprises-2026-08) : hébergement-restauration 9 796 défaillances sur 12 mois à fin août 2026, +8,5 % sur un an ; total 70 766, +4,8 %. Réception des factures électroniques obligatoire depuis le 01/09/2026 (TPE Actu, 10/10/2026).",
+   "scenes": [
+    {
+     "type": "chiffre",
+     "objet": "graphique",
+     "label": "Hébergement et restauration · Banque de France",
+     "valeur": "+8,5 %",
+     "taille": 280,
+     "legende": "de défaillances\n*en un an.*",
+     "voix": "Restaurateurs : plus 8,5 % de défaillances en un an dans l'hébergement et la restauration. C'est la Banque de France qui le publie."
+    },
+    {
+     "type": "avantapres",
+     "label_avant": "Le soir, au comptoir",
+     "label_apres": "Avec un back-office",
+     "avant": [
+      "Factures fournisseurs en vrac",
+      "Marge calculée de tête",
+      "Trésorerie vue trop tard"
+     ],
+     "apres": [
+      "Factures reçues au même endroit",
+      "Achats suivis chaque semaine",
+      "Alerte avant le trou"
+     ],
+     "voix": "Depuis septembre, vous devez pouvoir recevoir des factures électroniques. Un back-office les range, suit vos achats, et vous alerte avant le trou."
+    },
+    {
+     "type": "texte",
+     "objet": "euro",
+     "label": "À faire cette semaine",
+     "titre": "Regarder sa trésorerie\n*chaque lundi,\npas en fin de mois.*",
+     "taille": 100,
+     "voix": "9 796 défaillances en 12 mois dans le secteur. Le réflexe : regarder votre trésorerie chaque lundi, pas en fin de mois."
+    }
+   ],
+   "legende": "Restaurateurs : +8,5 % de défaillances en un an dans l'hébergement-restauration (Banque de France, chiffres à fin août 2026).\nUn back-office qui range vos factures fournisseurs et suit votre trésorerie chaque semaine.\nCommentez RELANCE : on vous montre comment.",
+   "hashtags": {
+    "tiktok": [
+     "#restaurateur",
+     "#tresorerie",
+     "#gestionentreprise",
+     "#tpe"
+    ],
+    "instagram": [],
+    "linkedin": [],
+    "facebook": []
+   }
+  },
+  {
+   "id": "03-paysagiste-devis-chantier",
+   "serie": "L'agent du métier",
+   "creneau": "12:30",
+   "theme": "sable",
+   "fond": "halo",
+   "offre": "A",
+   "metier": "paysagistes",
+   "hook_type": "question",
+   "reseaux": [
+    "instagram",
+    "facebook",
+    "tiktok"
+   ],
+   "titre": "Paysagistes : qui répond aux demandes de devis pendant la taille ?",
+   "source": "Cas d'usage type (illustratif), sans chiffre ; aucune entreprise réelle",
+   "scenes": [
+    {
+     "type": "hook",
+     "label": "Paysagistes",
+     "objet": "telephone",
+     "titre": "Taille de haie en cours.\n*Qui répond\naux devis ?*",
+     "taille": 108,
+     "voix": "Paysagistes, vous êtes sur une taille de haie, le téléphone vibre 3 fois. 3 demandes de devis. Qui leur répond avant le concurrent ?"
+    },
+    {
+     "type": "notifs",
+     "heure": "14:20",
+     "label": "Lundi",
+     "notifs": [
+      {
+       "app": "Agent du paysagiste",
+       "heure": "13:05",
+       "titre": "Demande : entretien de jardin",
+       "texte": "Surface et photos reçues, visite proposée jeudi"
+      },
+      {
+       "app": "Agent du paysagiste",
+       "heure": "13:42",
+       "titre": "Devis élagage à valider",
+       "texte": "Préparé avec votre grille, en attente de vous"
+      },
+      {
+       "app": "Agent du paysagiste",
+       "heure": "14:15",
+       "titre": "Visite confirmée vendredi 9 h",
+       "texte": "Adresse et accès notés dans l'agenda"
+      }
+     ],
+     "voix": "Un agent IA sur mesure répond aux messages, demande la surface et des photos, prépare le devis avec votre grille, et cale la visite."
+    },
+    {
+     "type": "objet",
+     "objet": "agent",
+     "autour": [
+      "calendrier",
+      "bulle",
+      "facture",
+      "check"
+     ],
+     "label": "La parade",
+     "titre": "Vous taillez.\n*L'agent répond.*",
+     "voix": "Vous restez sur le chantier. Le soir, vous n'avez plus qu'à valider les devis et les visites."
+    }
+   ],
+   "legende": "Paysagistes : qui répond aux demandes de devis quand vous êtes en pleine taille ?\nUn agent IA sur mesure répond, récupère surface et photos, prépare le devis et cale la visite.\nCommentez AGENT avec votre métier.",
+   "hashtags": {
+    "instagram": [
+     "#paysagiste",
+     "#agentia",
+     "#artisan",
+     "#entrepreneur",
+     "#bourgogne"
+    ],
+    "tiktok": [
+     "#paysagiste",
+     "#agentia",
+     "#automatisation",
+     "#entrepreneur"
+    ],
+    "facebook": [
+     "#paysagiste",
+     "#agentia"
+    ],
+    "linkedin": []
+   }
+  },
+  {
+   "id": "04-opticien-horaires-ia",
+   "serie": "Avant / après",
+   "creneau": "17:30",
+   "theme": "ardoise",
+   "fond": "bandes",
+   "offre": "V",
+   "metier": "opticiens",
+   "hook_type": "perte",
+   "reseaux": [
+    "tiktok",
+    "facebook"
+   ],
+   "titre": "Opticiens : l'IA donne vos horaires. Si elle se trompe, le client va ailleurs.",
+   "source": "Cas illustratif (site type avant/après), sans chiffre ; aucune entreprise réelle",
+   "scenes": [
+    {
+     "type": "hook",
+     "label": "Opticiens",
+     "objet": "horloge",
+     "titre": "L'IA donne\nvos horaires.\n*Et si elle se trompe ?*",
+     "taille": 112,
+     "voix": "Opticiens : un client demande à l'IA si vous êtes ouvert lundi matin. Si elle se trompe, il va chez le voisin."
+    },
+    {
+     "type": "avantapres",
+     "label_avant": "Site actuel",
+     "label_apres": "Site lu par l'IA",
+     "avant": [
+      "Horaires dans une image",
+      "Services en vrac",
+      "Aucune question-réponse"
+     ],
+     "apres": [
+      "Horaires écrits et à jour",
+      "Chaque service sur sa page",
+      "Les vraies questions, avec réponses"
+     ],
+     "voix": "Avant : des horaires dans une image. L'IA ne lit rien et cite un autre magasin. Après : tout est écrit, et elle vous cite."
+    },
+    {
+     "type": "objet",
+     "objet": "globe",
+     "autour": [
+      "horloge",
+      "epingle",
+      "ecran",
+      "check"
+     ],
+     "label": "La parade",
+     "titre": "Horaires, services, questions :\n*écrits pour l'IA.*",
+     "voix": "La parade : un site que l'IA lit vraiment, avec vos horaires, vos services et les vraies questions de vos clients."
+    }
+   ],
+   "legende": "Opticiens : quand un client demande vos horaires à l'IA, la réponse vient de votre site. Si elle est fausse, il va chez le voisin.\nUn site écrit pour être lu par l'IA : horaires, services et vraies questions de vos clients.\nCommentez SITE : on teste le vôtre.",
+   "hashtags": {
+    "tiktok": [
+     "#opticien",
+     "#referencement",
+     "#commercant",
+     "#tpe"
+    ],
+    "facebook": [
+     "#opticien",
+     "#siteweb"
+    ],
+    "instagram": [],
+    "linkedin": []
+   }
+  },
+  {
+   "id": "05-serrurier-ia-recommande",
+   "serie": "Le conseil KORVEX",
+   "creneau": "19:30",
+   "theme": "papier",
+   "fond": "grille",
+   "offre": "V",
+   "metier": "serruriers",
+   "hook_type": "metier",
+   "reseaux": [
+    "instagram",
+    "facebook",
+    "tiktok"
+   ],
+   "titre": "Serruriers : l'IA recommande celui qu'elle comprend.",
+   "source": "Conseil KORVEX (méthode) et démonstration illustrative (réponse d'assistant IA générique), sans chiffre ; aucune entreprise réelle",
+   "scenes": [
+    {
+     "type": "hook",
+     "label": "Serruriers",
+     "objet": "cle",
+     "titre": "Serruriers :\nl'IA recommande\n*celui qu'elle comprend.*",
+     "taille": 108,
+     "voix": "Serruriers : porte claquée à 22 heures, votre client demande à l'IA qui appeler. Elle recommande celui qu'elle comprend."
+    },
+    {
+     "type": "recherche",
+     "label": "Assistant IA",
+     "question": "Un serrurier ouvert la nuit près de chez moi ? Porte claquée.",
+     "reponse": "Je vous conseille **un serrurier qui affiche sa zone et ses horaires d'urgence** sur son site, avec ses services détaillés.",
+     "cite": "Source : son site",
+     "voix": "Écrivez 3 choses sur votre site : votre zone, ville par ville. Vos horaires d'urgence, en toutes lettres. Et ce que vous faites vraiment."
+    },
+    {
+     "type": "objet",
+     "objet": "loupe",
+     "autour": [
+      "globe",
+      "epingle",
+      "horloge",
+      "check"
+     ],
+     "label": "Le conseil",
+     "titre": "Clair pour l'IA,\n*clair pour le client.*",
+     "voix": "Un site clair pour l'IA l'est aussi pour le client pressé. Et c'est vous qu'on appelle, pas une fiche inconnue."
+    }
+   ],
+   "legende": "Serruriers : quand un client demande à l'IA qui appeler, elle recommande celui dont le site est clair.\nZone, horaires d'urgence, services : un site écrit pour être lu par l'IA.\nCommentez SITE : on teste le vôtre.",
+   "hashtags": {
+    "instagram": [
+     "#serrurier",
+     "#referencement",
+     "#siteweb",
+     "#artisan",
+     "#entrepreneur"
+    ],
+    "tiktok": [
+     "#serrurier",
+     "#referencement",
+     "#siteweb",
+     "#entrepreneur"
+    ],
+    "facebook": [
+     "#serrurier",
+     "#siteweb"
+    ],
+    "linkedin": []
+   }
+  }
+ ]
+}
