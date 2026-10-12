@@ -1,0 +1,354 @@
+{
+ "date": "2026-10-13",
+ "date_courte": "13.10.26",
+ "videos": [
+  {
+   "id": "01-menuisier-plateforme",
+   "serie": "L'actu",
+   "creneau": "07:45",
+   "theme": "papier",
+   "fond": "halo",
+   "offre": "B",
+   "metier": "menuisiers",
+   "hook_type": "chiffre",
+   "reseaux": [
+    "linkedin",
+    "tiktok"
+   ],
+   "titre": "Menuisiers : 1 entreprise sur 4 sans plateforme e-facture. Et vous ?",
+   "source": "TPE Actu, 10/10/2026, bilan Bercy au 4 octobre (https://tpeactu.fr/2026/10/10/facturation-electronique-premier-bilan-octobre-2026/) : 25 % des entreprises déclarant la TVA sans plateforme, 20 millions de factures ; L'Appel, 09/10/2026 (https://lappelfrance.fr/2026/10/09/facture-electronique-letat-salue-le-demarrage-les-pme-redoutent-2027) : 50 € d'amende par facture, plafond 15 000 €/an.",
+   "scenes": [
+    {
+     "type": "chiffre",
+     "objet": "facture",
+     "label": "Entreprises déclarant la TVA · bilan au 4 octobre",
+     "valeur": "1 sur 4",
+     "taille": 280,
+     "legende": "n'a toujours *pas de plateforme.*",
+     "voix": "Menuisiers, 1 entreprise sur 4 qui déclare la TVA n'a toujours pas choisi sa plateforme de factures électroniques. Premier bilan, publié samedi."
+    },
+    {
+     "type": "kpis",
+     "objet": "euro",
+     "label": "Facture électronique · octobre 2026",
+     "kpis": [
+      {
+       "valeur": "20 M",
+       "label": "de factures électroniques déjà échangées"
+      },
+      {
+       "valeur": "50 €",
+       "label": "d'amende par facture non électronique (plafond 15 000 €/an)"
+      }
+     ],
+     "voix": "20 millions de factures électroniques circulent déjà. Dès septembre 2027, chaque facture non électronique pourra coûter 50 euros d'amende."
+    },
+    {
+     "type": "texte",
+     "objet": "check",
+     "label": "Pour un atelier de menuiserie",
+     "titre": "Devis, factures, relances :\n*prêts pour 2027.*",
+     "taille": 100,
+     "voix": "Un back-office pensé pour votre atelier reçoit vos factures électroniques, et émettra les vôtres."
+    }
+   ],
+   "legende": "Menuisiers : en France, 1 entreprise sur 4 qui déclare la TVA n'a pas encore de plateforme pour recevoir ses factures électroniques (bilan au 4 octobre, TPE Actu).\nUn back-office qui reçoit vos e-factures dès aujourd'hui et émettra les vôtres en 2027.\nCommentez 2027 : on vous dit où vous en êtes.",
+   "hashtags": {
+    "linkedin": [
+     "#factureelectronique",
+     "#menuisier",
+     "#dirigeantpme"
+    ],
+    "tiktok": [
+     "#factureelectronique",
+     "#menuisier",
+     "#artisanbtp",
+     "#entrepreneur"
+    ],
+    "instagram": [],
+    "facebook": []
+   }
+  },
+  {
+   "id": "02-gite-defaillances",
+   "serie": "Le chiffre",
+   "creneau": "10:30",
+   "theme": "encre",
+   "fond": "points",
+   "offre": "V",
+   "metier": "hôtels et gîtes",
+   "hook_type": "perte",
+   "reseaux": [
+    "tiktok"
+   ],
+   "titre": "Hôtels, gîtes, restaurants : +8,5 % de défaillances sur 12 mois",
+   "source": "TPE Actu, 11/10/2026 (https://tpeactu.fr/2026/10/11/tpe-commandes-tresorerie-alertes-defaillance/), d'après la Banque de France (09/10/2026) : défaillances +8,5 % dans l'hébergement-restauration, cumul sur 12 mois à fin août 2026. Scène recherche : démonstration illustrative, aucun établissement réel.",
+   "scenes": [
+    {
+     "type": "chiffre",
+     "objet": "maison",
+     "label": "Défaillances · hébergement-restauration",
+     "valeur": "+8,5 %",
+     "taille": 300,
+     "legende": "sur 12 mois.\n*Chaque réservation compte.*",
+     "voix": "Plus 8,5 %. C'est la hausse des défaillances dans l'hébergement et la restauration sur 12 mois, à fin août, selon la Banque de France."
+    },
+    {
+     "type": "recherche",
+     "label": "Assistant IA",
+     "question": "Un gîte au calme près de Beaune pour 4 personnes, avec parking ?",
+     "reponse": "Je vous conseille **un gîte des environs** dont le site indique la capacité, le parking, les tarifs et un formulaire de réservation directe.",
+     "cite": "Source : son site",
+     "voix": "Quand un voyageur demande à l'IA, elle cite les gîtes dont le site dit clairement la capacité, les services et comment réserver."
+    },
+    {
+     "type": "objet",
+     "objet": "globe",
+     "autour": [
+      "calendrier",
+      "etoile",
+      "epingle"
+     ],
+     "label": "Ce que vous maîtrisez",
+     "titre": "Un site lu par l'IA,\n*des réservations en direct.*",
+     "taille": 92,
+     "voix": "Un site que l'IA comprend, c'est un voyageur qui réserve chez vous, en direct."
+    }
+   ],
+   "legende": "Hôtels, gîtes, restaurants : +8,5 % de défaillances sur 12 mois à fin août dans l'hébergement-restauration (Banque de France, via TPE Actu).\nUn site que Google classe et que l'IA cite, pour des réservations en direct.\nCommentez SITE : on teste le vôtre.",
+   "hashtags": {
+    "tiktok": [
+     "#gite",
+     "#hotellerie",
+     "#siteweb",
+     "#entrepreneur",
+     "#bourgogne"
+    ],
+    "instagram": [],
+    "linkedin": [],
+    "facebook": []
+   }
+  },
+  {
+   "id": "03-autoecole-planning",
+   "serie": "L'agent du métier",
+   "creneau": "12:30",
+   "theme": "sable",
+   "fond": "grille",
+   "offre": "A",
+   "metier": "auto-écoles",
+   "hook_type": "question",
+   "reseaux": [
+    "instagram",
+    "facebook",
+    "tiktok"
+   ],
+   "titre": "Auto-écoles : qui replace vos élèves quand une leçon saute ?",
+   "source": "KORVEX — cas d'usage type (illustratif)",
+   "scenes": [
+    {
+     "type": "hook",
+     "label": "Auto-écoles",
+     "objet": "voiture",
+     "titre": "Leçon annulée.\n*Qui replace\nl'élève ?*",
+     "taille": 124,
+     "voix": "Auto-écoles : une leçon annulée, un moniteur absent, et toute la journée se passe au téléphone pour replacer vos élèves."
+    },
+    {
+     "type": "notifs",
+     "heure": "07:40",
+     "label": "Auto-école",
+     "notifs": [
+      {
+       "app": "Agent de l'auto-école",
+       "heure": "07:05",
+       "titre": "Leçon de 9 h annulée",
+       "texte": "Créneau proposé à 2 élèves en attente"
+      },
+      {
+       "app": "Agent de l'auto-école",
+       "heure": "07:18",
+       "titre": "Créneau repris",
+       "texte": "L'élève a confirmé par SMS"
+      },
+      {
+       "app": "Agent de l'auto-école",
+       "heure": "07:32",
+       "titre": "Planning du jour à jour",
+       "texte": "Moniteurs prévenus"
+      }
+     ],
+     "voix": "Un agent IA sur mesure repère l'annulation, propose le créneau aux élèves en attente, confirme par message, et met le planning à jour."
+    },
+    {
+     "type": "texte",
+     "objet": "calendrier",
+     "label": "Résultat",
+     "titre": "Le planning se remplit.\n*Le secrétariat respire.*",
+     "taille": 100,
+     "voix": "Le créneau peut être repris avant votre arrivée. Votre secrétariat s'occupe enfin des élèves au comptoir."
+    }
+   ],
+   "legende": "Auto-écoles : une leçon annulée, et c'est une série d'appels pour replacer vos élèves.\nUn agent IA sur mesure propose le créneau, confirme par SMS et met le planning à jour.\nCommentez AGENT avec votre métier.",
+   "hashtags": {
+    "instagram": [
+     "#autoecole",
+     "#agentia",
+     "#automatisation",
+     "#entrepreneur",
+     "#dijon"
+    ],
+    "tiktok": [
+     "#autoecole",
+     "#agentia",
+     "#entrepreneur"
+    ],
+    "facebook": [
+     "#autoecole",
+     "#agentia"
+    ],
+    "linkedin": []
+   }
+  },
+  {
+   "id": "04-couvreur-devis-soir",
+   "serie": "Avant / après",
+   "creneau": "17:30",
+   "theme": "ardoise",
+   "fond": "lignes",
+   "offre": "A",
+   "metier": "couvreurs",
+   "hook_type": "contre-intuitif",
+   "reseaux": [
+    "tiktok",
+    "facebook"
+   ],
+   "titre": "Couvreurs : votre devis part le soir, le client a peut-être déjà signé",
+   "source": "KORVEX — cas d'usage type (illustratif)",
+   "scenes": [
+    {
+     "type": "hook",
+     "label": "Couvreurs",
+     "objet": "maison",
+     "titre": "Votre devis est parfait.\n*Il arrive\ntrop tard.*",
+     "taille": 110,
+     "voix": "Couvreurs, votre devis est parfait. Mais vous l'envoyez le soir, et le client a peut-être déjà dit oui à celui qui a répondu le premier."
+    },
+    {
+     "type": "avantapres",
+     "label_avant": "Sans assistant",
+     "label_apres": "Avec un agent",
+     "avant": [
+      "Demande reçue sur le toit",
+      "Devis recopié le soir",
+      "Réponse le lendemain"
+     ],
+     "apres": [
+      "Demande accusée tout de suite",
+      "Photos et mesures demandées",
+      "Devis prêt à valider"
+     ],
+     "voix": "Un agent IA répond tout de suite, demande les photos et les mesures, et prépare le devis. Vous n'avez plus qu'à le valider."
+    },
+    {
+     "type": "objet",
+     "objet": "horloge",
+     "autour": [
+      "telephone",
+      "facture",
+      "check"
+     ],
+     "label": "La différence",
+     "titre": "Répondre le premier,\n*même sur le toit.*",
+     "taille": 96,
+     "voix": "Le client a une réponse le jour même. Vous, vous restez sur votre chantier."
+    }
+   ],
+   "legende": "Couvreurs : votre devis part le soir, mais le client a peut-être déjà signé avec celui qui a répondu le premier.\nUn agent IA accuse réception, demande photos et mesures, et prépare le devis à valider.\nCommentez AGENT avec votre métier.",
+   "hashtags": {
+    "tiktok": [
+     "#couvreur",
+     "#artisanbtp",
+     "#agentia",
+     "#entrepreneur"
+    ],
+    "facebook": [
+     "#couvreur",
+     "#agentia"
+    ],
+    "instagram": [],
+    "linkedin": []
+   }
+  },
+  {
+   "id": "05-fleuriste-toussaint",
+   "serie": "Le conseil KORVEX",
+   "creneau": "19:30",
+   "theme": "papier",
+   "fond": "bandes",
+   "offre": "L",
+   "metier": "fleuristes",
+   "hook_type": "metier",
+   "reseaux": [
+    "instagram",
+    "facebook",
+    "tiktok"
+   ],
+   "titre": "Fleuristes : la Toussaint tombe un dimanche, votre fiche Google le dit ?",
+   "source": "Calendrier : le 1er novembre 2026 est un dimanche. Conseil KORVEX ; scène recherche illustrative, aucun commerce réel.",
+   "scenes": [
+    {
+     "type": "hook",
+     "label": "Fleuristes",
+     "objet": "calendrier",
+     "titre": "Toussaint un dimanche.\n*Vos horaires\nsont à jour ?*",
+     "taille": 112,
+     "voix": "Fleuristes, cette année la Toussaint tombe un dimanche. Si votre fiche Google ne dit pas que vous êtes ouvert, le client ira ailleurs."
+    },
+    {
+     "type": "recherche",
+     "label": "Assistant IA",
+     "question": "Un fleuriste ouvert le dimanche 1er novembre à Dijon ?",
+     "reponse": "**Un fleuriste du centre-ville** indique sur sa fiche Google une ouverture le dimanche 1er novembre au matin, avec commande en ligne.",
+     "cite": "Source : sa fiche Google",
+     "voix": "Google et l'IA s'appuient sur les horaires renseignés sur votre fiche. Un panneau sur la vitrine, eux ne le voient pas."
+    },
+    {
+     "type": "objet",
+     "objet": "epingle",
+     "autour": [
+      "horloge",
+      "etoile",
+      "bulle"
+     ],
+     "label": "À faire cette semaine",
+     "titre": "Horaires, photos, avis :\n*votre fiche à jour.*",
+     "taille": 96,
+     "voix": "Cette semaine : vos horaires spéciaux, des photos récentes, et une réponse à chaque avis. Ce sont les infos que vos clients voient d'abord sur votre fiche."
+    }
+   ],
+   "legende": "Fleuristes : la Toussaint tombe un dimanche cette année. Votre fiche Google dit-elle que vous êtes ouvert ?\nHoraires spéciaux, photos, réponses aux avis : le premier fleuriste qu'on trouve, c'est celui qui est à jour.\nCommentez VILLE : on regarde votre fiche.",
+   "hashtags": {
+    "instagram": [
+     "#fleuriste",
+     "#toussaint",
+     "#referencementlocal",
+     "#entrepreneur",
+     "#dijon"
+    ],
+    "tiktok": [
+     "#fleuriste",
+     "#toussaint",
+     "#referencementlocal",
+     "#entrepreneur",
+     "#dijon"
+    ],
+    "facebook": [
+     "#fleuriste",
+     "#referencementlocal"
+    ],
+    "linkedin": []
+   }
+  }
+ ]
+}
