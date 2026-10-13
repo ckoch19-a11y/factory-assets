@@ -1,0 +1,355 @@
+{
+ "date": "2026-10-14",
+ "date_courte": "14.10.26",
+ "videos": [
+  {
+   "id": "01-alimentaire-defaillances",
+   "serie": "L'actu",
+   "creneau": "07:45",
+   "theme": "papier",
+   "fond": "bandes",
+   "offre": "B",
+   "metier": "commerces alimentaires",
+   "hook_type": "chiffre",
+   "reseaux": [
+    "linkedin",
+    "tiktok"
+   ],
+   "titre": "Commerces alimentaires : +15,3 % de défaillances sur un an",
+   "source": "Altares, étude défaillances T3 2026 publiée le 13/10/2026, reprise par TPE Actu (https://tpeactu.fr/2026/10/13/defaillances-entreprises-t3-2026-altares-tpe/) : 14 652 procédures collectives entre juillet et septembre 2026 ; entreprises de moins de 3 salariés : 10 960 procédures, près de 75 % du total ; commerce alimentaire +15,3 %, notamment la boucherie.",
+   "scenes": [
+    {
+     "type": "chiffre",
+     "objet": "graphique",
+     "label": "Défaillances · commerce alimentaire · juillet-septembre 2026",
+     "valeur": "+15,3 %",
+     "taille": 290,
+     "legende": "en un an.\n*Notamment la boucherie.*",
+     "voix": "Plus 15,3 % sur un an. C'est la hausse des défaillances dans le commerce alimentaire cet été, d'après l'étude Altares publiée mardi. La boucherie est particulièrement en difficulté."
+    },
+    {
+     "type": "kpis",
+     "label": "Altares · juillet à septembre 2026",
+     "kpis": [
+      {
+       "valeur": "14 652",
+       "label": "procédures collectives en France"
+      },
+      {
+       "valeur": "10 960",
+       "label": "procédures pour les entreprises de moins de 3 salariés"
+      }
+     ],
+     "voix": "14 652 procédures en un trimestre. Et près de 3 sur 4 concernent des entreprises de moins de 3 salariés."
+    },
+    {
+     "type": "texte",
+     "objet": "euro",
+     "label": "Pour un commerce de bouche",
+     "titre": "Factures, encaissements :\n*tout suivi au même endroit.*",
+     "taille": 96,
+     "voix": "Un back-office simple vous montre chaque semaine ce qui est encaissé, ce qui reste dû, et relance pour vous."
+    }
+   ],
+   "legende": "Commerces alimentaires : +15,3 % de défaillances sur un an au 3e trimestre, et près de 75 % des procédures touchent des entreprises de moins de 3 salariés (Altares, 13/10).\nUn back-office qui suit vos factures et encaissements, et relance les retards à votre place.\nCommentez RELANCE : on vous montre comment.",
+   "hashtags": {
+    "linkedin": [
+     "#tresorerie",
+     "#commercant",
+     "#dirigeantpme"
+    ],
+    "tiktok": [
+     "#commercant",
+     "#boucherie",
+     "#tresorerie",
+     "#tpe"
+    ],
+    "instagram": [],
+    "facebook": []
+   }
+  },
+  {
+   "id": "02-industrie-taches-ia",
+   "serie": "Le chiffre",
+   "creneau": "10:30",
+   "theme": "encre",
+   "fond": "grille",
+   "offre": "A",
+   "metier": "PME industrielles",
+   "hook_type": "chiffre",
+   "reseaux": [
+    "tiktok"
+   ],
+   "titre": "Dirigeants industriels : -28 % de CDI jeunes dans les métiers exposés à l'IA",
+   "source": "Le Monde Informatique, 12/10/2026 (https://www.lemondeinformatique.fr/actualites/lire-ia-generative-75-000-cdi-en-moins-par-an-pour-les-jeunes-100848.html), d'après l'étude Banque de France et LIFT (HEC Paris) : -28 % d'embauches en CDI des 21-29 ans depuis novembre 2022 dans les métiers les plus exposés à l'IA générative, environ 75 000 CDI de moins par an  ; métiers cités : opérateurs de traitement de texte, traducteurs, interprètes, journalistes, cadres chargés d'études.",
+   "scenes": [
+    {
+     "type": "chiffre",
+     "objet": "agent",
+     "label": "CDI des 21-29 ans · métiers exposés à l'IA",
+     "valeur": "-28 %",
+     "taille": 300,
+     "legende": "depuis fin 2022.\n*Les métiers les plus exposés.*",
+     "voix": "Moins 28 %. C'est la baisse des embauches en CDI de jeunes dans les métiers les plus exposés à l'IA, selon la Banque de France et HEC."
+    },
+    {
+     "type": "points",
+     "titre": "Les métiers les plus exposés",
+     "points": [
+      "Traitement de texte",
+      "Traduction",
+      "Études économiques et commerciales"
+     ],
+     "voix": "Les métiers les plus exposés : traitement de texte, traduction, études. Ces tâches de bureau existent aussi dans une petite usine."
+    },
+    {
+     "type": "objet",
+     "objet": "ecran",
+     "autour": [
+      "pdf",
+      "enveloppe",
+      "calendrier"
+     ],
+     "label": "PME industrielles · votre atelier",
+     "titre": "Comptes rendus, commandes :\n*un agent s'en charge.*",
+     "taille": 92,
+     "voix": "Un agent IA sur mesure rédige vos comptes rendus, saisit les commandes et range les documents. Votre équipe reste sur la production."
+    }
+   ],
+   "legende": "Industriels : dans les métiers les plus exposés à l'IA, les embauches de jeunes en CDI ont baissé de 28 % depuis fin 2022 (Banque de France et HEC, via Le Monde Informatique).\nUn agent IA sur mesure prend en charge vos comptes rendus, commandes et documents.\nCommentez AGENT avec votre métier.",
+   "hashtags": {
+    "tiktok": [
+     "#industrie",
+     "#agentia",
+     "#automatisation",
+     "#dirigeantpme"
+    ],
+    "instagram": [],
+    "linkedin": [],
+    "facebook": []
+   }
+  },
+  {
+   "id": "03-garage-agent-rdv",
+   "serie": "L'agent du métier",
+   "creneau": "12:30",
+   "theme": "sable",
+   "fond": "halo",
+   "offre": "A",
+   "metier": "garages",
+   "hook_type": "question",
+   "reseaux": [
+    "instagram",
+    "facebook",
+    "tiktok"
+   ],
+   "titre": "Garagistes : qui répond au téléphone quand vous êtes sous une voiture ?",
+   "source": "KORVEX — cas d'usage type (illustratif)",
+   "scenes": [
+    {
+     "type": "hook",
+     "label": "Garagistes",
+     "objet": "voiture",
+     "titre": "Mains sous le capot.\n*Qui décroche\nle téléphone ?*",
+     "taille": 118,
+     "voix": "Garagistes, vous êtes sous une voiture, le téléphone sonne pour la troisième fois. Qui répond au client ?"
+    },
+    {
+     "type": "notifs",
+     "heure": "12:20",
+     "label": "Mercredi",
+     "notifs": [
+      {
+       "app": "Agent du garage",
+       "heure": "10:12",
+       "titre": "RDV pris : vidange vendredi 8 h 30",
+       "texte": "Créneau libre de votre planning"
+      },
+      {
+       "app": "Agent du garage",
+       "heure": "11:05",
+       "titre": "Devis prêt : plaquettes avant",
+       "texte": "Prix de votre grille, à valider"
+      },
+      {
+       "app": "Agent du garage",
+       "heure": "11:47",
+       "titre": "Client prévenu",
+       "texte": "Véhicule prêt, retrait à 17 h"
+      }
+     ],
+     "voix": "Un agent IA sur mesure prend les rendez-vous dans votre planning, prépare les devis selon votre grille, et prévient le client quand sa voiture est prête."
+    },
+    {
+     "type": "texte",
+     "objet": "cle",
+     "label": "Résultat",
+     "titre": "Moins d'appels manqués.\n*Plus de temps à l'atelier.*",
+     "taille": 100,
+     "voix": "Vous validez entre deux réparations. Le client a sa réponse, et vous restez à l'atelier."
+    }
+   ],
+   "legende": "Garagistes : les appels tombent quand vous avez les mains dans le moteur, et le client rappelle ailleurs.\nUn agent IA sur mesure prend les RDV, prépare les devis de votre grille et prévient le client.\nCommentez AGENT avec votre métier.",
+   "hashtags": {
+    "instagram": [
+     "#garagiste",
+     "#garageauto",
+     "#agentia",
+     "#entrepreneur",
+     "#dijon"
+    ],
+    "tiktok": [
+     "#garagiste",
+     "#agentia",
+     "#entrepreneur",
+     "#dijon"
+    ],
+    "facebook": [
+     "#garagiste",
+     "#agentia"
+    ],
+    "linkedin": []
+   }
+  },
+  {
+   "id": "04-electricien-relance",
+   "serie": "Avant / après",
+   "creneau": "17:30",
+   "theme": "ardoise",
+   "fond": "lignes",
+   "offre": "B",
+   "metier": "électriciens",
+   "hook_type": "perte",
+   "reseaux": [
+    "tiktok",
+    "facebook"
+   ],
+   "titre": "Électriciens : une facture non relancée, c'est un chantier payé de votre poche",
+   "source": "KORVEX — cas d'usage type (illustratif)",
+   "scenes": [
+    {
+     "type": "hook",
+     "label": "Électriciens",
+     "objet": "eclair",
+     "titre": "Chantier fini.\n*Facture\njamais relancée.*",
+     "taille": 118,
+     "voix": "Électriciens, le chantier est fini depuis des semaines. La facture, elle, attend toujours. Et personne ne l'a relancée."
+    },
+    {
+     "type": "avantapres",
+     "label_avant": "Aujourd'hui",
+     "label_apres": "Avec un back-office",
+     "avant": [
+      "Facture recopiée le soir",
+      "Relance oubliée",
+      "Trésorerie dans le flou"
+     ],
+     "apres": [
+      "Devis signé, facture en 1 clic",
+      "Relance envoyée à l'échéance",
+      "Encaissements visibles"
+     ],
+     "voix": "Avec un back-office, le devis signé devient une facture en 1 clic. La relance part à l'échéance, et vous voyez ce qui reste à encaisser."
+    },
+    {
+     "type": "objet",
+     "objet": "facture",
+     "autour": [
+      "cloche",
+      "euro",
+      "check"
+     ],
+     "label": "La différence",
+     "titre": "Chaque facture suivie,\n*jusqu'au paiement.*",
+     "taille": 96,
+     "voix": "Chaque facture est suivie jusqu'au paiement. Vous, vous restez sur le chantier."
+    }
+   ],
+   "legende": "Électriciens : une facture oubliée, c'est un chantier que vous financez vous-même.\nUn back-office qui transforme le devis signé en facture et relance à l'échéance.\nCommentez RELANCE : on vous montre comment.",
+   "hashtags": {
+    "tiktok": [
+     "#electricien",
+     "#artisanbtp",
+     "#impayes",
+     "#tpe"
+    ],
+    "facebook": [
+     "#electricien",
+     "#impayes"
+    ],
+    "instagram": [],
+    "linkedin": []
+   }
+  },
+  {
+   "id": "05-kine-site-ia",
+   "serie": "Le conseil KORVEX",
+   "creneau": "19:30",
+   "theme": "papier",
+   "fond": "points",
+   "offre": "V",
+   "metier": "kinésithérapeutes",
+   "hook_type": "metier",
+   "reseaux": [
+    "instagram",
+    "facebook",
+    "tiktok"
+   ],
+   "titre": "Kinés : quand un patient demande à l'IA, votre cabinet est-il cité ?",
+   "source": "Conseil KORVEX ; scène recherche illustrative, aucun cabinet réel.",
+   "scenes": [
+    {
+     "type": "hook",
+     "label": "Kinésithérapeutes",
+     "objet": "loupe",
+     "titre": "Kinés : l'IA conseille\n*un cabinet.\nLe vôtre ?*",
+     "taille": 114,
+     "voix": "Kinés, vos futurs patients demandent maintenant à l'IA où prendre rendez-vous. Elle cite un cabinet. Est-ce le vôtre ?"
+    },
+    {
+     "type": "recherche",
+     "label": "Assistant IA",
+     "question": "Un kiné à Chalon-sur-Saône qui prend de nouveaux patients le samedi ?",
+     "reponse": "Je vous conseille **un cabinet du centre-ville** dont le site précise les horaires du samedi, l'accès et la prise de rendez-vous en ligne.",
+     "cite": "Source : son site",
+     "voix": "L'IA cite le cabinet dont le site dit clairement les horaires, l'accès et comment prendre rendez-vous. Pas forcément le plus proche."
+    },
+    {
+     "type": "objet",
+     "objet": "globe",
+     "autour": [
+      "horloge",
+      "calendrier",
+      "epingle"
+     ],
+     "label": "Le conseil",
+     "titre": "Horaires, accès, rendez-vous :\n*écrits noir sur blanc.*",
+     "taille": 90,
+     "voix": "Le conseil : écrivez sur votre site vos horaires, votre accès et votre lien de rendez-vous. C'est ce que l'IA lit en premier."
+    }
+   ],
+   "legende": "Kinés : vos futurs patients demandent à l'IA quel cabinet choisir. Elle cite celui dont le site est clair.\nUn site lisible par l'IA : horaires, accès, prise de rendez-vous, écrits noir sur blanc.\nCommentez SITE : on teste le vôtre.",
+   "hashtags": {
+    "instagram": [
+     "#kinesitherapeute",
+     "#siteweb",
+     "#referencement",
+     "#entrepreneur",
+     "#chalonsursaone"
+    ],
+    "tiktok": [
+     "#kinesitherapeute",
+     "#siteweb",
+     "#visibiliteweb",
+     "#entrepreneur",
+     "#chalonsursaone"
+    ],
+    "facebook": [
+     "#kinesitherapeute",
+     "#siteweb"
+    ],
+    "linkedin": []
+   }
+  }
+ ]
+}
