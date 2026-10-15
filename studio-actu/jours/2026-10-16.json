@@ -1,0 +1,358 @@
+{
+ "date": "2026-10-16",
+ "date_courte": "16.10.26",
+ "videos": [
+  {
+   "id": "01-comptable-agent-cadre",
+   "serie": "L'actu IA",
+   "creneau": "07:45",
+   "theme": "papier",
+   "fond": "grille",
+   "offre": "A",
+   "metier": "cabinets comptables",
+   "hook_type": "contre-intuitif",
+   "reseaux": [
+    "linkedin",
+    "tiktok"
+   ],
+   "titre": "Comptables : un agent IA à surveiller grignote vos gains",
+   "source": "G2, 2026 AI Agents Report, 14/10/2026 (https://company.g2.com/news/2026-ai-agents-report) : 66 % des organisations ont des agents en production limitée ou étendue ; 45 % disent que surveiller et corriger les erreurs des agents absorbe plus d'un quart des gains de productivité attendus ; 46 % ont des coûts d'exploitation plus élevés que prévu. Enquête auprès de plus de 1 000 acheteurs de logiciels B2B.",
+   "scenes": [
+    {
+     "type": "hook",
+     "label": "Cabinets comptables",
+     "objet": "agent",
+     "titre": "Comptables :\nun agent à surveiller\n*grignote vos gains.*",
+     "taille": 122,
+     "voix": "Experts-comptables : surveiller un agent IA mal cadré peut grignoter une bonne part du temps qu'il vous fait gagner. Une enquête publiée cette semaine le montre."
+    },
+    {
+     "type": "kpis",
+     "objet": "graphique",
+     "label": "Agents IA en entreprise · G2, octobre 2026",
+     "kpis": [
+      {
+       "valeur": "66 %",
+       "label": "ont des agents en production, même limitée"
+      },
+      {
+       "valeur": "45 %",
+       "label": "perdent plus d'1/4 des gains attendus à les surveiller"
+      }
+     ],
+     "voix": "66 % des organisations interrogées ont déjà des agents en production, au moins en partie. Mais 45 % disent que les surveiller absorbe plus d'un quart des gains attendus."
+    },
+    {
+     "type": "objet",
+     "objet": "cible",
+     "autour": [
+      "facture",
+      "enveloppe",
+      "check",
+      "calendrier"
+     ],
+     "label": "La parade",
+     "titre": "Un agent sur mesure,\n*cadré sur vos tâches.*",
+     "taille": 94,
+     "voix": "La parade : un agent sur mesure, limité à des tâches précises, comme la saisie, les relances ou le tri des mails. Vous validez, il exécute."
+    }
+   ],
+   "legende": "Experts-comptables : 45 % des acheteurs de logiciels interrogés par G2 disent que surveiller leurs agents IA absorbe plus d'un quart des gains attendus (14/10/2026).\nUn agent IA sur mesure, cadré sur des tâches précises : saisie, relances, tri des mails.\nCommentez AGENT avec votre métier.",
+   "hashtags": {
+    "linkedin": [
+     "#expertcomptable",
+     "#agentia",
+     "#dirigeantpme"
+    ],
+    "tiktok": [
+     "#expertcomptable",
+     "#agentia",
+     "#automatisation",
+     "#entrepreneur"
+    ],
+    "instagram": [],
+    "facebook": []
+   }
+  },
+  {
+   "id": "02-taxi-procedures",
+   "serie": "Le chiffre",
+   "creneau": "10:30",
+   "theme": "encre",
+   "fond": "halo",
+   "offre": "B",
+   "metier": "taxis",
+   "hook_type": "chiffre",
+   "reseaux": [
+    "tiktok"
+   ],
+   "titre": "Taxis : +17,3 % de défaillances en un an",
+   "source": "Altares, défaillances du 3e trimestre 2026, relayé par TourMaG le 13/10/2026 (https://www.tourmag.com/Defaillances-d-entreprises-au-3e-trimestre-quid-du-secteur-du-tourisme-et-du-voyage_a133626.html) : taxis 197 procédures contre 168 un an auparavant (+17,3 %) ; transport de voyageurs 208 contre 181 (+14,9 %).",
+   "scenes": [
+    {
+     "type": "chiffre",
+     "objet": "voiture",
+     "label": "Taxis · procédures au 3e trimestre 2026",
+     "valeur": "+17,3 %",
+     "taille": 290,
+     "legende": "en un an.\n*197 taxis en défaillance.*",
+     "voix": "Plus 17,3 %. C'est la hausse des défaillances chez les taxis en un an : 197 au 3e trimestre, contre 168."
+    },
+    {
+     "type": "points",
+     "titre": "Ce qui pèse sur la trésorerie",
+     "points": [
+      "Courses payées en retard",
+      "Factures pro non relancées",
+      "Carburant payé d'avance"
+     ],
+     "voix": "Le carburant se paie tout de suite. Les courses des clients professionnels, elles, se paient parfois des semaines plus tard."
+    },
+    {
+     "type": "texte",
+     "objet": "facture",
+     "label": "Le réflexe",
+     "titre": "Chaque facture suivie,\n*chaque retard relancé.*",
+     "taille": 100,
+     "voix": "Un back-office simple suit chaque facture et relance les retards à votre place. Vous savez où en est votre trésorerie."
+    }
+   ],
+   "legende": "Taxis : 197 défaillances au 3e trimestre 2026, +17,3 % en un an (Altares, via TourMaG).\nUn back-office qui suit vos factures et relance les retards à votre place.\nCommentez RELANCE.",
+   "hashtags": {
+    "tiktok": [
+     "#taxi",
+     "#tresorerie",
+     "#impayes",
+     "#entrepreneur"
+    ],
+    "instagram": [],
+    "linkedin": [],
+    "facebook": []
+   }
+  },
+  {
+   "id": "03-immo-agent-soir",
+   "serie": "L'agent du métier",
+   "creneau": "12:30",
+   "theme": "sable",
+   "fond": "points",
+   "offre": "A",
+   "metier": "agents immobiliers",
+   "hook_type": "perte",
+   "reseaux": [
+    "instagram",
+    "facebook",
+    "tiktok"
+   ],
+   "titre": "Agents immobiliers : l'acheteur de 22 h est parti ailleurs",
+   "source": "KORVEX — cas d'usage type (illustratif), sans chiffre",
+   "scenes": [
+    {
+     "type": "hook",
+     "label": "Agents immobiliers",
+     "objet": "maison",
+     "titre": "Écrit à 22 h.\n*Visite\nchez le voisin.*",
+     "taille": 120,
+     "voix": "Agents immobiliers : un acheteur vous écrit à 22 heures. Personne ne répond. Le lendemain, il visite avec l'agence d'à côté."
+    },
+    {
+     "type": "notifs",
+     "heure": "22:41",
+     "label": "Mardi soir",
+     "notifs": [
+      {
+       "app": "Agent de l'agence",
+       "heure": "22:07",
+       "titre": "Demande reçue : T3 centre-ville",
+       "texte": "Budget et financement notés"
+      },
+      {
+       "app": "Agent de l'agence",
+       "heure": "22:09",
+       "titre": "Visite proposée : jeudi 18 h",
+       "texte": "Créneau pris dans votre agenda"
+      },
+      {
+       "app": "Agent de l'agence",
+       "heure": "22:40",
+       "titre": "Résumé prêt pour demain",
+       "texte": "2 acheteurs à rappeler en priorité"
+      }
+     ],
+     "voix": "Un agent IA sur mesure répond à sa place, note le budget, propose une visite dans votre agenda, et vous prépare le résumé du lendemain."
+    },
+    {
+     "type": "objet",
+     "objet": "calendrier",
+     "autour": [
+      "maison",
+      "bulle",
+      "cle"
+     ],
+     "label": "Résultat",
+     "titre": "La visite est calée.\n*Vous dormez.*",
+     "taille": 104,
+     "voix": "Le matin, la visite est déjà calée. Vous n'avez plus qu'à ouvrir la porte."
+    }
+   ],
+   "legende": "Agents immobiliers : l'acheteur qui écrit à 22 h et n'a pas de réponse visite ailleurs le lendemain.\nUn agent IA sur mesure répond, qualifie la demande et propose une visite dans votre agenda.\nCommentez AGENT avec votre métier.",
+   "hashtags": {
+    "instagram": [
+     "#agentimmobilier",
+     "#agentia",
+     "#immobilier",
+     "#dirigeantpme",
+     "#dijon"
+    ],
+    "tiktok": [
+     "#agentimmobilier",
+     "#agentia",
+     "#entrepreneur"
+    ],
+    "facebook": [
+     "#agentimmobilier",
+     "#agentia"
+    ],
+    "linkedin": []
+   }
+  },
+  {
+   "id": "04-commerce-plateforme",
+   "serie": "Avant / après",
+   "creneau": "17:30",
+   "theme": "ardoise",
+   "fond": "bandes",
+   "offre": "B",
+   "metier": "commerces de proximité",
+   "hook_type": "metier",
+   "reseaux": [
+    "tiktok",
+    "facebook"
+   ],
+   "titre": "Commerçants : 1 entreprise sur 4 n'a pas choisi sa plateforme",
+   "source": "Ministère de l'Économie, comité de suivi de la facturation électronique du 08/10/2026, relayé par LégiFiscal le 15/10/2026 (https://www.legifiscal.fr/actualites-fiscales/4687-facturation-electronique-mois-lancement-3-entreprises-4-designe-plateforme.html) : 75 % des entreprises déclarant de la TVA ont désigné une plateforme de réception ; 20 millions de factures échangées ; émission obligatoire pour les PME et microentreprises au 1er septembre 2027 ; aucune sanction jusqu'à fin 2026.",
+   "scenes": [
+    {
+     "type": "chiffre",
+     "objet": "facture",
+     "label": "Commerçants · facture électronique, octobre 2026",
+     "valeur": "75 %",
+     "taille": 320,
+     "legende": "ont choisi leur plateforme.\n*1 sur 4 attend.*",
+     "voix": "Commerçants : 75 % des entreprises qui déclarent la TVA ont déjà choisi leur plateforme de réception. 1 sur 4 attend encore."
+    },
+    {
+     "type": "avantapres",
+     "label_avant": "Aujourd'hui",
+     "label_apres": "Prêt pour 2027",
+     "avant": [
+      "Factures PDF par mail",
+      "Plateforme pas choisie",
+      "Tickets et factures mélangés"
+     ],
+     "apres": [
+      "Plateforme désignée",
+      "Factures émises au bon format",
+      "Tout au même endroit"
+     ],
+     "voix": "En septembre 2027, les petites entreprises devront émettre leurs factures en électronique. Un back-office prêt pour 2027 range tout au même endroit."
+    },
+    {
+     "type": "texte",
+     "objet": "calendrier",
+     "label": "Le bon moment",
+     "titre": "Pas de sanction en 2026.\n*Profitez-en.*",
+     "taille": 100,
+     "voix": "Aucune sanction n'est prévue en 2026. C'est le moment de s'organiser, sans pression."
+    }
+   ],
+   "legende": "Commerçants : 1 entreprise sur 4 déclarant la TVA n'a pas encore choisi sa plateforme de réception de facture électronique (comité de suivi, 08/10/2026).\nUn back-office prêt pour l'émission obligatoire de septembre 2027.\nCommentez 2027 : on vous dit où vous en êtes.",
+   "hashtags": {
+    "tiktok": [
+     "#commercant",
+     "#factureelectronique",
+     "#gestionentreprise",
+     "#tpe"
+    ],
+    "facebook": [
+     "#commercant",
+     "#factureelectronique"
+    ],
+    "instagram": [],
+    "linkedin": []
+   }
+  },
+  {
+   "id": "05-courtier-ia-cite",
+   "serie": "Le conseil KORVEX",
+   "creneau": "19:30",
+   "theme": "papier",
+   "fond": "lignes",
+   "offre": "V",
+   "metier": "courtiers en assurance",
+   "hook_type": "question",
+   "reseaux": [
+    "instagram",
+    "facebook",
+    "tiktok"
+   ],
+   "titre": "Courtiers : quel cabinet l'IA recommande-t-elle dans votre ville ?",
+   "source": "Démonstration illustrative ; OpinionWay pour SEO.fr, 05/05/2026 : 54 % des Français utilisent ChatGPT, 40 % utilisent une IA pour chercher sur internet.",
+   "scenes": [
+    {
+     "type": "hook",
+     "label": "Courtiers en assurance",
+     "objet": "loupe",
+     "titre": "Courtiers :\nl'IA cite\n*quel cabinet ?*",
+     "taille": 128,
+     "voix": "Courtiers en assurance : quand un client demande à l'IA un bon courtier près de chez lui, quel cabinet est cité ? Le vôtre ?"
+    },
+    {
+     "type": "recherche",
+     "label": "Assistant IA",
+     "question": "Un courtier pour assurer ma flotte de 3 utilitaires à Dijon ?",
+     "reponse": "Je vous conseille **un cabinet de courtage du centre-ville** : spécialisé flottes professionnelles, rendez-vous en ligne, avis récents.",
+     "cite": "Source : son site",
+     "voix": "L'IA cite plus volontiers les cabinets dont le site dit clairement leurs spécialités, leur zone et comment prendre rendez-vous."
+    },
+    {
+     "type": "kpis",
+     "objet": "globe",
+     "label": "Les Français et l'IA · 2026",
+     "kpis": [
+      {
+       "valeur": "54 %",
+       "label": "utilisent ChatGPT"
+      },
+      {
+       "valeur": "40 %",
+       "label": "cherchent sur internet avec une IA"
+      }
+     ],
+     "voix": "54 % des Français utilisent ChatGPT, et 40 % utilisent déjà une IA pour chercher sur internet. Votre site doit leur répondre."
+    }
+   ],
+   "legende": "Courtiers en assurance : quand un client demande à l'IA un courtier dans votre ville, votre cabinet est-il cité ?\nUn site nouvelle génération que Google classe et que l'IA comprend.\nCommentez SITE : on teste le vôtre.",
+   "hashtags": {
+    "instagram": [
+     "#courtierassurance",
+     "#siteweb",
+     "#referencement",
+     "#dirigeantpme",
+     "#dijon"
+    ],
+    "tiktok": [
+     "#courtierassurance",
+     "#siteweb",
+     "#referencement",
+     "#dirigeantpme"
+    ],
+    "facebook": [
+     "#courtierassurance",
+     "#referencement"
+    ],
+    "linkedin": []
+   }
+  }
+ ]
+}
